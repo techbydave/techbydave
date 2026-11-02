@@ -84,10 +84,10 @@ def _analytics_snippet():
 # Each is (label, url). Shows up in the footer on every page.
 # Leave the list empty ( [] ) to show no social links at all.
 SOCIAL_LINKS = [
-    ("Instagram", "https://www.instagram.com/techtrec3k?stkn=dnh6djY3eHQ5a3dq&utm_source=qr"),
-    ("x", "https://x.com/techtre3k"),
-    ("Youtube", "https://www.youtube.com/@TechTrecck"),
-    ("tiktok", "https://www.tiktok.com/@tech.tre3k?is_from_webapp=1&sender_device=pc"),
+    ("Instagram", "https://www.instagram.com/techby_dave"),
+    ("x", "https://x.com/techby_dave"),
+    ("Youtube", "https://www.youtube.com/@techby_dave"),
+    ("tiktok", "https://www.tiktok.com/@techby_dave"),
 ]
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
