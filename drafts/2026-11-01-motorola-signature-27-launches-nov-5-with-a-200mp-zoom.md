@@ -4,6 +4,7 @@ date: 2026-11-01
 slug: motorola-signature-27-launches-nov-5-with-a-200mp-zoom
 tags: motorola, smartphones, android, flagship
 snippet: Motorola's Signature 27 launches November 5 with a Snapdragon 8 Elite Extreme Gen 6 and 200MP telephoto. US pricing is still a mystery.
+image: moto_signature_27_zeus_pdp_page_performance_design_ksps_desktop_3_x2.avif
 ---
 
 A 200MP periscope telephoto is the headline on the Motorola Signature 27, but the number to watch arrives on Thursday: the price. Motorola has confirmed the phone launches November 5, and it has not said what it costs.
@@ -36,6 +37,6 @@ If you're shopping for a high-end Android phone this season, don't buy anything 
 
 ## My take
 
-[[ADD YOUR TAKE: 2-3 sentences on what you think, who should buy or skip, and anything you have actually tried. Delete this whole line when done.]]
+This might be Motorola’s biggest launch ever. On paper, it has some of the best features of any phone in 2026. It’s not out yet, but it’s coming soon, and if you’ve been waiting to upgrade, I think this one is worth preordering.
 
 **Sources:** [Android Authority](https://www.androidauthority.com/motorola-signature-27-us-launch-date-confirmed-3729815/), [9to5Google](https://9to5google.com/2026/10/30/motorola-signature-27-launch-date-confirmed/), [Nokiamob](https://nokiamob.net/2026/10/30/motorola-signature-27-launch-date-confirmed-specs-geekbench-scores-and-pricing-leaks/), [Gadget Review](https://www.gadgetreview.com/motorola-signature-27-launch-date-new-flagship-has-a-165hz-oled-screen), [GSMArena](https://www.gsmarena.com/motorola_signature_27_5g-14955.php), [PhoneArena](https://www.phonearena.com/phones/Motorola-Signature-27_id13120), [Smartprix](https://us.smartprix.com/mobiles/motorola-signature-27-ppd1ac2appcz)
