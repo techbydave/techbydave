@@ -270,6 +270,28 @@ def slugify(s):
     return s.strip('-')
 
 
+def meta_description(text, body_md="", limit=155):
+    """A search-friendly description: at least ~70 characters, at most ~155.
+    Short or missing snippets are topped up from the post's first paragraph."""
+    text = re.sub(r"\s+", " ", (text or "")).strip()
+    if len(text) < 70 and body_md:
+        for para in re.split(r"\n\s*\n", body_md):
+            para = para.strip()
+            if not para or para.startswith(("#", "!", ">", "-", "*", "[[", "|")):
+                continue
+            plain = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", para)
+            plain = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", plain)
+            plain = re.sub(r"[*_`]", "", plain)
+            plain = re.sub(r"\s+", " ", plain).strip()
+            if plain and plain != text:
+                text = f"{text} {plain}".strip() if text else plain
+                break
+    if len(text) > limit:
+        cut = text[:limit].rsplit(" ", 1)[0].rstrip(",;:-— ")
+        text = cut + "…"
+    return text
+
+
 def fmt_date_human(d):
     return f"{d.strftime('%b')} {d.day}, {d.year}"
 
@@ -1247,6 +1269,7 @@ def build():
         meta, body = parse_frontmatter(raw, fname)
         meta["slug"] = meta.get("slug") or slugify(meta["title"])
         meta["body_html"] = markdown_to_html(body)
+        meta["_body_md"] = body
         posts.append(meta)
 
     posts.sort(key=lambda m: m["_published"], reverse=True)
@@ -1301,7 +1324,7 @@ def build():
     </article>"""
         page = render_page(
             title=f"{html.escape(meta['title'])} &middot; {SITE_TITLE}",
-            description=html.escape(meta["snippet"]),
+            description=html.escape(meta_description(meta["snippet"], meta.get("_body_md", ""))),
             canonical=f"{base}/posts/{meta['slug']}.html",
             prefix="../",
             body=body,
@@ -1317,7 +1340,8 @@ def build():
     # ---- homepage: animated hero, then lead story + grid + more stories ----
     index = render_page(
         title=f"{SITE_TITLE} &middot; {SITE_TAGLINE}",
-        description=html.escape(f"{SITE_TITLE} — {SITE_TAGLINE}"),
+        description=html.escape(f"{SITE_TITLE} covers new phones, laptops, earbuds, wearables and smart home gear: "
+                                f"launches, price drops and honest buying advice, published daily."),
         canonical=base + "/",
         body=render_home_body(posts),
         hero=render_hero(posts),
@@ -1328,10 +1352,18 @@ def build():
 
     # ---- about, privacy, editorial policy, contact ----
     for filename, page_title, desc, md in (
-        ("about.html", f"About {SITE_TITLE}", f"About {SITE_TITLE} — {SITE_TAGLINE}", ABOUT_MARKDOWN),
-        ("privacy.html", "Privacy Policy", f"Privacy Policy for {SITE_TITLE}", PRIVACY_MARKDOWN),
-        ("editorial-policy.html", "Editorial Policy", f"Editorial Policy for {SITE_TITLE}", EDITORIAL_MARKDOWN),
-        ("contact.html", "Contact", f"Contact {SITE_TITLE}", CONTACT_MARKDOWN),
+        ("about.html", f"About {SITE_TITLE}",
+         f"Meet {AUTHOR_NAME}, the person behind {SITE_TITLE}: what the site covers, how stories are picked, "
+         f"and how to get in touch with tips, review ideas or corrections.", ABOUT_MARKDOWN),
+        ("privacy.html", "Privacy Policy",
+         f"How {SITE_TITLE} handles your data: ads and cookies, privacy-friendly analytics, Amazon affiliate links, "
+         f"and what happens to your newsletter email.", PRIVACY_MARKDOWN),
+        ("editorial-policy.html", "Editorial Policy",
+         f"How {SITE_TITLE} picks stories, sources every fact, uses AI-assisted drafts, discloses affiliate links "
+         f"and ads, and corrects mistakes.", EDITORIAL_MARKDOWN),
+        ("contact.html", "Contact",
+         f"Contact {SITE_TITLE}: email {AUTHOR_NAME} with news tips, product review requests, corrections, "
+         f"or advertising and partnership questions.", CONTACT_MARKDOWN),
     ):
         body = f"""
     <article class="post-full">
