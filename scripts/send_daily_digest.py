@@ -123,6 +123,7 @@ SOCIALS = [
     ("X", "https://x.com/techby_dave"),
     ("YouTube", "https://www.youtube.com/@techby_dave"),
     ("TikTok", "https://www.tiktok.com/@techby_dave"),
+    ("Pinterest", "https://ca.pinterest.com/techby_dave/"),
 ]
 
 BG, PANEL, LINE = "#070a14", "#0e1324", "#1d2543"
