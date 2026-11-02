@@ -1,6 +1,6 @@
- #!/usr/bin/env python3
+#!/usr/bin/env python3
 """
-Tech Trek static site builder.
+TechByDave static site builder.
 
 Reads Markdown posts from posts/*.md and generates a static site into dist/.
 Pure Python standard library — no dependencies to install, ever.
@@ -37,9 +37,9 @@ import urllib.parse
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
-SITE_TITLE = "Tech Treck"
+SITE_TITLE = "TechByDave"
 SITE_TAGLINE = "field notes on Tech"
-SITE_URL = "https://techtreck.tech/"  # replace with your real domain
+SITE_URL = "https://techbydave.com/"  # replace with your real domain
 
 # Cloudflare Web Analytics — free, no cookie banner needed, one script
 # tag. Leave blank to skip analytics entirely.
@@ -52,8 +52,8 @@ KIT_FORM_ACTION = f"https://app.kit.com/forms/{KIT_FORM_ID}/subscriptions"
 
 # Who runs the site and how readers reach you.
 AUTHOR_NAME = "Dave"
-AUTHOR_EMAIL = "Davis@techtreck.tech"
-INFO_EMAIL = "info@techtreck.tech"
+AUTHOR_EMAIL = "Davis@techbydave.com"
+INFO_EMAIL = "info@techbydave.com"
 
 # Publish times. Posts get an exact "published:" time when the 9am publish step
 # moves them live. Older posts without one are treated as published at this
@@ -390,8 +390,8 @@ def generate_anf(meta):
         "metadata": {
             "canonicalURL": f"{SITE_URL.rstrip('/')}/posts/{meta['slug']}.html",
             "datePublished": meta["_published"].astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "generatorIdentifier": "TechTreckBuildPy",
-            "generatorName": "Tech Treck build.py",
+            "generatorIdentifier": "TechByDaveBuildPy",
+            "generatorName": "TechByDave build.py",
             "generatorVersion": "1.0",
         },
     }
@@ -793,7 +793,7 @@ POPUP_HTML = """
   <div class="nl-popup__backdrop" data-nl-close></div>
   <div class="newsletter-card nl-popup__card" role="dialog" aria-labelledby="nl-popup-title">
     <button type="button" class="nl-popup__close" data-nl-close aria-label="Close">&times;</button>
-    <h3 id="nl-popup-title" class="newsletter-card__title">Get Tech Treck in your inbox</h3>
+    <h3 id="nl-popup-title" class="newsletter-card__title">Get TechByDave in your inbox</h3>
     <p class="newsletter-card__body">One short daily digest of what got published. No spam, unsubscribe anytime.</p>
     <form class="newsletter-form" action="__KIT_FORM_ACTION__" method="post">
       <label for="nl-email-popup" class="sr-only">Email address</label>
@@ -809,7 +809,7 @@ INLINE_SIGNUP_HTML = """
 <section class="nl-inline wrap" id="newsletter">
   <div class="newsletter-card">
     <div class="nl-copy">
-      <h3 class="newsletter-card__title">Get Tech Treck in your inbox</h3>
+      <h3 class="newsletter-card__title">Get TechByDave in your inbox</h3>
       <p class="newsletter-card__body">One short daily digest of what got published. No spam, unsubscribe anytime.</p>
     </div>
     <div class="nl-form">
