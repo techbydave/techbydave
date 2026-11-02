@@ -5,6 +5,7 @@ slug: motorola-signature-27-launches-nov-5-with-a-200mp-zoom
 tags: motorola, smartphones, android, flagship
 snippet: Motorola's Signature 27 launches November 5 with a Snapdragon 8 Elite Extreme Gen 6 and 200MP telephoto. US pricing is still a mystery.
 image: moto_signature_27_zeus_pdp_page_performance_design_ksps_desktop_3_x2.avif
+published: 2026-11-02T13:29:58-05:00
 ---
 
 A 200MP periscope telephoto is the headline on the Motorola Signature 27, but the number to watch arrives on Thursday: the price. Motorola has confirmed the phone launches November 5, and it has not said what it costs.
