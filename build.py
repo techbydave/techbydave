@@ -94,6 +94,7 @@ SOCIAL_LINKS = [
     ("x", "https://x.com/techby_dave"),
     ("Youtube", "https://www.youtube.com/@techby_dave"),
     ("tiktok", "https://www.tiktok.com/@techby_dave"),
+    ("Pinterest", "https://ca.pinterest.com/techby_dave/"),
 ]
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -984,6 +985,10 @@ ICONS = {
                 'a24.1 24.1 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/>'
                 '<path d="m10 15 5-3-5-3z"/>', False),
     "tiktok": ('<path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>', False),
+    # A simple push-pin outline, drawn in the same style as the other icons.
+    "pinterest": ('<path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16'
+                  'a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7'
+                  'a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/>', False),
 }
 
 MAIL_ICON = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
