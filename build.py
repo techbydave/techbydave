@@ -315,10 +315,13 @@ def generate_news_sitemap(posts):
     """Google News sitemap: only articles published in the last 48 hours."""
     base = SITE_URL.rstrip("/")
     cutoff = datetime.now(timezone.utc) - timedelta(hours=NEWS_SITEMAP_HOURS)
+    recent = [m for m in posts if m["_published"] >= cutoff]
+    if not recent and posts:
+        # Nothing new in 2 days: list the newest post so the file is never empty.
+        # (An empty news sitemap shows up in Search Console as "Missing XML tag".)
+        recent = [max(posts, key=lambda m: m["_published"])]
     entries = []
-    for m in posts:
-        if m["_published"] < cutoff:
-            continue
+    for m in recent:
         entries.append(f"""
   <url>
     <loc>{html.escape(f"{base}/posts/{m['slug']}.html")}</loc>
