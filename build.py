@@ -1047,6 +1047,7 @@ def render_page(*, title, description, canonical, prefix="", body, hero="", main
 <meta name="twitter:description" content="{description}"/>
 <meta name="google-site-verification" content="g5gG3v7FtM3b4ZUF9BsgGvIpjq6fgF2NK20e-5bTyDk" />
 <meta name="google-adsense-account" content="ca-pub-4303818032223917">
+<meta name="p:domain_verify" content="57d395b44f589a5e5f3ada79462de2c4"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4303818032223917"
      crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" title="{SITE_TITLE}" href="/feed.xml"/>
