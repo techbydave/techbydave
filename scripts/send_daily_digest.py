@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
-Tech Trek: daily newsletter digest, sent through Kit.
+TechByDave: daily newsletter digest, sent through Kit.
+
+Replaces the old Netlify Forms + Resend version. Kit now holds your
+subscribers, sends the email, and adds the unsubscribe link.
 
 Once a day (when the workflow runs, right after the daily post is written):
   1. finds posts in posts/ dated today (exits quietly if there are none),
@@ -10,28 +13,15 @@ Once a day (when the workflow runs, right after the daily post is written):
 
 The time of day is controlled by the cron lines in the workflow, not here.
 
-NEW in this version
-  - Branded email layout (masthead, serif headlines, mono metadata) that
-    follows the subscriber's light/dark setting automatically.
-  - Optional "view in browser" web version of each digest, with a real
-    light/dark toggle button (set WEB_VERSION=true, see notes below).
-  - PREVIEW=true builds two local HTML files so you can look at the design
-    without touching Kit.
-
 Standard library only. Environment variables:
-  KIT_API_KEY            Your Kit V4 API key (GitHub secret)   [required, except PREVIEW]
-  SITE_URL               default "https://techtreck.tech"
-  DRY_RUN                "true" = check the key and print the email, send nothing
-  FORCE                  "true" = ignore the duplicate check
-  DIGEST_DATE            override "today" for testing (YYYY-MM-DD)
-  PREVIEW                "true" = only write digest-preview-email.html and
-                         digest-preview-web.html, then exit (no API calls)
-  WEB_VERSION            "true" = also write digest/<date>.html and add a
-                         "View in browser" link to the email. Your site build
-                         must publish the digest/ folder at SITE_URL/digest/
-                         or that link will 404.
-  KIT_EMAIL_TEMPLATE_ID  optional Kit email template id. Use this to pick a
-                         template with the badge turned off (paid plans).
+  KIT_API_KEY   Your Kit V4 API key (GitHub secret)   [required]
+  SITE_URL      default "https://techbydave.com"
+  DRY_RUN       "true" = check the key and print the email, send nothing
+  FORCE         "true" = ignore the duplicate check
+  DIGEST_DATE   override "today" for testing (YYYY-MM-DD)
+
+The email uses images/email-header.png from your site, so keep that file in
+your images/ folder.
 """
 
 import html
@@ -40,6 +30,7 @@ import os
 import re
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -48,49 +39,14 @@ from zoneinfo import ZoneInfo
 API = "https://api.kit.com/v4"
 TIMEZONE = "America/Toronto"
 SEND_DELAY_MINUTES = 15
-SITE_URL = (os.environ.get("SITE_URL", "").strip() or "https://techtreck.tech").rstrip("/")
+SITE_URL = (os.environ.get("SITE_URL", "").strip() or "https://techbydave.com").rstrip("/")
 KIT_API_KEY = os.environ.get("KIT_API_KEY", "").strip()
 DRY_RUN = os.environ.get("DRY_RUN", "").lower() == "true"
 FORCE = os.environ.get("FORCE", "").lower() == "true"
-PREVIEW = os.environ.get("PREVIEW", "").lower() == "true"
-WEB_VERSION = os.environ.get("WEB_VERSION", "").lower() == "true"
-EMAIL_TEMPLATE_ID = os.environ.get("KIT_EMAIL_TEMPLATE_ID", "").strip()
 POSTS_DIR = Path("posts")
-WEB_OUT_DIR = Path("digest")
 
 NOW_LOCAL = datetime.now(ZoneInfo(TIMEZONE))
 TODAY = os.environ.get("DIGEST_DATE", "").strip() or NOW_LOCAL.strftime("%Y-%m-%d")
-
-# ---------------------------------------------------------------------------
-# Design settings. Edit these to match the site exactly.
-# ---------------------------------------------------------------------------
-TAGLINE = "field notes on tech"
-
-# Fill in your real profile URLs. Empty ones are left out of the email.
-SOCIAL_LINKS = {
-    "Instagram": "https://www.instagram.com/techtrec3k",
-    "X": "https://x.com/techtre3k",
-    "YouTube": "https://www.youtube.com/@TechTrecck",
-    "TikTok": "https://www.tiktok.com/@tech.tre3k",
-}
-
-# Email clients ignore most web fonts, so these are safe system stacks.
-SERIF = "Georgia,'Times New Roman',serif"
-MONO = "'SFMono-Regular',Menlo,Consolas,'Courier New',monospace"
-SANS = "-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
-
-# Slightly off-white / off-black so Gmail's automatic dark-mode inversion
-# does not turn pure white into a harsh result.
-LIGHT = {
-    "outer": "#eeeeea", "card": "#fcfcfa", "ink": "#1b1b1b", "body": "#3d3d3d",
-    "muted": "#6b6b66", "rule": "#1b1b1b", "hair": "#dcdcd5", "link": "#2F49FF",
-    "btn_bg": "#1b1b1b", "btn_ink": "#fcfcfa",
-}
-DARK = {
-    "outer": "#0e0e10", "card": "#18181b", "ink": "#f1efe9", "body": "#c9c6be",
-    "muted": "#8f8c84", "rule": "#f1efe9", "hair": "#2d2d32", "link": "#9aacff",
-    "btn_bg": "#f1efe9", "btn_ink": "#18181b",
-}
 
 
 def fail(msg):
@@ -142,204 +98,143 @@ def find_todays_posts():
         if not excerpt:
             for line in body.splitlines():
                 line = line.strip()
-                if line and not line.startswith("#"):
+                if line and not line.startswith(("#", "!", "[[", "*As an Amazon")):
                     excerpt = line[:180] + ("…" if len(line) > 180 else "")
                     break
-        posts.append({"title": title, "url": f"{SITE_URL}/posts/{slug}.html", "excerpt": excerpt})
+        posts.append({
+            "title": title,
+            "url": f"{SITE_URL}/posts/{slug}.html",
+            "excerpt": excerpt,
+            "image": post_image(fm, body),
+            "tag": (fm.get("tags") or "").split(",")[0].strip(),
+        })
     return posts
 
 
 # ---------------------------------------------------------------------------
-# Template
+# The email. Same colours and type as the website (dark theme). Email apps
+# ignore most modern CSS, so this is plain tables with inline styles.
 # ---------------------------------------------------------------------------
-def _fmt_date(d):
-    try:
-        dt = datetime.strptime(d, "%Y-%m-%d")
-        return f"{dt:%A, %B} {dt.day}, {dt.year}"
-    except ValueError:
-        return d
+
+SITE_NAME = "TechByDave"
+HEADER_IMAGE = "email-header.png"          # lives in images/ on the site
+SOCIALS = [
+    ("Instagram", "https://www.instagram.com/techby_dave"),
+    ("X", "https://x.com/techby_dave"),
+    ("YouTube", "https://www.youtube.com/@techby_dave"),
+    ("TikTok", "https://www.tiktok.com/@techby_dave"),
+]
+
+BG, PANEL, LINE = "#070a14", "#0e1324", "#1d2543"
+INK, INK_SOFT, MUTE = "#e9edfa", "#c3cae3", "#8b95b6"
+TRAIL, BEACON, ON_BEACON = "#7fd6ff", "#ffb347", "#1a1100"
+# No quotes in these lists: they sit inside style='...' attributes.
+DISPLAY = "Bricolage Grotesque,Segoe UI,Helvetica,Arial,sans-serif"
+TEXT = "Newsreader,Georgia,Times New Roman,serif"
 
 
-def _important(decl):
-    return ";".join(p.strip() + " !important" for p in decl.split(";") if p.strip())
+def esc(s):
+    return html.escape(s or "", quote=True)
 
 
-def _dark_rules(prefix=""):
-    """CSS that swaps every themed class to the dark palette."""
-    d = DARK
-    rules = {
-        ".tt-outer": f"background-color:{d['outer']}",
-        ".tt-card": f"background-color:{d['card']};border-color:{d['hair']}",
-        ".tt-ink": f"color:{d['ink']}",
-        ".tt-body": f"color:{d['body']}",
-        ".tt-muted": f"color:{d['muted']}",
-        ".tt-rule": f"border-color:{d['rule']}",
-        ".tt-hair": f"border-color:{d['hair']}",
-        ".tt-link": f"color:{d['link']}",
-        ".tt-btn": f"background-color:{d['btn_bg']};color:{d['btn_ink']}",
-    }
-    return "".join(f"{prefix}{sel}{{{_important(decl)}}}" for sel, decl in rules.items())
+def image_url(path):
+    """'photo.jpg', 'images/photo.jpg' or a full URL -> full URL on the site."""
+    path = (path or "").strip().strip('"').strip("'")
+    if not path:
+        return ""
+    if path.startswith(("http://", "https://")):
+        return path
+    for lead in ("./", "/", "images/"):
+        while path.startswith(lead):
+            path = path[len(lead):]
+    return f"{SITE_URL}/images/{urllib.parse.quote(path)}"
 
 
-# Mobile tweaks, shared by the email and the web page.
-BASE_CSS = (
-    "@media (max-width:620px){"
-    ".tt-pad{padding-left:20px !important;padding-right:20px !important}"
-    ".tt-h1{font-size:32px !important}"
-    ".tt-title{font-size:20px !important}"
-    "}"
-)
-
-# Email: follow the reader's device setting. The [data-ogsc] copy covers Outlook.com.
-EMAIL_CSS = (
-    ":root{color-scheme:light dark;supported-color-schemes:light dark}"
-    + BASE_CSS
-    + "@media (prefers-color-scheme:dark){" + _dark_rules() + "}"
-    + _dark_rules("[data-ogsc] ")
-)
-
-# Web page: follow the toggle (html[data-theme]), which defaults to the device setting.
-WEB_CSS = (
-    "body{margin:0}"
-    + BASE_CSS
-    + _dark_rules('html[data-theme="dark"] ')
-    + f"#tt-toggle{{position:fixed;top:14px;right:14px;z-index:10;cursor:pointer;"
-      f"font:13px {MONO};padding:8px 12px;border-radius:2px;"
-      f"border:1px solid {LIGHT['rule']};background:{LIGHT['card']};color:{LIGHT['ink']}}}"
-    + f"html[data-theme=\"dark\"] #tt-toggle{{border-color:{DARK['rule']};"
-      f"background:{DARK['card']};color:{DARK['ink']}}}"
-    + "#tt-toggle:focus-visible{outline:2px solid #2F49FF;outline-offset:2px}"
-)
-
-WEB_SCRIPT = """
-(function () {
-  var root = document.documentElement, btn = document.getElementById('tt-toggle');
-  function label() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? 'Light mode' : 'Dark mode'; }
-  btn.addEventListener('click', function () {
-    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('tt-theme', next); } catch (e) {}
-    label();
-  });
-  label();
-})();
-"""
-
-WEB_HEAD_SCRIPT = """
-(function () {
-  var t = null;
-  try { t = localStorage.getItem('tt-theme'); } catch (e) {}
-  if (t !== 'dark' && t !== 'light') {
-    t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  }
-  document.documentElement.setAttribute('data-theme', t);
-})();
-"""
+def post_image(fm, body):
+    if fm.get("image"):
+        return image_url(fm["image"])
+    m = re.search(r"!\[[^\]]*\]\(([^)\s]+)\)", body)
+    return image_url(m.group(1)) if m else ""
 
 
-def _social_pairs():
-    """SOCIAL_LINKS may be a dict {"Instagram": url} or a list of (label, url) pairs."""
-    links = SOCIAL_LINKS.items() if isinstance(SOCIAL_LINKS, dict) else SOCIAL_LINKS
-    return [(str(name).strip(), str(url).strip()) for name, url in links]
+def kicker(text):
+    return (f"<div style='font:600 12px/1 {DISPLAY};letter-spacing:1.5px;text-transform:uppercase;"
+            f"color:{TRAIL};margin:0 0 10px'>{esc(text)}</div>") if text else ""
 
 
-def _markup(posts, web_url=None):
-    L = LIGHT
-    e = html.escape
-    rows = []
+def picture(p, radius=14):
+    if not p["image"]:
+        return ""
+    return (f"<a href='{esc(p['url'])}' style='text-decoration:none'>"
+            f"<img src='{esc(p['image'])}' alt='{esc(p['title'])}' width='536' "
+            f"style='display:block;width:100%;max-width:536px;height:auto;border:1px solid {LINE};"
+            f"border-radius:{radius}px;margin:0 0 18px'></a>")
 
-    # Masthead
-    rows.append(
-        f'<tr><td class="tt-pad" style="padding:30px 36px 18px">'
-        f'<div class="tt-muted" style="font-family:{MONO};font-size:12px;color:{L["muted"]}">{e(TAGLINE)}</div>'
-        f'<div class="tt-ink tt-h1" style="font-family:{SERIF};font-size:38px;line-height:1.1;'
-        f'font-weight:700;color:{L["ink"]};margin-top:6px">Tech Trek</div>'
-        f'<div class="tt-muted" style="font-family:{MONO};font-size:12px;color:{L["muted"]};'
-        f'margin-top:10px">{e(_fmt_date(TODAY))}</div>'
-        f'</td></tr>'
-    )
-    rows.append(
-        f'<tr><td class="tt-rule" style="padding:0;height:0;font-size:0;line-height:0;'
-        f'border-top:3px solid {L["rule"]}">&nbsp;</td></tr>'
-    )
 
-    if web_url:
-        rows.append(
-            f'<tr><td class="tt-pad tt-hair" style="padding:12px 36px;border-bottom:1px solid {L["hair"]};'
-            f'font-family:{MONO};font-size:12px;color:{L["muted"]}">'
-            f'<span class="tt-muted" style="color:{L["muted"]}">Trouble reading this? </span>'
-            f'<a class="tt-link" href="{e(web_url)}" style="color:{L["link"]}">View in browser</a>'
-            f'</td></tr>'
-        )
-
-    # Stories
-    for p in posts:
-        rows.append(
-            f'<tr><td class="tt-pad tt-hair" style="padding:26px 36px;border-bottom:1px solid {L["hair"]}">'
-            f'<a class="tt-ink tt-title" href="{e(p["url"])}" style="font-family:{SERIF};font-size:23px;'
-            f'line-height:1.25;font-weight:700;color:{L["ink"]};text-decoration:none">{e(p["title"])}</a>'
-            f'<p class="tt-body" style="margin:10px 0 16px;font-family:{SERIF};font-size:16px;'
-            f'line-height:1.6;color:{L["body"]}">{e(p["excerpt"])}</p>'
-            f'<a class="tt-btn" href="{e(p["url"])}" style="display:inline-block;padding:10px 18px;'
-            f'font-family:{SANS};font-size:14px;font-weight:600;text-decoration:none;border-radius:2px;'
-            f'background-color:{L["btn_bg"]};color:{L["btn_ink"]}">Read the full post</a>'
-            f'</td></tr>'
-        )
-
-    # Footer
-    socials = "".join(
-        f'<a class="tt-link" href="{e(url)}" style="font-family:{MONO};font-size:12px;'
-        f'color:{L["link"]};margin-right:16px;text-decoration:none">{e(name)}</a>'
-        for name, url in _social_pairs() if url
-    )
-    domain = SITE_URL.replace("https://", "").replace("http://", "")
-    rows.append(
-        f'<tr><td class="tt-pad" style="padding:22px 36px 28px">'
-        + (f'<div style="margin-bottom:14px">{socials}</div>' if socials else "")
-        + f'<div class="tt-muted" style="font-family:{MONO};font-size:12px;line-height:1.6;'
-        f'color:{L["muted"]}">You are getting this because you subscribed at {e(domain)}.</div>'
-        f'</td></tr>'
-    )
-
+def lead_story(p):
     return (
-        f'<table role="presentation" class="tt-outer" width="100%" cellpadding="0" cellspacing="0" border="0" '
-        f'style="background-color:{L["outer"]}"><tr><td align="center" style="padding:24px 12px">'
-        f'<table role="presentation" class="tt-card" width="600" cellpadding="0" cellspacing="0" border="0" '
-        f'style="width:100%;max-width:600px;background-color:{L["card"]};border:1px solid {L["hair"]}">'
-        + "".join(rows)
-        + '</table></td></tr></table>'
+        f"<tr><td style='padding:28px 32px 8px'>"
+        + picture(p)
+        + kicker(p["tag"])
+        + f"<a href='{esc(p['url'])}' style='text-decoration:none;color:{INK}'>"
+          f"<h1 style='margin:0 0 12px;font:800 30px/1.1 {DISPLAY};letter-spacing:-0.5px;color:{INK}'>"
+          f"{esc(p['title'])}</h1></a>"
+        + (f"<p style='margin:0 0 22px;font:400 18px/1.55 {TEXT};color:{INK_SOFT}'>{esc(p['excerpt'])}</p>"
+           if p["excerpt"] else "")
+        + f"<table role='presentation' cellpadding='0' cellspacing='0' border='0'><tr>"
+          f"<td style='background:{BEACON};border-radius:99px'>"
+          f"<a href='{esc(p['url'])}' style='display:inline-block;padding:12px 22px;font:700 15px/1 {DISPLAY};"
+          f"color:{ON_BEACON};text-decoration:none'>Read the story &rarr;</a></td></tr></table>"
+        + "</td></tr>"
     )
 
 
-def build_html(posts, web_url=None):
-    """Email body for Kit. A fragment: Kit wraps it in its own template."""
-    return f"<style>{EMAIL_CSS}</style>" + _markup(posts, web_url)
-
-
-def build_email_preview(posts, web_url=None):
-    """The email fragment wrapped in a minimal page, for local preview only."""
+def more_story(p):
     return (
-        '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">'
-        '<meta name="viewport" content="width=device-width,initial-scale=1">'
-        '<meta name="color-scheme" content="light dark">'
-        f"<title>Email preview</title></head><body style=\"margin:0\">{build_html(posts, web_url)}</body></html>"
+        f"<tr><td style='padding:0 32px'><div style='border-top:1px solid {LINE};height:1px;line-height:1px'>&nbsp;</div></td></tr>"
+        f"<tr><td style='padding:24px 32px 22px'>"
+        + picture(p, 12)
+        + kicker(p["tag"])
+        + f"<a href='{esc(p['url'])}' style='text-decoration:none;color:{INK}'>"
+          f"<h2 style='margin:0 0 8px;font:800 22px/1.2 {DISPLAY};letter-spacing:-0.3px;color:{INK}'>"
+          f"{esc(p['title'])}</h2></a>"
+        + (f"<p style='margin:0 0 10px;font:400 16px/1.55 {TEXT};color:{INK_SOFT}'>{esc(p['excerpt'])}</p>"
+           if p["excerpt"] else "")
+        + f"<a href='{esc(p['url'])}' style='font:600 14px/1 {DISPLAY};color:{TRAIL};text-decoration:none'>"
+          f"Read more &rarr;</a></td></tr>"
     )
 
 
-def build_web_page(posts):
-    """Standalone web version of the digest, with a light/dark toggle button."""
-    title = f"Tech Trek daily digest: {TODAY}"
-    return (
-        '<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="utf-8">'
-        '<meta name="viewport" content="width=device-width,initial-scale=1">'
-        '<meta name="color-scheme" content="light dark">'
-        f"<title>{html.escape(title)}</title>"
-        f"<style>{WEB_CSS}</style><script>{WEB_HEAD_SCRIPT}</script></head>"
-        f'<body class="tt-outer" style="background-color:{LIGHT["outer"]}">'
-        '<button id="tt-toggle" type="button">Dark mode</button>'
-        + _markup(posts)
-        + f"<script>{WEB_SCRIPT}</script></body></html>"
-    )
+def build_html(posts):
+    socials = " &nbsp;&middot;&nbsp; ".join(
+        f"<a href='{esc(u)}' style='color:{MUTE};text-decoration:none'>{esc(n)}</a>" for n, u in SOCIALS)
+    more = "".join(more_story(p) for p in posts[1:])
+    return f"""<div style="margin:0;padding:24px 0;background:{BG}">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:{BG}">
+<tr><td align="center" style="padding:0 12px">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0"
+       style="width:100%;max-width:600px;background:{PANEL};border:1px solid {LINE};border-radius:18px;overflow:hidden">
+  <tr><td style="padding:0">
+    <a href="{esc(SITE_URL)}/" style="text-decoration:none">
+      <img src="{esc(image_url(HEADER_IMAGE))}" alt="{SITE_NAME}: the daily digest" width="600"
+           style="display:block;width:100%;max-width:600px;height:auto;border:0;background:{BG};color:{INK};font:800 28px {DISPLAY}">
+    </a>
+  </td></tr>
+  {lead_story(posts[0])}
+  <tr><td style="height:22px;line-height:22px">&nbsp;</td></tr>
+  {more}
+  <tr><td style="padding:28px 32px 0"><div style="border-top:1px solid {LINE};height:1px;line-height:1px">&nbsp;</div></td></tr>
+  <tr><td style="padding:22px 32px 30px;font:500 14px/1.6 {DISPLAY};color:{MUTE}">
+    <span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:{BEACON};margin-right:8px"></span>
+    <a href="{esc(SITE_URL)}/" style="color:{INK};text-decoration:none;font-weight:800">{SITE_NAME}</a>
+    &nbsp;&middot;&nbsp; <a href="{esc(SITE_URL)}/" style="color:{TRAIL};text-decoration:none">{esc(SITE_URL.split('//')[-1])}</a><br>
+    {socials}<br>
+    <span style="font-size:13px">You're getting this because you subscribed at {esc(SITE_URL.split('//')[-1])}.</span>
+  </td></tr>
+</table>
+</td></tr>
+</table>
+</div>"""
 
 
 def already_created(subject):
@@ -348,28 +243,17 @@ def already_created(subject):
 
 
 def main():
-    posts = find_todays_posts()
-
-    if PREVIEW:
-        if not posts:
-            fail(f"No posts dated {TODAY}. Set DIGEST_DATE to a date that has a post.")
-        web_url = f"{SITE_URL}/digest/{TODAY}.html"
-        Path("digest-preview-email.html").write_text(build_email_preview(posts, web_url), encoding="utf-8")
-        Path("digest-preview-web.html").write_text(build_web_page(posts), encoding="utf-8")
-        print("Wrote digest-preview-email.html and digest-preview-web.html. Open them in a browser.")
-        return
-
     if not KIT_API_KEY:
         fail("KIT_API_KEY is not set.")
 
+    posts = find_todays_posts()
     if not posts:
         print(f"No posts dated {TODAY}. Nothing to send.")
         return
 
     subject = posts[0]["title"]
-    preview = (posts[0].get("excerpt") or posts[0]["title"])[:140]
+    preview = posts[0]["excerpt"][:140]
     send_at = (datetime.now(timezone.utc) + timedelta(minutes=SEND_DELAY_MINUTES)).strftime("%Y-%m-%dT%H:%M:%SZ")
-    web_url = f"{SITE_URL}/digest/{TODAY}.html" if WEB_VERSION else None
 
     if DRY_RUN:
         acct = kit("/account")  # proves the API key works
@@ -377,32 +261,22 @@ def main():
         print(f"Would send '{subject}' with {len(posts)} post(s) at {send_at}:")
         for p in posts:
             print(f"  - {p['title']}  {p['url']}")
-        if web_url:
-            print(f"Web version would be at {web_url}")
+        Path("digest-preview.html").write_text(build_html(posts), encoding="utf-8")
+        print("Saved the email to digest-preview.html so you can open it in a browser.")
         return
 
     if not FORCE and already_created(subject):
         print("Today's digest was already created. Skipping.")
         return
 
-    if WEB_VERSION:
-        WEB_OUT_DIR.mkdir(parents=True, exist_ok=True)
-        out = WEB_OUT_DIR / f"{TODAY}.html"
-        out.write_text(build_web_page(posts), encoding="utf-8")
-        print(f"Wrote web version to {out}")
-
-    body = {
+    result = kit("/broadcasts", method="POST", body={
         "subject": subject,
         "preview_text": preview,
-        "content": build_html(posts, web_url),
+        "content": build_html(posts),
         "description": f"Daily digest {TODAY}",
         "public": False,
         "send_at": send_at,
-    }
-    if EMAIL_TEMPLATE_ID:
-        body["email_template_id"] = int(EMAIL_TEMPLATE_ID)
-
-    result = kit("/broadcasts", method="POST", body=body)
+    })
     bid = (result.get("broadcast") or {}).get("id")
     print(f"Created Kit broadcast {bid}: '{subject}', {len(posts)} post(s), scheduled for {send_at}.")
 
