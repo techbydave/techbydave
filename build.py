@@ -39,6 +39,10 @@ from zoneinfo import ZoneInfo
 
 SITE_TITLE = "TechByDave"
 SITE_TAGLINE = "field notes on Tech"
+SITE_ALT_NAME = "Tech by Dave"  # how people type the name into Google
+HOME_TITLE = f"{SITE_TITLE} &middot; Daily gadget news &amp; buying advice"
+HOME_DESCRIPTION = ("TechByDave (Tech by Dave): daily reports on the phones, laptops, headphones "
+                    "and smart home gear you can actually buy, with sources on every post.")
 SITE_URL = "https://techbydave.com/"  # replace with your real domain
 
 # Cloudflare Web Analytics — free, no cookie banner needed, one script
@@ -274,10 +278,15 @@ def fmt_date_human(d):
 
 def generate_sitemap(posts):
     base = SITE_URL.rstrip("/")
-    urls = [f"{base}/", f"{base}/about.html", f"{base}/editorial-policy.html",
-            f"{base}/contact.html", f"{base}/privacy.html"]
-    urls += [f"{base}/posts/{m['slug']}.html" for m in posts]
-    entries = "".join(f"\n  <url><loc>{html.escape(u)}</loc></url>" for u in urls)
+    latest = posts[0]["_published"].date().isoformat() if posts else None
+    pages = [(f"{base}/", latest), (f"{base}/about.html", None),
+             (f"{base}/editorial-policy.html", None), (f"{base}/contact.html", None),
+             (f"{base}/privacy.html", None)]
+    pages += [(f"{base}/posts/{m['slug']}.html", m["_published"].date().isoformat()) for m in posts]
+    entries = "".join(
+        f"\n  <url><loc>{html.escape(u)}</loc>" + (f"<lastmod>{d}</lastmod>" if d else "") + "</url>"
+        for u, d in pages
+    )
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{entries}
 </urlset>"""
@@ -828,7 +837,7 @@ INLINE_SIGNUP_HTML = """
 # Static page copy
 # ---------------------------------------------------------------------------
 
-ABOUT_MARKDOWN = f"""{SITE_TITLE} is a consumer tech blog covering phones, laptops, wearables, headphones, smart home gear, gaming hardware, and cameras: new launches, price changes, spec comparisons, and buying advice, with a clear point of view.
+ABOUT_MARKDOWN = f"""{SITE_TITLE} (also written "{SITE_ALT_NAME}") is a consumer tech blog covering phones, laptops, wearables, headphones, smart home gear, gaming hardware, and cameras: new launches, price changes, spec comparisons, and buying advice, with a clear point of view.
 
 ## Who runs it
 
@@ -1133,6 +1142,38 @@ def article_schema(meta, url):
     return f'<script type="application/ld+json">{payload}</script>'
 
 
+def site_schema():
+    """WebSite + Organization structured data for the homepage. It tells Google that
+    "TechByDave" and "Tech by Dave" are the same site, and ties it to the social profiles."""
+    base = SITE_URL.rstrip("/")
+    data = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": base + "/#website",
+                "url": base + "/",
+                "name": SITE_TITLE,
+                "alternateName": [SITE_ALT_NAME],
+                "description": HOME_DESCRIPTION,
+                "inLanguage": "en",
+                "publisher": {"@id": base + "/#organization"},
+            },
+            {
+                "@type": "Organization",
+                "@id": base + "/#organization",
+                "name": SITE_TITLE,
+                "alternateName": SITE_ALT_NAME,
+                "url": base + "/",
+                "logo": {"@type": "ImageObject", "url": f"{base}/icon-512.png", "width": 512, "height": 512},
+                "sameAs": [u.strip() for _, u in SOCIAL_LINKS],
+            },
+        ],
+    }
+    payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
+    return f'<script type="application/ld+json">{payload}</script>'
+
+
 def render_byline(meta, latest=False):
     author = html.escape(meta.get("author", AUTHOR_NAME))
     live = '<span class="live">Latest</span>' if latest else ""
@@ -1305,12 +1346,13 @@ def build():
 
     # ---- homepage: animated hero, then lead story + grid + more stories ----
     index = render_page(
-        title=f"{SITE_TITLE} &middot; {SITE_TAGLINE}",
-        description=html.escape(f"{SITE_TITLE} — {SITE_TAGLINE}"),
+        title=HOME_TITLE,
+        description=html.escape(HOME_DESCRIPTION),
         canonical=base + "/",
         body=render_home_body(posts),
         hero=render_hero(posts),
         main_class="home",
+        head_extra=site_schema(),
     )
     with open(os.path.join(DIST_DIR, "index.html"), "w", encoding="utf-8") as f:
         f.write(index)
