@@ -352,17 +352,28 @@ def generate_rss(posts):
     for meta in posts[:20]:  # most recent 20 items
         link = f"{base}/posts/{meta['slug']}.html"
         pub_date = meta["_published"].strftime("%a, %d %b %Y %H:%M:%S %z")
+        # Cover image as a full URL, so Pinterest, Flipboard and feed readers can show it.
+        image = post_image(meta)
+        media = ""
+        if image:
+            full = html.escape(fix_images(image, base + "/"))
+            ext = full.rsplit(".", 1)[-1].lower()
+            mime = {"png": "image/png", "webp": "image/webp", "gif": "image/gif"}.get(ext, "image/jpeg")
+            media = (f'\n      <enclosure url="{full}" length="0" type="{mime}"/>'
+                     f'\n      <media:content url="{full}" medium="image" type="{mime}"/>')
+        summary = meta_description(meta["snippet"], meta.get("_body_md", ""), limit=480)
         items.append(f"""
     <item>
       <title>{html.escape(meta['title'])}</title>
       <link>{link}</link>
       <guid>{link}</guid>
-      <pubDate>{pub_date}</pubDate>
+      <pubDate>{pub_date}</pubDate>{media}
+      <media:description>{html.escape(summary)}</media:description>
       <description><![CDATA[{fix_images(meta['body_html'], base + '/')}]]></description>
     </item>""")
 
     return f"""<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>{html.escape(SITE_TITLE)}</title>
     <link>{base}/</link>
