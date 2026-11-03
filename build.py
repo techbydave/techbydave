@@ -628,6 +628,16 @@ main.home{padding-top:2.5rem}
 .tags-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.6rem}
 .tags-row a{font:500 .8rem var(--display);color:var(--trail);border:1px solid var(--line);padding:.3rem .7rem;border-radius:99px;transition:background .2s,color .2s}
 .tags-row a:hover{background:var(--trail);color:var(--bg)}
+.share-bar{margin-top:2.2rem;padding:1.3rem 1.4rem;background:var(--panel);border:1px solid var(--line);border-radius:18px}
+.share-label{font:700 1rem var(--display);color:var(--ink);margin-bottom:.9rem}
+.share-row{display:flex;flex-wrap:wrap;gap:.55rem}
+.share-btn{display:inline-flex;align-items:center;gap:.45rem;padding:.55rem .9rem;border:1px solid var(--line);
+  border-radius:99px;background:transparent;color:var(--ink-soft);font:600 .85rem var(--display);cursor:pointer;
+  text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+.share-btn svg{width:16px;height:16px;flex:none}
+.share-btn:hover,.share-btn:focus-visible{background:var(--beacon);border-color:var(--beacon);color:var(--on-beacon)}
+.share-btn.copied{background:var(--trail);border-color:var(--trail);color:var(--bg)}
+@media (max-width:480px){.share-btn span{display:none}.share-btn{padding:.65rem}.share-native span,.share-copy span{display:inline}}
 
 footer.site-foot{display:flex;flex-wrap:wrap;gap:.8rem 1.6rem;padding-top:2rem;padding-bottom:3rem;color:var(--mute);font:500 .9rem var(--display)}
 footer.site-foot a{transition:color .2s}
@@ -683,6 +693,18 @@ THEME_BOOT = ("try{var t=localStorage.getItem('theme');"
               "catch(e){}")
 
 COMMON_JS = """
+(function(){
+  var n=document.querySelector('.share-native');
+  if(n && navigator.share){ n.hidden=false;
+    n.addEventListener('click',function(){ navigator.share({title:n.dataset.title,url:n.dataset.url}).catch(function(){}); }); }
+  var c=document.querySelector('.share-copy');
+  if(c){ c.addEventListener('click',function(){
+    var done=function(){ var s=c.querySelector('span'); s.textContent='Copied!'; c.classList.add('copied');
+      setTimeout(function(){ s.textContent='Copy link'; c.classList.remove('copied'); },1800); };
+    if(navigator.clipboard){ navigator.clipboard.writeText(c.dataset.url).then(done,function(){ prompt('Copy this link:',c.dataset.url); }); }
+    else { prompt('Copy this link:',c.dataset.url); }
+  }); }
+})();
 (function(){
   var root=document.documentElement, reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var btn=document.getElementById('theme-toggle'), label=document.getElementById('theme-label');
@@ -1024,6 +1046,47 @@ MAIL_ICON = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
              '<path d="m3 7 9 6 9-6"/></svg>')
 
 
+SHARE_ICONS = {
+    "share": '<path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="m16 6-4-4-4 4"/><path d="M12 2v13"/>',
+    "facebook": '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>',
+    "whatsapp": '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/>',
+    "reddit": '<circle cx="12" cy="14" r="7"/><circle cx="18.5" cy="5.5" r="1.5"/><path d="m12 7 1.5-4 5 2.5"/>'
+              '<path d="M9.5 16.5c1.5 1 3.5 1 5 0"/>',
+    "link": '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>'
+            '<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
+}
+
+
+def render_share_bar(url, title, image=""):
+    """Share buttons at the end of every post. Plain links, so they work with no
+    accounts, no tracking scripts and no outside service."""
+    q = urllib.parse.quote
+    u, t = q(url, safe=""), q(title, safe="")
+    stroke = 'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"'
+
+    def svg(inner, filled=False):
+        attrs = 'fill="currentColor"' if filled else stroke
+        return f'<svg viewBox="0 0 24 24" {attrs} aria-hidden="true">{inner}</svg>'
+
+    pin = f"https://www.pinterest.com/pin/create/button/?url={u}&description={t}" + (f"&media={q(image, safe='')}" if image else "")
+    links = [
+        ("X", f"https://x.com/intent/post?text={t}&url={u}", svg(ICONS["x"][0], True)),
+        ("Facebook", f"https://www.facebook.com/sharer/sharer.php?u={u}", svg(SHARE_ICONS["facebook"])),
+        ("Pinterest", pin, svg(ICONS["pinterest"][0])),
+        ("WhatsApp", f"https://wa.me/?text={t}%20{u}", svg(SHARE_ICONS["whatsapp"])),
+        ("Reddit", f"https://www.reddit.com/submit?url={u}&title={t}", svg(SHARE_ICONS["reddit"])),
+    ]
+    a = "".join(f'<a class="share-btn" href="{html.escape(h)}" target="_blank" rel="noopener" '
+                f'aria-label="Share on {n}" title="Share on {n}">{i}<span>{n}</span></a>' for n, h, i in links)
+    data = f'data-url="{html.escape(url)}" data-title="{html.escape(title)}"'
+    return (f'<section class="share-bar" aria-label="Share this post">'
+            f'<div class="share-label">Enjoyed this? Share it</div><div class="share-row">'
+            f'<button type="button" class="share-btn share-native" hidden {data}>{svg(SHARE_ICONS["share"])}<span>Share</span></button>'
+            f'{a}'
+            f'<button type="button" class="share-btn share-copy" {data}>{svg(SHARE_ICONS["link"])}<span>Copy link</span></button>'
+            f'</div></section>')
+
+
 def render_social_icons():
     out = []
     for label, url in SOCIAL_LINKS:
@@ -1359,6 +1422,10 @@ def build():
             links = "".join(f'<a href="../index.html">#{html.escape(t)}</a>' for t in tag_list)
             tags_html = f'<div class="tags-row">{links}</div>'
 
+        share_img = post_image(meta)
+        share_img = fix_images(share_img, base + "/") if share_img else ""
+        share_html = render_share_bar(f"{base}/posts/{meta['slug']}.html", meta["title"], share_img)
+
         body = f"""
     <article class="post-full">
       <a class="back-link" href="../index.html">&#8592; back to index</a>
@@ -1370,6 +1437,7 @@ def build():
         {meta['body_html']}
       </div>
       {tags_html}
+      {share_html}
     </article>"""
         page = render_page(
             title=f"{html.escape(meta['title'])} &middot; {SITE_TITLE}",
