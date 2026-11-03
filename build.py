@@ -59,6 +59,7 @@ KIT_FORM_ACTION = f"https://app.kit.com/forms/{KIT_FORM_ID}/subscriptions"
 # Who runs the site and how readers reach you.
 AUTHOR_NAME = "Dave"
 AUTHOR_EMAIL = "Davis@techbydave.com"
+ABOUT_PHOTO = "dave-portrait.jpg"   # your photo on the About page, in images/
 INFO_EMAIL = "info@techbydave.com"
 
 # Publish times. Posts get an exact "published:" time when the 9am publish step
@@ -480,6 +481,15 @@ nav.site-nav a:hover{color:var(--ink)}
 #theme-toggle svg{width:15px;height:15px;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
 #theme-toggle:hover svg{transform:rotate(90deg)}
 
+/* ---- About page photo card ---- */
+.about-card{display:flex;align-items:center;gap:22px;margin:8px 0 28px;padding:20px;background:var(--panel);
+  border:1px solid var(--line);border-radius:18px}
+.about-photo{width:120px;height:120px;border-radius:50%;object-fit:cover;flex:none;
+  border:3px solid var(--beacon);box-shadow:0 0 0 6px rgba(255,179,71,.12)}
+.about-name{font-weight:800;font-size:1.4rem;color:var(--ink)}
+.about-role{color:var(--mute);margin-top:4px}
+@media (max-width:480px){.about-card{flex-direction:column;text-align:center}}
+
 /* ---- Header groups, burger button, social icons ---- */
 .bar-left,.bar-right{display:flex;align-items:center}
 .bar-left{gap:1.1rem;min-width:0}
@@ -873,13 +883,27 @@ INLINE_SIGNUP_HTML = """
 
 ABOUT_MARKDOWN = f"""{SITE_TITLE} is a consumer tech blog covering phones, laptops, wearables, headphones, smart home gear, gaming hardware, and cameras: new launches, price changes, spec comparisons, and buying advice, with a clear point of view.
 
-## Who runs it
+## Hi, I'm {AUTHOR_NAME}
 
-I'm {AUTHOR_NAME}, and I run {SITE_TITLE}. You can reach me at [{AUTHOR_EMAIL}](mailto:{AUTHOR_EMAIL}).
+I'm the founder of {SITE_TITLE}. I started this site because I love tech, and I wanted a place that tells people what actually matters about a new gadget: what it costs, what changed, and whether it's worth their money. Tech moves fast, and it's easy to get lost in hype, spec sheets and marketing. My job is to cut through that and give you a straight answer.
+
+## What I do
+
+Every day, I follow what's happening in consumer tech and turn it into posts you can read in a few minutes. That means covering new phone and laptop launches, tracking price drops and deals, comparing new models with the ones they replace, and helping you decide when to upgrade and when to wait.
+
+Each post ends with **My take**, where I share my honest opinion: who should buy it, who should skip it, and whether the deal is really a deal. I also share {SITE_TITLE} on TikTok, Instagram, YouTube, X and Pinterest, and send a daily newsletter so you never miss a story.
+
+## My mission
+
+My mission is to put out the best tech content and blogs I can: clear, honest and genuinely useful. No clickbait, no filler, and no pretending a product is great just because it's new. If something is a steal, I'll say so. If it isn't worth the upgrade, I'll say that too.
+
+## My vision
+
+My vision is to grow {SITE_TITLE} into a trusted name in tech and build an audience of people who come here first when they want to know what to buy. But for me, this is about more than gadgets. As {SITE_TITLE} grows, I want to use it to launch a foundation that helps people in need all over the world. Every reader, subscriber and share helps bring that goal closer.
 
 ## How posts are made
 
-New posts go up daily. They are researched and drafted with the help of AI tools working from published sources, and every post lists those sources at the bottom so you can check the facts yourself. We state only what those sources confirm, and we never claim to have tested a product we haven't. Read the full [editorial policy](editorial-policy.html).
+New posts go up daily. They are researched and drafted with the help of AI tools working from published sources, then I add my own photos and my own take before anything goes live. Every post lists its sources at the bottom so you can check the facts yourself. We state only what those sources confirm, and we never claim to have tested a product we haven't. Read the full [editorial policy](editorial-policy.html).
 
 ## Newsletter
 
@@ -887,7 +911,11 @@ Want it without checking back constantly? Subscribe below for a once-daily diges
 
 ## Affiliate links
 
-Some posts link to products through the Amazon Associates program. When they do, it's always disclosed in the post, never disguised as a regular link."""
+Some posts link to products through the Amazon Associates program. When they do, it's always disclosed in the post, never disguised as a regular link. Using those links supports the site at no extra cost to you.
+
+## Get in touch
+
+Have a tip, a product you want covered, or a correction? Email me at [{AUTHOR_EMAIL}](mailto:{AUTHOR_EMAIL}). I read every message."""
 
 PRIVACY_MARKDOWN = f"""This page explains what data {SITE_TITLE} collects and why, in plain language.
 
@@ -1388,8 +1416,8 @@ def build():
     # ---- about, privacy, editorial policy, contact ----
     for filename, page_title, desc, md in (
         ("about.html", f"About {SITE_TITLE}",
-         f"Meet {AUTHOR_NAME}, the person behind {SITE_TITLE}: what the site covers, how stories are picked, "
-         f"and how to get in touch with tips, review ideas or corrections.", ABOUT_MARKDOWN),
+         f"Meet {AUTHOR_NAME}, founder of {SITE_TITLE}: what the site covers, the mission to make the best tech content, "
+         f"and the vision of a foundation that helps people in need.", ABOUT_MARKDOWN),
         ("privacy.html", "Privacy Policy",
          f"How {SITE_TITLE} handles your data: ads and cookies, privacy-friendly analytics, Amazon affiliate links, "
          f"and what happens to your newsletter email.", PRIVACY_MARKDOWN),
@@ -1400,9 +1428,16 @@ def build():
          f"Contact {SITE_TITLE}: email {AUTHOR_NAME} with news tips, product review requests, corrections, "
          f"or advertising and partnership questions.", CONTACT_MARKDOWN),
     ):
+        intro = ""
+        if filename == "about.html" and os.path.isfile(os.path.join(IMAGES_DIR, ABOUT_PHOTO)):
+            intro = (f'<div class="about-card"><img class="about-photo" src="{IMG_MARK}{urllib.parse.quote(ABOUT_PHOTO)}" '
+                     f'alt="{html.escape(AUTHOR_NAME)}, founder of {SITE_TITLE}" width="160" height="160">'
+                     f'<div><div class="about-name">{html.escape(AUTHOR_NAME)}</div>'
+                     f'<div class="about-role">Founder &amp; writer, {SITE_TITLE}</div></div></div>')
         body = f"""
     <article class="post-full">
       <h1 class="post-title">{html.escape(page_title)}</h1>
+      {intro}
       <div class="post-body">
         {markdown_to_html(md)}
       </div>
