@@ -1,8 +1,12 @@
 name: Daily newsletter digest
 
 on:
+  # Main trigger: "Publish edited drafts" starts this right after a post goes live.
+  # The schedule below is only a safety net (about 6-7pm Toronto) for anything
+  # published another way. It never double-sends: the script skips a digest
+  # Kit already has.
   schedule:
-    - cron: "0 13 * * *"   # 13:00 UTC, 9am EDT
+    - cron: "17 23 * * *"
   workflow_dispatch: {}
 
 jobs:

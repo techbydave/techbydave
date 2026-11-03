@@ -6,7 +6,7 @@ Replaces the old Netlify Forms + Resend version. Kit now holds your
 subscribers, sends the email, and adds the unsubscribe link.
 
 Once a day (when the workflow runs, right after the daily post is written):
-  1. finds posts in posts/ dated today (exits quietly if there are none),
+  1. finds posts in posts/ dated or published today (exits quietly if none),
   2. skips if today's digest was already created in Kit,
   3. creates a Kit broadcast to ALL your subscribers, scheduled to send
      15 minutes from now so the site has time to finish deploying.
@@ -90,7 +90,9 @@ def find_todays_posts():
         fail(f"posts folder not found (cwd: {os.getcwd()})")
     for f in sorted(POSTS_DIR.glob("*.md")):
         fm, body = parse_frontmatter(f.read_text(encoding="utf-8"))
-        if fm.get("date", "")[:10] != TODAY:
+        # Include posts dated today AND posts that went live today (a draft you
+        # edited and published a day late still gets emailed).
+        if TODAY not in (fm.get("date", "")[:10], fm.get("published", "")[:10]):
             continue
         title = fm.get("title") or f.stem
         slug = fm.get("slug") or slugify(title)
@@ -107,7 +109,10 @@ def find_todays_posts():
             "excerpt": excerpt,
             "image": post_image(fm, body),
             "tag": (fm.get("tags") or "").split(",")[0].strip(),
+            "sort": fm.get("date", "")[:10] + fm.get("published", ""),
         })
+    # Newest post first, so it becomes the email's lead story and subject line.
+    posts.sort(key=lambda p: p["sort"], reverse=True)
     return posts
 
 

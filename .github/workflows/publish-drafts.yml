@@ -61,4 +61,7 @@ jobs:
           # Pushes made with the built-in token don't start other workflows, so start the site deploy directly.
           if git diff --name-only HEAD~1 HEAD | grep -qE '^posts/.*\.md$'; then
             gh workflow run deploy.yml -f skip_post=true
+            # Send the newsletter digest for the post(s) that just went live.
+            # The digest schedules the email 15 minutes out, so the site has time to deploy.
+            gh workflow run daily-digest.yml
           fi
