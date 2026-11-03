@@ -5,6 +5,7 @@ slug: early-black-friday-the-cheap-gadgets-have-the-deepest-cuts
 tags: deals, blackfriday, apple, smarthome
 snippet: Early Black Friday deals are live: Ring's doorbell is $40 and a Fire TV Stick is $40, while Apple's discounts are smaller. Here's what's worth buying.
 image: Ring_BFCM_EarlyDeals_HP_H1_Mobile.jpg
+published: 2026-11-03T13:21:27-05:00
 ---
 
 The biggest percentage drop in the early Black Friday pile isn't an Apple product. It's the [Ring Battery Doorbell 2K](https://www.amazon.com/s?k=Ring+Battery+Doorbell+2K&tag=techtreck02-20), listed at $40, down from $99. That's about 60% off, and nothing in the Apple column comes close.
