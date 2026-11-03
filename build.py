@@ -1070,6 +1070,7 @@ def render_page(*, title, description, canonical, prefix="", body, hero="", main
 <link rel="icon" href="{prefix}favicon.ico" sizes="48x48"/>
 <link rel="icon" href="{prefix}favicon.svg" type="image/svg+xml"/>
 <link rel="icon" href="{prefix}favicon-32.png" type="image/png" sizes="32x32"/>
+<link rel="icon" href="{prefix}icon-192.png" type="image/png" sizes="192x192"/>
 <link rel="apple-touch-icon" href="{prefix}apple-touch-icon.png"/>
 <meta name="theme-color" content="#070a14"/>
 {head_extra}
@@ -1358,8 +1359,22 @@ def build():
             f.write(page)
 
     # ---- homepage: animated hero, then lead story + grid + more stories ----
+    # Tells Google the site's name ("TechByDave" instead of "techbydave.com")
+    # and logo for the search result header.
+    site_schema = json.dumps({
+        "@context": "https://schema.org",
+        "@graph": [
+            {"@type": "WebSite", "@id": base + "/#website", "name": SITE_TITLE,
+             "alternateName": ["Tech by Dave", "techbydave.com"], "url": base + "/",
+             "publisher": {"@id": base + "/#org"}},
+            {"@type": "Organization", "@id": base + "/#org", "name": SITE_TITLE, "url": base + "/",
+             "logo": {"@type": "ImageObject", "url": f"{base}/icon-512.png", "width": 512, "height": 512},
+             "sameAs": [u for _, u in SOCIAL_LINKS]},
+        ],
+    }, ensure_ascii=False).replace("</", "<\\/")
     index = render_page(
-        title=f"{SITE_TITLE} &middot; {SITE_TAGLINE}",
+        title=f"{SITE_TITLE} | Consumer Tech News, Reviews &amp; Deals",
+        head_extra=f'<script type="application/ld+json">{site_schema}</script>',
         description=html.escape(f"{SITE_TITLE} covers new phones, laptops, earbuds, wearables and smart home gear: "
                                 f"launches, price drops and honest buying advice, published daily."),
         canonical=base + "/",
