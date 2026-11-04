@@ -105,3 +105,21 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # Tells Bing (and DuckDuckGo, Yahoo, ChatGPT search via Bing) about posts
+  # published in the last 12 hours. Does nothing if there are none, and never
+  # fails the workflow. Google doesn't use IndexNow; it reads the sitemaps.
+  indexnow:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Notify search engines (IndexNow)
+        run: python scripts/indexnow.py
