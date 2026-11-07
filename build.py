@@ -949,6 +949,10 @@ Want it without checking back constantly? Subscribe below for a once-daily diges
 
 Some posts link to products through the Amazon Associates program. When they do, it's always disclosed in the post, never disguised as a regular link. Using those links supports the site at no extra cost to you.
 
+## Work with {SITE_TITLE}
+
+Are you a brand or PR team? See the [media kit](media-kit.html) for product reviews, launch coverage, newsletter sponsorships and how to send review units.
+
 ## Get in touch
 
 Have a tip, a product you want covered, or a correction? Email me at [{AUTHOR_EMAIL}](mailto:{AUTHOR_EMAIL}). I read every message."""
@@ -1156,7 +1160,8 @@ def render_social_icons():
 
 def render_drawer(prefix):
     big = [("Latest", "index.html"), ("About", "about.html"),
-           ("Editorial policy", "editorial-policy.html"), ("Contact", "contact.html")]
+           ("Editorial policy", "editorial-policy.html"), ("Contact", "contact.html"),
+           ("Media kit", "media-kit.html")]
     small = [("Privacy policy", "privacy.html"), ("RSS feed", "feed.xml")]
     big_html = "".join(f'<a class="item" style="--i:{i}" href="{prefix}{href}">{label}</a>'
                        for i, (label, href) in enumerate(big))
