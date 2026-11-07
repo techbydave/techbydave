@@ -305,7 +305,7 @@ def fmt_date_human(d):
 def generate_sitemap(posts):
     base = SITE_URL.rstrip("/")
     urls = [f"{base}/", f"{base}/about.html", f"{base}/editorial-policy.html",
-            f"{base}/contact.html", f"{base}/privacy.html"]
+            f"{base}/contact.html", f"{base}/privacy.html", f"{base}/media-kit.html"]
     urls += [f"{base}/posts/{m['slug']}.html" for m in posts]
     entries = "".join(f"\n  <url><loc>{html.escape(u)}</loc></url>" for u in urls)
     return f"""<?xml version="1.0" encoding="UTF-8"?>
@@ -996,7 +996,45 @@ CONTACT_MARKDOWN = f"""Questions, corrections, story tips, or partnership reques
 - {AUTHOR_NAME}: [{AUTHOR_EMAIL}](mailto:{AUTHOR_EMAIL})
 - General information: [{INFO_EMAIL}](mailto:{INFO_EMAIL})
 
+Brands and PR teams: see our [media kit](media-kit.html) for reviews, launch coverage and sponsorships.
+
 You can also find {SITE_TITLE} on social media through the links in the footer. For how we choose and write our stories, see the [editorial policy](editorial-policy.html)."""
+
+MEDIA_KIT_MARKDOWN = f"""{SITE_TITLE} is an independent consumer tech publication run by {AUTHOR_NAME} out of Toronto, Canada. We cover the gadgets people actually buy: phones, laptops, wearables, headphones, smart home gear, gaming hardware, cameras and everyday-carry tech.
+
+## Who reads {SITE_TITLE}
+
+Our readers are people about to buy something. They come to {SITE_TITLE} to find out what changed, what it costs, and whether it's worth the upgrade.
+
+- **Monthly readers:** XX,XXX
+- **Daily newsletter subscribers:** X,XXX
+- **Social followers:** X,XXX across TikTok, Instagram, YouTube, X and Pinterest
+- **Top reader locations:** Canada, United States
+- **Publishing:** a new story every day, plus in-depth buying guides
+
+## Ways to work with us
+
+- **Product reviews:** a hands-on written review plus a short video for TikTok, Instagram Reels and YouTube Shorts.
+- **Launch coverage:** we cover new products on launch day and respect embargoes.
+- **Buying guides:** we consider products for guides such as best new phones and best everyday-carry gadgets.
+- **Newsletter sponsorship:** one sponsored spot in the daily digest email, clearly labeled.
+- **Sponsored posts and videos:** a dedicated piece about your product, always labeled as sponsored.
+
+## Our review promise
+
+We tell readers what we really think. Sending a product doesn't buy a positive review, and brands don't see or approve coverage before it goes live. Sponsored content and affiliate links are always disclosed. We think that honesty is exactly what makes our coverage worth having. Read our [editorial policy](editorial-policy.html).
+
+## Sending products
+
+Review units can be shipped to Toronto, Ontario. Let us know whether you'd like the unit returned after review, and we'll arrange it.
+
+## Rates
+
+Rates for sponsorships and sponsored content are available on request.
+
+## Get in touch
+
+Email {AUTHOR_NAME} at [{AUTHOR_EMAIL}](mailto:{AUTHOR_EMAIL}) with your product, launch date and what you have in mind. We usually reply within two business days."""
 
 
 # ---------------------------------------------------------------------------
@@ -1012,7 +1050,7 @@ SUN_ICON = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 
 def footer_links(prefix):
     pages = [("privacy", "privacy.html"), ("editorial", "editorial-policy.html"),
-             ("contact", "contact.html")]
+             ("contact", "contact.html"), ("media kit", "media-kit.html")]
     return "".join(f'<a href="{prefix}{href}">{label}</a>' for label, href in pages)
 
 
@@ -1495,6 +1533,9 @@ def build():
         ("contact.html", "Contact",
          f"Contact {SITE_TITLE}: email {AUTHOR_NAME} with news tips, product review requests, corrections, "
          f"or advertising and partnership questions.", CONTACT_MARKDOWN),
+        ("media-kit.html", "Media Kit",
+         f"Work with {SITE_TITLE}: audience, product reviews, launch coverage, newsletter sponsorships "
+         f"and how to send review units.", MEDIA_KIT_MARKDOWN),
     ):
         intro = ""
         if filename == "about.html" and os.path.isfile(os.path.join(IMAGES_DIR, ABOUT_PHOTO)):
