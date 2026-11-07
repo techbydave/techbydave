@@ -465,10 +465,10 @@ img{max-width:100%;display:block}
 .wrap{max-width:1100px;margin:0 auto;padding:0 1.5rem}
 
 .progress{position:fixed;left:0;right:0;top:0;height:3px;z-index:60;pointer-events:none}
-.progress i{position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--trail));transform-origin:left;transform:scaleX(var(--p,0))}
-.progress b{position:absolute;top:-3px;left:calc(var(--p,0)*100%);width:9px;height:9px;margin-left:-4px;border-radius:50%;background:var(--beacon);box-shadow:0 0 14px 3px var(--beacon)}
+.progress i{position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--trail));transform-origin:left;transform:scaleX(var(--p,0));will-change:transform}
+.progress b{position:absolute;top:-3px;left:0;transform:translateX(calc(var(--p,0)*100vw));will-change:transform;width:9px;height:9px;margin-left:-4px;border-radius:50%;background:var(--beacon);box-shadow:0 0 14px 3px var(--beacon)}
 
-header.site-head{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header.site-head{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 95%,transparent);border-bottom:1px solid var(--line)}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:1rem;padding-bottom:1rem}
 .brand{font:800 1.35rem/1 var(--display);letter-spacing:-.02em;display:flex;align-items:center;gap:.6rem}
 .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--beacon);position:relative}
@@ -560,7 +560,7 @@ main.home{padding-top:2.5rem}
   radial-gradient(circle at 78% 30%,color-mix(in srgb,var(--beacon) 55%,transparent) 0 5px,transparent 6px),
   radial-gradient(120% 90% at 70% 110%,color-mix(in srgb,var(--trail) 32%,transparent),transparent 62%),
   linear-gradient(160deg,var(--panel),var(--bg))}
-.pill{position:absolute;left:.7rem;top:.7rem;z-index:2;font:600 .78rem/1 var(--display);padding:.42rem .75rem;border-radius:99px;background:color-mix(in srgb,var(--bg) 78%,transparent);border:1px solid var(--line);color:var(--ink);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.pill{position:absolute;left:.7rem;top:.7rem;z-index:2;font:600 .78rem/1 var(--display);padding:.42rem .75rem;border-radius:99px;background:color-mix(in srgb,var(--bg) 90%,transparent);border:1px solid var(--line);color:var(--ink)}
 
 .story{display:block}
 .story h2,.story h3{font-family:var(--display);font-weight:800;letter-spacing:-.025em;transition:color .25s}
@@ -748,9 +748,15 @@ COMMON_JS = """
       if(e.key==='Escape'&&burger.getAttribute('aria-expanded')==='true'){setDrawer(false);burger.focus();}
     });
   }
-  var prog=document.querySelector('.progress');
-  function onScroll(){var m=root.scrollHeight-innerHeight; if(prog) prog.style.setProperty('--p',m>0?Math.min(1,scrollY/m):0);}
-  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  var prog=document.querySelector('.progress'), maxScroll=0, ticking=false;
+  function measure(){ maxScroll=root.scrollHeight-innerHeight; }
+  function paint(){ ticking=false; if(prog) prog.style.setProperty('--p',maxScroll>0?Math.min(1,scrollY/maxScroll):0); }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(paint); } }
+  measure(); paint();
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',function(){measure();onScroll();});
+  addEventListener('load',function(){measure();onScroll();});
+  if(window.ResizeObserver) new ResizeObserver(function(){measure();onScroll();}).observe(document.body);
 })();
 """
 
@@ -771,21 +777,21 @@ HERO_JS = """
   if(c&&hero){
     var g=c.getContext('2d'), colors=window.__tt.colors;
     var W,H,dpr,t=0,mx=-999,my=-999,tx=-999,ty=-999,visible=true;
-    var size=function(){dpr=Math.min(devicePixelRatio||1,2);W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;g.setTransform(dpr,0,0,dpr,0,0);};
+    var size=function(){dpr=Math.min(devicePixelRatio||1,1.5);W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;g.setTransform(dpr,0,0,dpr,0,0);};
     var height=function(nx,r){
       var env=Math.exp(-Math.pow((nx-.7)*2.6,2));
       return (Math.sin(nx*9+r*.33+t*3)*.5+Math.sin(nx*17-r*.21+t*2)*.3+Math.sin(nx*4+t)*.2)*58*env;
     };
     var draw=function(){
-      var rows=Math.max(26,Math.round(H/15)), step=W<600?10:6, bx=0, by=0;
+      var rows=Math.max(22,Math.round(H/18)), step=W<600?14:9, bx=0, by=0, near=mx>-500;
       g.clearRect(0,0,W,H);
       mx+=(tx-mx)*.12; my+=(ty-my)*.12;
       var beaconRow=Math.round(rows*.42);
       for(var r=0;r<rows;r++){
         var y0=H*.2+r*(H*.78/rows), ys=[], px, y;
         for(px=0;px<=W;px+=step){
-          var dx=px-mx, dy=y0-my;
-          y=y0-(height(px/W,r)+Math.exp(-(dx*dx+dy*dy)/9000)*38);
+          y=y0-height(px/W,r);
+          if(near){ var dx=px-mx, dy=y0-my, d2=dx*dx+dy*dy; if(d2<90000) y-=Math.exp(-d2/9000)*38; }
           ys.push(y);
           if(r===beaconRow&&Math.abs(px/W-.7)<step/W/2+.001){bx=px;by=y;}
         }
@@ -802,13 +808,21 @@ HERO_JS = """
       g.fillStyle=colors.beacon; g.beginPath(); g.arc(bx,by,4.5,0,6.283); g.fill();
       g.globalAlpha=1-p; g.strokeStyle=colors.beacon; g.lineWidth=1.5; g.beginPath(); g.arc(bx,by,4+p*18,0,6.283); g.stroke(); g.globalAlpha=1;
     };
-    var loop=function(){ if(visible){t+=.0035; draw();} requestAnimationFrame(loop); };
+    var last=0, running=false;
+    var loop=function(now){
+      if(!visible||document.hidden){ running=false; return; }
+      requestAnimationFrame(loop);
+      if(now-last<32) return;               // about 30 frames a second is plenty for a slow wave
+      t+=.0035*Math.min(3,(now-last)/16.7||2); last=now; draw();
+    };
+    var start=function(){ if(!running&&!reduce&&visible&&!document.hidden){ running=true; last=0; requestAnimationFrame(loop); } };
+    document.addEventListener('visibilitychange',start);
     size(); addEventListener('resize',function(){size(); if(reduce)draw();});
     hero.addEventListener('pointermove',function(e){var b=c.getBoundingClientRect();tx=e.clientX-b.left;ty=e.clientY-b.top;});
     hero.addEventListener('pointerleave',function(){tx=ty=-999;});
-    new IntersectionObserver(function(en){visible=en[0].isIntersecting;}).observe(hero);
+    new IntersectionObserver(function(en){visible=en[0].isIntersecting; start();}).observe(hero);
     window.__tt.redraw=function(){ if(reduce) draw(); };
-    if(reduce){draw();} else {loop();}
+    if(reduce){draw();} else {start();}
   }
 })();
 """
@@ -1369,6 +1383,98 @@ def render_hero(posts):
 """
 
 
+# ---------------------------------------------------------------------------
+# Image speed-ups. If Pillow is installed (the deploy workflow installs it),
+# each photo in images/ also gets two small WebP copies in dist/images/_w/:
+# a 640px one for the homepage cards and a 1400px one for post pages.
+# The originals stay untouched. Without Pillow the site still builds and just
+# uses the originals.
+# ---------------------------------------------------------------------------
+
+THUMB_W = 640
+LARGE_W = 1400
+RESIZED = {}  # original file name -> {"thumb": "_w/x-640.webp", "large": "_w/x-1400.webp"}
+
+
+def make_resized_images():
+    try:
+        from PIL import Image, ImageOps
+    except ImportError:
+        print("NOTE: Pillow isn't installed, so images are served at full size.")
+        return
+    src_dir = IMAGES_DIR
+    out_dir = os.path.join(DIST_DIR, "images", "_w")
+    os.makedirs(out_dir, exist_ok=True)
+    for name in sorted(os.listdir(src_dir)):
+        path = os.path.join(src_dir, name)
+        if not os.path.isfile(path) or not name.lower().endswith((".jpg", ".jpeg", ".png", ".webp", ".avif")):
+            continue
+        try:
+            with Image.open(path) as im:
+                im = ImageOps.exif_transpose(im)
+                if im.mode not in ("RGB", "RGBA"):
+                    im = im.convert("RGBA" if "A" in im.getbands() else "RGB")
+                stem = slugify(name) or "img"  # keeps the extension in, so x.jpg and x.png never clash
+                out = {}
+                for key, width in (("thumb", THUMB_W), ("large", LARGE_W)):
+                    copy = im.copy()
+                    if copy.width > width:
+                        copy = copy.resize((width, round(copy.height * width / copy.width)), Image.LANCZOS)
+                    rel = f"_w/{stem}-{width}.webp"
+                    copy.save(os.path.join(DIST_DIR, "images", rel), "WEBP", quality=80, method=4)
+                    out[key] = rel
+                RESIZED[name] = out
+        except Exception as e:  # a broken or unusual file just keeps its original
+            print(f"NOTE: couldn't resize image '{name}' ({e}); using the original.")
+
+
+_IMG_TAG_RE = re.compile(r"<img\b[^>]*>")
+_IMG_SRC_RE = re.compile(r'src="((?:\.\./)?images/)([^"]+)"')
+
+
+def speed_up_images(page_html, first_image_eager=False):
+    """Point <img> tags at the small WebP copies and let the browser load them lazily."""
+    count = [0]
+
+    def fix(m):
+        tag = m.group(0)
+        count[0] += 1
+        eager = first_image_eager and count[0] == 1
+        sm = _IMG_SRC_RE.search(tag)
+        if sm:
+            name = urllib.parse.unquote(sm.group(2))
+            sizes = RESIZED.get(name)
+            if sizes:
+                in_card = 'class="thumb' in page_html[max(0, m.start() - 120):m.start()]
+                kind = "thumb" if in_card and not eager else "large"  # the big lead story gets the sharper copy
+                tag = tag.replace(sm.group(0), f'src="{sm.group(1)}{sizes[kind]}"', 1)
+        if "loading=" not in tag:
+            tag = tag.replace("<img", '<img loading="eager" fetchpriority="high"' if eager else '<img loading="lazy"', 1)
+        elif eager:
+            tag = tag.replace('loading="lazy"', 'loading="eager" fetchpriority="high"', 1)
+        if "decoding=" not in tag:
+            tag = tag.replace("<img", '<img decoding="async"', 1)
+        return tag
+
+    return _IMG_TAG_RE.sub(fix, page_html)
+
+
+def speed_up_all_pages():
+    for folder in (DIST_DIR, os.path.join(DIST_DIR, "posts")):
+        for fname in os.listdir(folder):
+            if not fname.endswith(".html"):
+                continue
+            path = os.path.join(folder, fname)
+            with open(path, encoding="utf-8") as f:
+                page = f.read()
+            # The first picture on a post page (or the lead story on the homepage) is
+            # what people see first, so that one loads right away.
+            fixed = speed_up_images(page, first_image_eager=True)
+            if fixed != page:
+                with open(path, "w", encoding="utf-8") as f:
+                    f.write(fixed)
+
+
 def build():
     if os.path.isdir(DIST_DIR):
         shutil.rmtree(DIST_DIR)
@@ -1377,6 +1483,7 @@ def build():
     # Copy images/ into dist/images/ so they're served alongside the site
     if os.path.isdir(IMAGES_DIR):
         shutil.copytree(IMAGES_DIR, os.path.join(DIST_DIR, "images"))
+        make_resized_images()
 
     # Favicon files go at the top level of the site (browsers look for /favicon.ico)
     if os.path.isdir(FAVICON_DIR):
@@ -1559,6 +1666,8 @@ def build():
         )
         with open(os.path.join(DIST_DIR, filename), "w", encoding="utf-8") as f:
             f.write(simple)
+
+    speed_up_all_pages()
 
     for name in sorted(MISSING_IMAGES):
         print(f"WARNING: image '{name}' is used in a post but is not in the images/ folder. "

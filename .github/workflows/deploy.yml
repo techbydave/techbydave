@@ -86,7 +86,9 @@ jobs:
       # digest), which runs at 9:30am Toronto time.
 
       - name: Build site
-        run: python build.py
+        run: |
+          pip install pillow   # makes small, fast-loading copies of the photos
+          python build.py
         env:
           CLOUDFLARE_ANALYTICS_TOKEN: ${{ secrets.CLOUDFLARE_ANALYTICS_TOKEN }}
 
