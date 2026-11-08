@@ -303,7 +303,32 @@ def fmt_date_human(d):
 # Sitemap, robots.txt, RSS
 # ---------------------------------------------------------------------------
 
+_MY_TAKE_RE = re.compile(r"^#{2,3}\s*My take\b", re.I | re.M)
+
+
+def in_google(meta):
+    """Should Google show this post in search?
+
+    Posts with a "## My take" section (Dave's own view) are shown. Posts without
+    one stay on the site for readers but are hidden from Google with a "noindex"
+    tag and left out of the sitemaps, so thin auto-written posts don't drag down
+    how Google rates the whole site. Adding a take later brings a post back
+    automatically.
+
+    To override for one post, add a line to its frontmatter:
+        google: yes   -> always shown (e.g. a post already getting search traffic)
+        google: no    -> always hidden
+    """
+    choice = meta.get("google", "").strip().lower()
+    if choice in ("yes", "true", "show", "index"):
+        return True
+    if choice in ("no", "false", "hide", "noindex"):
+        return False
+    return bool(_MY_TAKE_RE.search(meta.get("_body_md", "")))
+
+
 def generate_sitemap(posts):
+    posts = [m for m in posts if in_google(m)]
     base = SITE_URL.rstrip("/")
     urls = [f"{base}/", f"{base}/about.html", f"{base}/editorial-policy.html",
             f"{base}/contact.html", f"{base}/privacy.html", f"{base}/media-kit.html"]
@@ -316,6 +341,7 @@ def generate_sitemap(posts):
 
 def generate_news_sitemap(posts):
     """Google News sitemap: only articles published in the last 48 hours."""
+    posts = [m for m in posts if in_google(m)]
     base = SITE_URL.rstrip("/")
     cutoff = datetime.now(timezone.utc) - timedelta(hours=NEWS_SITEMAP_HOURS)
     recent = [m for m in posts if m["_published"] >= cutoff]
@@ -1610,7 +1636,8 @@ def build():
             body=body,
             image=post_image(meta),
             og_type="article",
-            head_extra=(article_schema(meta, f"{base}/posts/{meta['slug']}.html")
+            head_extra=(('<meta name="robots" content="noindex, follow"/>\n' if not in_google(meta) else "")
+                        + article_schema(meta, f"{base}/posts/{meta['slug']}.html")
                         + f'\n<meta property="article:published_time" content="{meta["_published"].isoformat(timespec="seconds")}"/>'
                         + f'\n<meta property="article:author" content="{html.escape(meta.get("author", AUTHOR_NAME))}"/>'),
         )
@@ -1706,6 +1733,9 @@ def build():
         f.write(not_found)
 
     speed_up_all_pages()
+
+    shown = sum(1 for m in posts if in_google(m))
+    print(f"Google: {shown} post(s) shown in search, {len(posts) - shown} hidden (no 'My take' section yet).")
 
     for name in sorted(MISSING_IMAGES):
         print(f"WARNING: image '{name}' is used in a post but is not in the images/ folder. "

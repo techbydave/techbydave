@@ -64,3 +64,9 @@ fix this exactly instead of guessing.
   worth glancing at occasionally, or add a "GitHub Actions failure" email/
   Slack notification in your GitHub notification settings so you find out
   without checking manually.
+- **Which posts Google shows**: a post only appears in Google search once it
+  has a `## My take` section with your own view. Posts without one stay on
+  the site for readers, but get a "noindex" tag and are left out of the
+  sitemaps. Add a take to any post and it goes back into Google on the next
+  deploy. To override one post, add `google: yes` (always show) or
+  `google: no` (always hide) to its frontmatter.
