@@ -1306,6 +1306,18 @@ def render_thumb(meta):
     return f'<span class="thumb ph">{pill}</span>'
 
 
+def _modified(meta, published):
+    """An "updated:" line in a post's frontmatter tells Google the post was refreshed."""
+    raw = meta.get("updated", "").strip()
+    if raw:
+        try:
+            dt = datetime.fromisoformat(raw)
+            return (dt if dt.tzinfo else dt.replace(tzinfo=TIMEZONE)).isoformat(timespec="seconds")
+        except ValueError:
+            pass
+    return published
+
+
 def article_schema(meta, url):
     """NewsArticle structured data so Google reads the page as a dated news story."""
     base = SITE_URL.rstrip("/")
@@ -1316,7 +1328,7 @@ def article_schema(meta, url):
         "headline": meta["title"][:110],
         "description": meta.get("snippet", ""),
         "datePublished": published,
-        "dateModified": published,
+        "dateModified": _modified(meta, published),
         "mainEntityOfPage": {"@type": "WebPage", "@id": url},
         "author": [{"@type": "Person", "name": meta.get("author", AUTHOR_NAME), "url": f"{base}/about.html"}],
         "publisher": {"@type": "Organization", "name": SITE_TITLE, "url": base + "/",
