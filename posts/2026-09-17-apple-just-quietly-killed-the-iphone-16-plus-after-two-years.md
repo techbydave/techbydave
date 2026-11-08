@@ -5,6 +5,7 @@ slug: apple-just-quietly-killed-the-iphone-16-plus-after-two-years
 updated: 2026-11-07T22:45:00-05:00
 tags: apple, iphone, smartphones
 snippet: Apple pulled the iPhone 16 Plus on September 9, 2026. Here's why, what replaced it, and what to buy instead if you want a big-screen iPhone.
+image: iPhone_16_Plus_Black_PDP_Image_Position_5__CAEN.jpg
 ---
 
 Apple discontinued the [iPhone 16 Plus](https://www.amazon.com/s?k=iPhone+16+Plus&tag=techtreck02-20) on September 9, 2026, the same day it introduced the iPhone 18 Pro, iPhone 18 Pro Max and iPhone Duo. Apple never gave a reason, but the picture is clear: the iPhone Air had already replaced the Plus line a year earlier, Plus models were Apple's weakest sellers, and the 16 Plus had become a poor deal next to newer iPhones at the same price.
