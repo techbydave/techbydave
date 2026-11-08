@@ -29,6 +29,10 @@ I'd skip the Sony NW-WM1ZM3 unless you're a collector or you already own the pre
 
 Release details are messy. Sony Japan confirmed November 27, 2026, with prices of about ¥655,000, ¥347,000 and ¥215,000. Sony's US store reportedly estimates January 2027 deliveries, and one retailer listing shows December 7 for two models and January 12 for the flagship. Other outlets quote different prices for other regions, so confirm the figure for your country. Preorders aren't a reason to rush. If you want one, look at what the previous model costs right now and compare before you put down money.
 
+## My take
+
+[[ADD YOUR TAKE: Would anyone you know pay $1,899+ for a music player in the phone era? Who are these Walkmans really for? Write a few sentences in your own words, then delete this line.]]
+
 **Sources:** [The PC Enthusiast](https://thepcenthusiast.com/sony-nw-wm1zm3-wm1am3-zx900-walkman/), [Porta-Fi](https://porta-fi.com/sony-nw-wm1zm3-nw-wm1am3-nw-zx900-walkman/), [Tech AI Wire](https://techaiwire.com/articles/sony-walkman-nw-wm1zm3-nw-wm1am3-nw-zx900-price/), [What Hi-Fi?](https://www.whathifi.com/hi-fi/portable-music-players/sony-launches-two-new-hi-res-walkmans-but-the-prices-may-shock-you), [ASCII.jp](https://ascii.jp/en/elem/000/004/443/4443119/), [BTTR](https://www.bttr.reviews/the-walkman-is-back/), [Audiomatome](https://audiomatome.com/en/news/2026-10-16-sony-walkman-wm1m3-zx900/)
 
 *As an Amazon Associate I earn from qualifying purchases. Tech Trek is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*

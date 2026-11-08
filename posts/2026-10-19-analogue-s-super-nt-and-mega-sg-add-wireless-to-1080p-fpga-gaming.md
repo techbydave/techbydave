@@ -19,6 +19,10 @@ At $219.99 each, the price stays flat from the originals. That undercuts competi
 
 The real draw for collectors is that you can finally use wireless controllers without clutter, charge via USB-C like everything else on your desk, and swap cartridges without powering down. Those quality-of-life changes make the Super Nt+ and Mega Sg+ credible refresh targets for anyone tired of cables.
 
+## My take
+
+[[ADD YOUR TAKE: Did you grow up with SNES or Genesis games? Is wireless worth upgrading for if you already own one? Write a few sentences in your own words, then delete this line.]]
+
 **Sources:** [TweakTown](https://www.tweaktown.com/news/114131/analogues-new-mega-sg-plus-and-super-nt-plus-consoles-play-your-old-sega-and-nintendo-cartridges-with-wireless-controller-support/index.html), [Engadget](https://www.engadget.com/2288966/analogue-returns-to-the-16-bit-era-with-the-mega-sg-and-super-nt/), [Techtroduce](https://www.techtroduce.com/analogue-super-nt-plus-mega-sg-plus-price-release/), [TechMyMoney](https://techmymoney.com/2026/10/17/analogue-super-nt-plus-mega-sg-plus-preorder-price-specs/)
 
 *As an Amazon Associate I earn from qualifying purchases. Tech Trek is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*

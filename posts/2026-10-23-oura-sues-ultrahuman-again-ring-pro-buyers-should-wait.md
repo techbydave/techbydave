@@ -33,6 +33,10 @@ My take: this is mostly a fight between two companies, and the lawsuit alone is 
 
 Buy from a retailer with a generous return window, and keep your receipt. Watch the Eastern District of Texas docket for any motion seeking a preliminary injunction. That would be the first sign this is moving faster than the headlines suggest.
 
+## My take
+
+[[ADD YOUR TAKE: Do you wear a smart ring? Would this lawsuit stop you from buying an Ultrahuman ring? Write a few sentences in your own words, then delete this line.]]
+
 **Sources:** [TechCrunch](https://techcrunch.com/2026/10/22/oura-sues-rival-ultrahuman-again-threatening-its-u-s-smart-ring-comeback/), [Engadget](https://www.engadget.com/2295042/oura-sues-ultrahuman-yet-again-ring-pro/), [The 5K Runner](https://the5krunner.com/2026/10/23/quick-read-oura-sues-ultrahuman-to-block-ring-pro-us-sales/), [Newscord](https://newscord.org/article/oura-sues-ultrahuman-and-svtronics-in-texas-over-ring-pro-patent-infringement--Story_20261022_OurasuesrivalUltrahue2556ac3), [UA.news](https://ua.news/en/technologies/oura-podala-novii-pozov-proti-ultrahuman-cherez-smartkiltse-u-ssha-techcrunch)
 
 *As an Amazon Associate I earn from qualifying purchases. Tech Trek is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*

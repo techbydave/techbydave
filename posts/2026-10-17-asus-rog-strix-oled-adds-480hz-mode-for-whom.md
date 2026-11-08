@@ -21,6 +21,10 @@ ASUS ROG Strix OLED XG32UQWMS makes sense if you're bouncing between a graphical
 
 The 480Hz mode is a spec floor. Don't buy it for that. Buy it because 4K 240Hz OLED is finally hitting a price point where it's not ridiculous.
 
+## My take
+
+[[ADD YOUR TAKE: Would you actually use a 480Hz mode, or is 240Hz plenty? Who would you tell to buy this monitor? Write a few sentences in your own words, then delete this line.]]
+
 **Sources:** [Tom's Hardware](https://www.tomshardware.com/monitors/gaming-monitors/asus-rog-strix-xg32uqwms-32-inch-4k-oled-gaming-monitor-review), [The PC Enthusiast](https://thepcenthusiast.com/asus-rog-strix-oled-xg32uqwms/), [Windows Central](https://www.windowscentral.com/accessories/monitors/asus-rog-strix-oled-xg32uqwms-review), [Micro Center](https://www.microcenter.com/product/714114/asus-rog-strix-oled-xg32uqwms-315-4k-uhd-(3840-x-2160)-240hz-gaming-monitor), [BigGo Finance](https://finance.biggo.com/news/5cb79423-8cd6-4c9c-99e4-91693e09aa91), [Neoteo](https://www.neoteo.com/en/asus-rog-strix-xg32uqwms-review-4k-speed-with-a-480hz-twist)
 
 *As an Amazon Associate I earn from qualifying purchases. Tech Trek is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*

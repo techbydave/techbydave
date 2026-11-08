@@ -303,6 +303,17 @@ def fmt_date_human(d):
 # Sitemap, robots.txt, RSS
 # ---------------------------------------------------------------------------
 
+_PLACEHOLDER_RE = re.compile(r"^[ \t]*\[\[ADD YOUR [^\n]*\]\][ \t]*\n?", re.M)
+_EMPTY_SECTION_RE = re.compile(r"^#{2,3}[ \t]*My take[^\n]*\n\s*(?=^#{1,3}\s|^\*\*Sources:\*\*|^\*As an Amazon|\Z)", re.M)
+
+
+def strip_placeholders(body):
+    """Remove "[[ADD YOUR TAKE ...]]" / "[[ADD YOUR PHOTO ...]]" reminder lines,
+    plus a "My take" heading left with nothing under it, so readers never see them."""
+    body = _PLACEHOLDER_RE.sub("", body)
+    return _EMPTY_SECTION_RE.sub("", body)
+
+
 _MY_TAKE_RE = re.compile(r"^#{2,3}\s*My take\b", re.I | re.M)
 
 
@@ -1568,6 +1579,7 @@ def build():
         with open(path, encoding="utf-8") as f:
             raw = f.read()
         meta, body = parse_frontmatter(raw, fname)
+        body = strip_placeholders(body)
         meta["slug"] = meta.get("slug") or slugify(meta["title"])
         meta["body_html"] = markdown_to_html(body)
         meta["_body_md"] = body

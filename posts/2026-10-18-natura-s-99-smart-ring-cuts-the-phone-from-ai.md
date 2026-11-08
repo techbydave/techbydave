@@ -21,6 +21,10 @@ The bigger question isn't price or battery life. It's whether a single physical 
 
 No independent reviews exist yet. Natura has not announced a broader retail rollout beyond the initial launch window. Battery claims, agent response times, and health tracking accuracy all remain unconfirmed by third parties. For a $99 wearable with subscription strings attached, that's the real risk—not the price tag.
 
+## My take
+
+[[ADD YOUR TAKE: Would you wear a $99 ring just to talk to AI? Does skipping the phone sound useful or gimmicky to you? Write a few sentences in your own words, then delete this line.]]
+
 **Sources:** [GamesBeat](https://gamesbeat.com/natura-launches-interface-a-smart-ring-for-voice-requests-that-connect-to-your-personal-ai-agents/), [Yahoo Finance](https://finance.yahoo.com/technology/ai/articles/naturas-99-ai-smart-ring-220700689.html), [Gadget Review](https://www.gadgetreview.com/naturas-interface-smart-ring-puts-ai-agents-on-your-finger-for-99), [News Source](https://news.lavx.hu/article/natura-launches-99-smart-ring-for-ai-agents-and-health-tracking), [Agentic Ready](https://www.getreadyforagents.com/news/natura-interface-smart-ring-ai-agents-99-dollars/), [Tech Buzz](https://www.techbuzz.ai/articles/natura-s-99-smart-ring-brings-ai-agents-to-your-finger), [Superintelligence News](https://superintelligencenews.com/applications/ai-smart-ring-natura-interface/), [SolidAI Tech](https://www.solidaitech.com/2026/10/natura-interface-99-ai-smart-ring-agents.html), [Newsy Today](https://www.newsy-today.com/natura-debuts-interface-smart-ring-for-voice-controlled-ai-agents/)
 
 *As an Amazon Associate I earn from qualifying purchases. Tech Trek is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*

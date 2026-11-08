@@ -28,6 +28,10 @@ The Card is the one I'd think twice about. A sealed battery means a three-year t
 
 My pick is the Loop Cable Tag for a bag or luggage, where a spare cable is genuinely useful and a four-month charge cycle is easy to remember. Buy the Spot if you want the cheapest option for keys. Check the pricing for your region before you order, and check that Belkin's listing matches the model you want, because the Card and Loop Cable Tag cost the same in some markets and differ in others.
 
+## My take
+
+[[ADD YOUR TAKE: Do you use AirTags or something else? Would a tracker that works with both iPhone and Android matter in your house? Write a few sentences in your own words, then delete this line.]]
+
 **Sources:** [TBreak](https://tbreak.com/belkin-surefind-trackers-apple-google-find-my-find-hub/), [9to5Google](https://9to5google.com/2026/09/03/belkin-adds-four-find-hub-trackers/), [Gadget Guy](https://www.gadgetguy.com.au/belkin-launches-surefind-bluetooth-trackers/), [EFTM](https://eftm.com/2026/10/belkin-launches-surefind-trackers-compatible-with-apple-find-my-and-google-find-hub-282487), [BTTR Reviews](https://www.bttr.reviews/belkins-surefind-trackers-dont-care-which-phone-you-picked/)
 
 *As an Amazon Associate I earn from qualifying purchases. Tech Trek is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*

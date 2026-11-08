@@ -33,6 +33,10 @@ If you're a working DJ, or a bedroom scratch DJ who wants the pro deck, this is 
 
 Don't pre-order anything yet. There's no US pricing, and a deck that costs this much deserves a proper look at reviews first. If you need a turntable now, the MK7 is still listed and isn't going anywhere. If you're a DJ, wait for the US announcement and for early impressions of how the new pitch range feels in practice.
 
+## My take
+
+[[ADD YOUR TAKE: Do you DJ or collect vinyl? Is the SL-1210MKX worth it over the MK7 for a normal buyer? Write a few sentences in your own words, then delete this line.]]
+
 **Sources:** [MusicTech](https://musictech.com/news/gear/technics-sl-1210mkx/), [Technics US](https://us.technics.com/products/direct-drive-turntable-system-sl-1200mk7), [Turntable Lab](https://www.turntablelab.com/products/technics-sl-1200-mk7-turntable-black), [Gear Patrol](https://www.gearpatrol.com/tech/)
 
 *As an Amazon Associate I earn from qualifying purchases. Tech Trek is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*

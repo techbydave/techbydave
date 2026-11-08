@@ -35,6 +35,10 @@ If you're buying mainly for Siri AI, wait. Without a compatible iPhone or iPad, 
 
 Gear Patrol reports Costco is already selling the speaker below retail, so check there before paying Apple's price. I haven't seen a confirmed Costco price, so verify it yourself. Also watch for the Siri AI rollout date. Once it's live and people have used it on the speaker, you'll know whether the wait was worth it.
 
+## My take
+
+[[ADD YOUR TAKE: Would you buy the HomePod mini 2 now, or wait for the new Siri? What would you use it for? Write a few sentences in your own words, then delete this line.]]
+
 **Sources:** [Macworld](https://www.macworld.com/article/673049/homepod-mini-2-release-date-price-specs.html), [MacRumors](https://www.macrumors.com/2026/10/13/apple-homepod-mini-2/), [MacRumors](https://www.macrumors.com/roundup/homepod-mini/), [The Apple Post](https://www.theapplepost.com/2026/10/13/73189/homepod-mini-2-pre-orders-are-open-now-price-colors-and-release-date/), [The Shortcut](https://www.theshortcut.com/p/homepod-mini-2-everything-you-need-to-know-about-apples-newest-pint-sized-smart-speaker), [Top Trusted Products](https://toptrustedproducts.com/review/homepod-mini-2-first-look/), [Gear Patrol](https://www.gearpatrol.com/tech/)
 
 *As an Amazon Associate I earn from qualifying purchases. Tech Trek is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*

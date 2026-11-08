@@ -27,6 +27,10 @@ If you have a 2024 iPad mini and it works, skip this. A better screen and water 
 
 Pre-orders open Wednesday, October 28, in 36 countries, including the US. Deliveries and store availability start Friday, November 6, in midnight and starlight. Wait for independent reviews and benchmarks that compare the five-core and six-core versions, and check the refresh rate. If the screen is stuck at 60Hz, that's your cue to hold off.
 
+## My take
+
+[[ADD YOUR TAKE: Would you pick the OLED iPad mini over an iPad Air at a similar price? Is the small size worth it for you? Write a few sentences in your own words, then delete this line.]]
+
 **Sources:** [PhoneArena](https://www.phonearena.com/news/the-oled-ipad-mini-is-here-a20-pro-acoustic-display-and-a-price-close-to-the-ipad-air_id184320), [TechCrunch](https://techcrunch.com/2026/10/26/apple-unveils-new-ipad-mini-with-oled-display-and-faster-a20-pro-chip/), [Thurrott.com](https://www.thurrott.com/apple/343231/apples-new-699-ipad-mini-comes-with-bigger-8-5-oled-display-and-a20-pro-chip), [DealnTech](https://www.dealntech.com/ipad-mini-a20-pro-oled-price-specs/), [AppleMagazine](https://applemagazine.com/ipad-mini-oled-a20-pro-launch/), [Zeera Wireless](https://zeerawireless.com/blogs/news/ipad-mini-8-a20-pro-699-oled-no-120hz-promotion)
 
 *As an Amazon Associate I earn from qualifying purchases. Tech Trek is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*
