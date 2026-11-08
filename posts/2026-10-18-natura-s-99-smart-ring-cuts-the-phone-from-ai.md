@@ -23,7 +23,7 @@ No independent reviews exist yet. Natura has not announced a broader retail roll
 
 ## My take
 
-[[ADD YOUR TAKE: Would you wear a $99 ring just to talk to AI? Does skipping the phone sound useful or gimmicky to you? Write a few sentences in your own words, then delete this line.]]
+This feature i would say is not made on many wearable devices , with a quarter of the price of the galaxy ring , the natura smart ring should really be consider one of the best smart ring devices out there with an affordable price , a company like apple can be behind the scenes of this company , either learning new technologies or actually investing in them in the near future 
 
 **Sources:** [GamesBeat](https://gamesbeat.com/natura-launches-interface-a-smart-ring-for-voice-requests-that-connect-to-your-personal-ai-agents/), [Yahoo Finance](https://finance.yahoo.com/technology/ai/articles/naturas-99-ai-smart-ring-220700689.html), [Gadget Review](https://www.gadgetreview.com/naturas-interface-smart-ring-puts-ai-agents-on-your-finger-for-99), [News Source](https://news.lavx.hu/article/natura-launches-99-smart-ring-for-ai-agents-and-health-tracking), [Agentic Ready](https://www.getreadyforagents.com/news/natura-interface-smart-ring-ai-agents-99-dollars/), [Tech Buzz](https://www.techbuzz.ai/articles/natura-s-99-smart-ring-brings-ai-agents-to-your-finger), [Superintelligence News](https://superintelligencenews.com/applications/ai-smart-ring-natura-interface/), [SolidAI Tech](https://www.solidaitech.com/2026/10/natura-interface-99-ai-smart-ring-agents.html), [Newsy Today](https://www.newsy-today.com/natura-debuts-interface-smart-ring-for-voice-controlled-ai-agents/)
 
