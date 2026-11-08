@@ -30,7 +30,7 @@ My pick is the Loop Cable Tag for a bag or luggage, where a spare cable is genui
 
 ## My take
 
-[[ADD YOUR TAKE: Do you use AirTags or something else? Would a tracker that works with both iPhone and Android matter in your house? Write a few sentences in your own words, then delete this line.]]
+There are some many Belkin devices listed on apple's website and for some reasons for many people feel it can trusted because it is recommended by apple , but the belkin smart trackers are pretty handy and really good to use , and i wonder if belkin shares their technologies with apple with the aim of marketing  , just like beat by dre owned by apple , And now thats a story people have to discover 
 
 **Sources:** [TBreak](https://tbreak.com/belkin-surefind-trackers-apple-google-find-my-find-hub/), [9to5Google](https://9to5google.com/2026/09/03/belkin-adds-four-find-hub-trackers/), [Gadget Guy](https://www.gadgetguy.com.au/belkin-launches-surefind-bluetooth-trackers/), [EFTM](https://eftm.com/2026/10/belkin-launches-surefind-trackers-compatible-with-apple-find-my-and-google-find-hub-282487), [BTTR Reviews](https://www.bttr.reviews/belkins-surefind-trackers-dont-care-which-phone-you-picked/)
 
