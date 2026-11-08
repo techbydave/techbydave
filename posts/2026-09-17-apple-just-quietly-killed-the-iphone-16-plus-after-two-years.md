@@ -52,6 +52,10 @@ If you already own one, it's still a capable phone. If you're thinking about tra
 
 There's no sign of one. Apple has now ended the Plus line twice. The first run went from the iPhone 6 Plus in 2014 to the iPhone 8 Plus in 2017. The name came back with the iPhone 14 Plus in 2022 and lasted through the iPhone 15 Plus and 16 Plus. With the iPhone Air in its place, Apple isn't expected to release another Plus model in the foreseeable future.
 
+## My take
+
+As an iPhone 15 Plus owner, I think the iPhone 16 Plus was a solid phone. It got a real redesign, it brought the Action button to a mid-range iPhone for the first time, and it came in some of my favourite iPhone colours. The downside is that the iPhone Air took its place, and the 16 Plus just wasn't selling much.
+
 ## The bottom line
 
 The iPhone 16 Plus wasn't a bad phone. It was a phone Apple had already moved on from. If you want a big iPhone today, your new options are the iPhone Air or the iPhone 18 Pro Max. If price matters most, a refurbished or used 16 Plus is still worth a look.
