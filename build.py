@@ -1024,10 +1024,8 @@ MEDIA_KIT_MARKDOWN = f"""{SITE_TITLE} is an independent consumer tech publicatio
 
 Our readers are people about to buy something. They come to {SITE_TITLE} to find out what changed, what it costs, and whether it's worth the upgrade.
 
-- **Monthly readers:** XX,XXX
-- **Daily newsletter subscribers:** X,XXX
-- **Social followers:** X,XXX across TikTok, Instagram, YouTube, X and Pinterest
-- **Top reader locations:** Canada, United States
+- **Social followers:** 3,000+ across TikTok, Instagram, YouTube, X and Pinterest
+- **Daily newsletter:** a once-a-day digest email sent to subscribers
 - **Publishing:** a new story every day, plus in-depth buying guides
 
 ## Ways to work with us
