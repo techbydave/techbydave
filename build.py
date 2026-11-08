@@ -59,6 +59,7 @@ KIT_FORM_ACTION = f"https://app.kit.com/forms/{KIT_FORM_ID}/subscriptions"
 # Who runs the site and how readers reach you.
 AUTHOR_NAME = "Dave"
 AUTHOR_EMAIL = "Davis@techbydave.com"
+DEFAULT_SHARE_IMAGE = "share-default.jpg"  # link-preview picture (in images/) for pages without their own photo
 ABOUT_PHOTO = "dave-portrait.jpg"   # your photo on the About page, in images/
 INFO_EMAIL = "info@techbydave.com"
 
@@ -1184,6 +1185,8 @@ def render_page(*, title, description, canonical, prefix="", body, hero="", main
     """Wrap `body` in the full site chrome. prefix is "" on root pages and "../" on post pages."""
     js = COMMON_JS + (HERO_JS if hero else "")
     og_image = ""
+    if not image and os.path.isfile(os.path.join(IMAGES_DIR, DEFAULT_SHARE_IMAGE)):
+        image = IMG_MARK + DEFAULT_SHARE_IMAGE  # pages and posts without a photo still get a preview picture
     if image:
         full = html.escape(fix_images(image, SITE_URL.rstrip("/") + "/"))
         og_image = f'<meta property="og:image" content="{full}"/>\n<meta name="twitter:image" content="{full}"/>'
@@ -1669,6 +1672,26 @@ def build():
         )
         with open(os.path.join(DIST_DIR, filename), "w", encoding="utf-8") as f:
             f.write(simple)
+
+    # ---- 404 page (GitHub Pages shows this for any address that doesn't exist) ----
+    # Links start with "/" so they work no matter how deep the bad address was.
+    not_found = render_page(
+        title=f"Page not found &middot; {SITE_TITLE}",
+        description=html.escape(f"This page doesn't exist on {SITE_TITLE}."),
+        canonical=f"{base}/404.html",
+        prefix="/",
+        body=f"""
+    <article class="post-full">
+      <h1 class="post-title">That page isn't here</h1>
+      <div class="post-body">
+        <p>The link may be old, or the address may have a typo. Try the <a href="/index.html">latest stories</a>
+        on the homepage, or <a href="/contact.html">let {html.escape(AUTHOR_NAME)} know</a> if something's broken.</p>
+      </div>
+    </article>""",
+        head_extra='<meta name="robots" content="noindex"/>',
+    )
+    with open(os.path.join(DIST_DIR, "404.html"), "w", encoding="utf-8") as f:
+        f.write(not_found)
 
     speed_up_all_pages()
 

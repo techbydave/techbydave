@@ -7,7 +7,6 @@ categories: [apple, opinion]
 
 Apple holds its iPhone event tomorrow, September 9, and for once the leaks haven't just hinted at "faster chip, better camera." This year Apple is reportedly skipping the standard iPhone 18 entirely and going all-in on three premium devices: the iPhone 18 Pro, the iPhone 18 Pro Max, and a foldable that could be called the iPhone Ultra. Having sat with the rumor mill for a few weeks now, I've got some opinions — and not all of them are charitable.
 
-![iPhone Fold concept](./images/iphone-fold.jpg)
 *A rendered mockup of the rumored iPhone Fold based on leaked schematics — swap for Apple's official image after the keynote.*
 
 ## The foldable is the real headline, and it's overdue
@@ -28,7 +27,6 @@ KeyBanc's research note flagging this event as a potential negative catalyst for
 
 If the iPhone 18 Pro line comes in $200–$300 above the outgoing iPhone 17 Pro pricing, that won't be a surprise to anyone who's watched Apple's pricing behavior over the last few cycles. What will be worth watching is whether Apple tries to frame that increase as being "for" the foldable — bundling the price story of the flagship Pro line together with the halo device, so the premium feels justified by association rather than by what the Pro phones themselves actually gained.
 
-![iPhone 18 Pro concept](./images/iphone-18-pro.jpg)
 *A rendered mockup of the rumored iPhone 18 Pro lineup — swap for Apple's official image after the keynote.*
 
 ## The A20 Pro and the parts nobody will talk about on stage
