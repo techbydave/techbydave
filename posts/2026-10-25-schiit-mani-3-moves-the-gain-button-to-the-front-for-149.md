@@ -33,7 +33,7 @@ Check your cartridge's output type first. Then match it to a gain step: 40dB is 
 
 ## My take
 
-[[ADD YOUR TAKE: Is $149 a fair price for a phono preamp? Who should buy one, and who doesn't need one? Write a few sentences in your own words, then delete this line.]]
+With my take , i think its a fair price and should be something worth buying with someone with some interest in these gadgets 
 
 **Sources:** [Darko.Audio](https://darko.audio/2026/10/schiits-mani-3-more-phono-pre-amplifier-for-the-same-149/), [Schiit Audio](https://www.schiit.com/products/mani-3), [Gear Patrol](https://www.gearpatrol.com/audio/schiit-mani-3-phono-preamp/), [eCoustics](https://www.ecoustics.com/products/schiit-mani-3-phono-preamp/), [AudioHead](https://audio-head.com/schiit-mani-3-is-the-new-pre/amp/), [Amazon](https://www.amazon.com/Schiit-Mani-Phono-Preamp-Cartridges/dp/B0HNM36KCC)
 
