@@ -1262,6 +1262,7 @@ def render_page(*, title, description, canonical, prefix="", body, hero="", main
 <meta name="twitter:title" content="{title}"/>
 <meta name="twitter:description" content="{description}"/>
 <meta name="google-site-verification" content="g5gG3v7FtM3b4ZUF9BsgGvIpjq6fgF2NK20e-5bTyDk" />
+<meta name="impact-site-verification" value="6a4a9247-21ee-4a85-be00-2e3d141b9103" />
 <meta name="google-adsense-account" content="ca-pub-4303818032223917">
 <meta name="p:domain_verify" content="57d395b44f589a5e5f3ada79462de2c4"/>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4303818032223917"
@@ -1691,7 +1692,7 @@ def build():
         description=html.escape(f"{SITE_TITLE} gives honest buy, wait or skip verdicts on new phones, laptops, earbuds and "
                                 f"smart home gear, plus deals, cheaper alternatives and when the older model is the better buy."),
         canonical=base + "/",
-        body=render_home_body(posts),
+        body=render_home_body(posts) + '\n<div hidden>Impact-Site-Verification: 6a4a9247-21ee-4a85-be00-2e3d141b9103</div>',
         hero=render_hero(posts),
         main_class="home",
     )
