@@ -37,7 +37,7 @@ If you can wait, wait. Foldables tend to get thinner, lighter and cheaper over t
 
 ## My take
 
-[[ADD YOUR TAKE: Would you wait months for an iPhone Duo, or skip the first foldable iPhone? What would make you buy one? Write a few sentences in your own words, then delete this line.]]
+i have had many tweets about this device already with its release and i want to say its a mix of feelings for me , knowing that the screen is the problem and the fact that they are late to the game of foldables , they have waited to release such a device but still sucks because of its screen and under display camera , which for the first trails of most companies doesn't work 
 
 **Sources:** [MacRumors](https://www.macrumors.com/2026/09/09/iphone-duo-pricing-pre-orders-release-date/), [Make Tech Easier](https://maketecheasier.com/iphone-duo-foldable-price-release-date/), [Macworld](https://www.macworld.com/article/2629813/iphone-duo-folding-design-price-specs-release-date.html), [AT&T](https://www.att.com/buy/phones/apple-iphone-duo.html), [T-Mobile](https://www.t-mobile.com/cell-phone/apple-iphone-duo), [Wikipedia](https://en.wikipedia.org/wiki/IPhone_Duo), [Engadget](https://www.engadget.com/)
 
