@@ -38,7 +38,7 @@ from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 SITE_TITLE = "TechByDave"
-SITE_TAGLINE = "field notes on Tech"
+SITE_TAGLINE = "Is it worth it in Canada? Honest gadget verdicts."
 SITE_URL = "https://techbydave.com/"  # replace with your real domain
 
 # Cloudflare Web Analytics — free, no cookie banner needed, one script
@@ -71,7 +71,7 @@ DEFAULT_PUBLISH_HOUR = 9
 NEWS_SITEMAP_HOURS = 48  # Google News sitemaps should only list the last 2 days
 
 # One line under the big homepage headline.
-HERO_SUBLINE = "Daily reports on the gadgets you can actually buy."
+HERO_SUBLINE = "Is it worth it in Canada? Honest verdicts on the gadgets you can actually buy."
 
 # Homepage layout: 1 big lead story, then SIDE_COUNT stories in the 2x2 grid
 # beside it, then MORE_COUNT stories in the "More stories" grid. Anything
@@ -612,6 +612,7 @@ main.home{padding-top:2.5rem}
 .story-lead p.dek{margin-top:.9rem;color:var(--ink-soft);font-size:1.12rem;max-width:52ch}
 .story-card h3{font-size:clamp(1.05rem,1.7vw,1.3rem);line-height:1.18;margin-top:.9rem}
 
+.hero-tag{font:600 .95rem/1.4 var(--display);color:var(--ink-soft);margin:0 0 1.2rem;letter-spacing:.01em}.hero-tag::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--beacon);margin-right:.6em;vertical-align:.1em}
 .sec-title{font:800 1.7rem/1 var(--display);letter-spacing:-.03em;text-align:center;margin:4rem 0 1.8rem}
 .more{display:grid;grid-template-columns:repeat(3,1fr);gap:2.2rem 1.6rem}
 .more .story-card h3{font-size:1.25rem}
@@ -955,11 +956,11 @@ INLINE_SIGNUP_HTML = """
 # Static page copy
 # ---------------------------------------------------------------------------
 
-ABOUT_MARKDOWN = f"""{SITE_TITLE} is a consumer tech blog covering phones, laptops, wearables, headphones, smart home gear, gaming hardware, and cameras: new launches, price changes, spec comparisons, and buying advice, with a clear point of view.
+ABOUT_MARKDOWN = f"""{SITE_TITLE} answers one question about every new gadget: **is it worth it in Canada?** We cover phones, laptops, wearables, headphones, smart home gear, gaming hardware and cameras, with Canadian prices and availability where they're known, and an honest verdict on whether to buy, wait or skip.
 
 ## Hi, I'm {AUTHOR_NAME}
 
-I'm the founder of {SITE_TITLE}. I started this site because I love tech, and I wanted a place that tells people what actually matters about a new gadget: what it costs, what changed, and whether it's worth their money. Tech moves fast, and it's easy to get lost in hype, spec sheets and marketing. My job is to cut through that and give you a straight answer.
+I'm the founder of {SITE_TITLE}, based in Toronto. I started this site because I love tech, and I wanted a place that tells people what actually matters about a new gadget: what it costs, what changed, and whether it's worth their money. Tech moves fast, and it's easy to get lost in hype, spec sheets and marketing. My job is to cut through that and give you a straight answer.
 
 ## What I do
 
@@ -1021,7 +1022,7 @@ EDITORIAL_MARKDOWN = f"""This page explains how {SITE_TITLE} decides what to cov
 
 ## What we cover
 
-Consumer tech people actually buy: phones, laptops, wearables, headphones, smart home gear, gaming hardware, and cameras. We focus on launches, notable price changes, spec comparisons, and buying advice.
+Consumer tech people actually buy: phones, laptops, wearables, headphones, smart home gear, gaming hardware, and cameras. We focus on launches, notable price changes, spec comparisons, and buying advice, written for Canadian buyers. Where sources confirm them, we include Canadian prices and availability; when they aren't confirmed yet, we say so.
 
 ## How stories are chosen
 
@@ -1056,7 +1057,7 @@ Brands and PR teams: see our [media kit](media-kit.html) for reviews, launch cov
 
 You can also find {SITE_TITLE} on social media through the links in the footer. For how we choose and write our stories, see the [editorial policy](editorial-policy.html)."""
 
-MEDIA_KIT_MARKDOWN = f"""{SITE_TITLE} is an independent consumer tech publication run by {AUTHOR_NAME} out of Toronto, Canada. We cover the gadgets people actually buy: phones, laptops, wearables, headphones, smart home gear, gaming hardware, cameras and everyday-carry tech.
+MEDIA_KIT_MARKDOWN = f"""{SITE_TITLE} is an independent consumer tech publication run by {AUTHOR_NAME} out of Toronto, Canada. Our angle is simple: is it worth it in Canada? We cover the gadgets people actually buy: phones, laptops, wearables, headphones, smart home gear, gaming hardware, cameras and everyday-carry tech.
 
 ## Who reads {SITE_TITLE}
 
@@ -1432,6 +1433,7 @@ def render_hero(posts):
   <canvas id="ridge" aria-hidden="true"></canvas>
   <div class="wrap in">
     <h1 class="sr-only">{html.escape(SITE_TITLE)}</h1>
+    <p class="hero-tag">{html.escape(HERO_SUBLINE)}</p>
     {render_top(posts)}
   </div>
 </section>
@@ -1671,10 +1673,10 @@ def build():
         ],
     }, ensure_ascii=False).replace("</", "<\\/")
     index = render_page(
-        title=f"{SITE_TITLE} | Consumer Tech News, Reviews &amp; Deals",
+        title=f"{SITE_TITLE} | Is It Worth It in Canada? Tech News &amp; Reviews",
         head_extra=f'<script type="application/ld+json">{site_schema}</script>',
-        description=html.escape(f"{SITE_TITLE} covers new phones, laptops, earbuds, wearables and smart home gear: "
-                                f"launches, price drops and honest buying advice, published daily."),
+        description=html.escape(f"{SITE_TITLE} gives Canadian buyers honest verdicts on new phones, laptops, earbuds, "
+                                f"wearables and smart home gear: Canadian prices, availability and whether it's worth it."),
         canonical=base + "/",
         body=render_home_body(posts),
         hero=render_hero(posts),
