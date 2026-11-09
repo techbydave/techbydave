@@ -37,7 +37,7 @@ Gear Patrol reports Costco is already selling the speaker below retail, so check
 
 ## My take
 
-[[ADD YOUR TAKE: Would you buy the HomePod mini 2 now, or wait for the new Siri? What would you use it for? Write a few sentences in your own words, then delete this line.]]
+The new Siri ? , the home pod mini was released for this assistant , but the assistant knows nothing and is late and doing bad in this era of ai , the fact is this , the release of the new home mini and the beautiful redesign won't let me see Siri differently  , because it still sucks on my phone 
 
 **Sources:** [Macworld](https://www.macworld.com/article/673049/homepod-mini-2-release-date-price-specs.html), [MacRumors](https://www.macrumors.com/2026/10/13/apple-homepod-mini-2/), [MacRumors](https://www.macrumors.com/roundup/homepod-mini/), [The Apple Post](https://www.theapplepost.com/2026/10/13/73189/homepod-mini-2-pre-orders-are-open-now-price-colors-and-release-date/), [The Shortcut](https://www.theshortcut.com/p/homepod-mini-2-everything-you-need-to-know-about-apples-newest-pint-sized-smart-speaker), [Top Trusted Products](https://toptrustedproducts.com/review/homepod-mini-2-first-look/), [Gear Patrol](https://www.gearpatrol.com/tech/)
 
