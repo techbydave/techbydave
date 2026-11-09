@@ -60,6 +60,7 @@ KIT_FORM_ACTION = f"https://app.kit.com/forms/{KIT_FORM_ID}/subscriptions"
 AUTHOR_NAME = "Dave"
 AUTHOR_EMAIL = "Davis@techbydave.com"
 DEFAULT_SHARE_IMAGE = "share-default.jpg"  # link-preview picture (in images/) for pages without their own photo
+AMAZON_STOREFRONT = "https://www.amazon.com/shop/influencer-d02827d8"  # Dave's Amazon Influencer page
 ABOUT_PHOTO = "dave-portrait.jpg"   # your photo on the About page, in images/
 INFO_EMAIL = "info@techbydave.com"
 
@@ -990,6 +991,8 @@ Some posts link to products through the Amazon Associates program. When they do,
 
 ## Work with {SITE_TITLE}
 
+Want to see the gadgets I'd actually recommend? Browse my picks on [my Amazon storefront]({AMAZON_STOREFRONT}): gadgets worth the money, cheaper tech that does the job, and my iPhone filming setup.
+
 Are you a brand or PR team? See the [media kit](media-kit.html) for product reviews, launch coverage, newsletter sponsorships and how to send review units.
 
 ## Get in touch
@@ -1105,8 +1108,9 @@ SUN_ICON = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 
 def footer_links(prefix):
     pages = [("privacy", "privacy.html"), ("editorial", "editorial-policy.html"),
-             ("contact", "contact.html"), ("media kit", "media-kit.html")]
-    return "".join(f'<a href="{prefix}{href}">{label}</a>' for label, href in pages)
+             ("contact", "contact.html"), ("media kit", "media-kit.html"),
+             ("shop my picks", AMAZON_STOREFRONT)]
+    return "".join(_link(prefix, href, label) for label, href in pages)
 
 
 def render_social_links():
@@ -1195,12 +1199,21 @@ def render_social_icons():
     return "".join(out)
 
 
+def _link(prefix, href, label, cls=""):
+    """Internal pages get the relative prefix; outside links (like the Amazon
+    storefront) open in a new tab and are marked as sponsored for Google."""
+    c = f' class="{cls}"' if cls else ""
+    if href.startswith("http"):
+        return f'<a{c} href="{href}" target="_blank" rel="sponsored noopener">{label}</a>'
+    return f'<a{c} href="{prefix}{href}">{label}</a>'
+
+
 def render_drawer(prefix):
     big = [("Latest", "index.html"), ("About", "about.html"),
            ("Editorial policy", "editorial-policy.html"), ("Contact", "contact.html"),
-           ("Media kit", "media-kit.html")]
+           ("Media kit", "media-kit.html"), ("Shop my picks", AMAZON_STOREFRONT)]
     small = [("Privacy policy", "privacy.html"), ("RSS feed", "feed.xml")]
-    big_html = "".join(f'<a class="item" style="--i:{i}" href="{prefix}{href}">{label}</a>'
+    big_html = "".join(_link(prefix, href, label, "item").replace('class="item"', f'class="item" style="--i:{i}"', 1)
                        for i, (label, href) in enumerate(big))
     small_html = "".join(f'<a class="item" style="--i:{len(big) + 1 + i}" href="{prefix}{href}">{label}</a>'
                          for i, (label, href) in enumerate(small))
