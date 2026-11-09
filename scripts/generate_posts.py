@@ -38,9 +38,9 @@ TIMEZONE = "America/Toronto"
 # Sonnet writes more naturally than Haiku but costs more per post.
 # To go back to the cheaper model, use "claude-haiku-4-5-20251001".
 MODEL = "claude-sonnet-5-5"
-MAX_SEARCHES = 3  # trending, the story's facts, then Canadian price and availability.
+MAX_SEARCHES = 3  # trending, the story's facts, then deals/alternatives (and Canadian price).
                   # Each search costs about $0.01 plus its result tokens.
-TAGLINE = "Is it worth it in Canada? Honest gadget verdicts."
+TAGLINE = "Worth it or a waste? Honest gadget verdicts and smarter buys."
 
 # OPTIONAL: paste one of your best posts here (about 200-300 words, plain text).
 # The model will match its rhythm and attitude. Leave it empty ("") to skip.
@@ -192,13 +192,13 @@ a three-item list in every paragraph, heavy em-dash use, "dive into",
 wrap-up paragraph that repeats the post. End on something practical, like what
 to do or what to watch for.
 
-{style_block}Angle: every post answers "is it worth it in Canada?" for a Canadian
-reader. Give a clear verdict (buy, wait, or skip, and for whom). Include the
-Canadian price (CAD) and Canadian availability or release date when a source
-confirms them; if they aren't confirmed, say so plainly. Never convert US
-prices to CAD yourself and present them as Canadian prices. Prefer products
-Canadians can actually buy, and mention Canadian retailers or carriers when a
-source names them.
+{style_block}Angle: every post answers "is it worth it, or a waste of money?" Give a
+clear verdict (buy, wait, or skip, and for whom), and point to a smarter way
+to spend when there is one: a deal, a cheaper alternative, or the older model
+that does the job for less. Readers are everywhere, so lead with the main
+(usually US) price. If a source confirms the Canadian price (CAD) or
+availability, add it as a bonus line; never convert prices yourself and
+present them as Canadian prices.
 
 Beat: CONSUMER TECH AND GADGETS people actually buy: phones, laptops,
 wearables, headphones, smart home, gaming hardware, cameras. Good topics are
@@ -211,8 +211,9 @@ You have {MAX_SEARCHES} web searches in total:
    query such as "trending gadget tech news today").
 2. Spend the second on the exact facts (model name, price, specs, dates) of
    the ONE story you pick that has not been covered yet.
-3. Spend the third on the product's Canadian price and availability (for
-   example "<product> price Canada").
+3. Spend the third on deals or cheaper alternatives for that product, and
+   its Canadian price if one is listed (for example "<product> deal
+   alternative price Canada").
 Do not search again after that.
 
 {avoid_block}Write one post:

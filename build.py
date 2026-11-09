@@ -38,7 +38,7 @@ from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 SITE_TITLE = "TechByDave"
-SITE_TAGLINE = "Is it worth it in Canada? Honest gadget verdicts."
+SITE_TAGLINE = "Worth it or a waste? Honest gadget verdicts and smarter buys."
 SITE_URL = "https://techbydave.com/"  # replace with your real domain
 
 # Cloudflare Web Analytics — free, no cookie banner needed, one script
@@ -71,7 +71,7 @@ DEFAULT_PUBLISH_HOUR = 9
 NEWS_SITEMAP_HOURS = 48  # Google News sitemaps should only list the last 2 days
 
 # One line under the big homepage headline.
-HERO_SUBLINE = "Is it worth it in Canada? Honest verdicts on the gadgets you can actually buy."
+HERO_SUBLINE = "Worth it or a waste? Honest verdicts on new gadgets, and smarter ways to spend on tech."
 
 # Homepage layout: 1 big lead story, then SIDE_COUNT stories in the 2x2 grid
 # beside it, then MORE_COUNT stories in the "More stories" grid. Anything
@@ -956,7 +956,7 @@ INLINE_SIGNUP_HTML = """
 # Static page copy
 # ---------------------------------------------------------------------------
 
-ABOUT_MARKDOWN = f"""{SITE_TITLE} answers one question about every new gadget: **is it worth it in Canada?** We cover phones, laptops, wearables, headphones, smart home gear, gaming hardware and cameras, with Canadian prices and availability where they're known, and an honest verdict on whether to buy, wait or skip.
+ABOUT_MARKDOWN = f"""{SITE_TITLE} answers one question about every new gadget: **is it worth it, or a waste of money?** We cover phones, laptops, wearables, headphones, smart home gear, gaming hardware and cameras with an honest verdict on whether to buy, wait or skip, plus smarter ways to spend: deals, cheaper alternatives, and when the older model is the better buy.
 
 ## Hi, I'm {AUTHOR_NAME}
 
@@ -1022,7 +1022,7 @@ EDITORIAL_MARKDOWN = f"""This page explains how {SITE_TITLE} decides what to cov
 
 ## What we cover
 
-Consumer tech people actually buy: phones, laptops, wearables, headphones, smart home gear, gaming hardware, and cameras. We focus on launches, notable price changes, spec comparisons, and buying advice, written for Canadian buyers. Where sources confirm them, we include Canadian prices and availability; when they aren't confirmed yet, we say so.
+Consumer tech people actually buy: phones, laptops, wearables, headphones, smart home gear, gaming hardware, and cameras. We focus on launches, notable price changes, spec comparisons, and buying advice: whether a product is worth it, and whether there's a smarter way to spend the money. Being based in Canada, we add Canadian prices and availability when sources confirm them.
 
 ## How stories are chosen
 
@@ -1057,7 +1057,7 @@ Brands and PR teams: see our [media kit](media-kit.html) for reviews, launch cov
 
 You can also find {SITE_TITLE} on social media through the links in the footer. For how we choose and write our stories, see the [editorial policy](editorial-policy.html)."""
 
-MEDIA_KIT_MARKDOWN = f"""{SITE_TITLE} is an independent consumer tech publication run by {AUTHOR_NAME} out of Toronto, Canada. Our angle is simple: is it worth it in Canada? We cover the gadgets people actually buy: phones, laptops, wearables, headphones, smart home gear, gaming hardware, cameras and everyday-carry tech.
+MEDIA_KIT_MARKDOWN = f"""{SITE_TITLE} is an independent consumer tech publication run by {AUTHOR_NAME} out of Toronto, Canada. Our angle is simple: is it worth it, and is there a smarter way to spend the money? We cover the gadgets people actually buy: phones, laptops, wearables, headphones, smart home gear, gaming hardware, cameras and everyday-carry tech.
 
 ## Who reads {SITE_TITLE}
 
@@ -1673,10 +1673,10 @@ def build():
         ],
     }, ensure_ascii=False).replace("</", "<\\/")
     index = render_page(
-        title=f"{SITE_TITLE} | Is It Worth It in Canada? Tech News &amp; Reviews",
+        title=f"{SITE_TITLE} | Is It Worth It? Honest Tech Reviews &amp; Deals",
         head_extra=f'<script type="application/ld+json">{site_schema}</script>',
-        description=html.escape(f"{SITE_TITLE} gives Canadian buyers honest verdicts on new phones, laptops, earbuds, "
-                                f"wearables and smart home gear: Canadian prices, availability and whether it's worth it."),
+        description=html.escape(f"{SITE_TITLE} gives honest buy, wait or skip verdicts on new phones, laptops, earbuds and "
+                                f"smart home gear, plus deals, cheaper alternatives and when the older model is the better buy."),
         canonical=base + "/",
         body=render_home_body(posts),
         hero=render_hero(posts),
