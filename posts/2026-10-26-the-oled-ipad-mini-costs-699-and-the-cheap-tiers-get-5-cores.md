@@ -29,7 +29,7 @@ Pre-orders open Wednesday, October 28, in 36 countries, including the US. Delive
 
 ## My take
 
-[[ADD YOUR TAKE: Would you pick the OLED iPad mini over an iPad Air at a similar price? Is the small size worth it for you? Write a few sentences in your own words, then delete this line.]]
+Apple release their main products , and release their replacements for their own main products , the iPhone duo  just came on the market and i want to know -  which apple glazer , i mean user would get the iPad mini , when there's a portable replacement like the iPhone duo ,  i mean for now the budget option for an iPhone duo with a better screen would be the iPad mini 
 
 **Sources:** [PhoneArena](https://www.phonearena.com/news/the-oled-ipad-mini-is-here-a20-pro-acoustic-display-and-a-price-close-to-the-ipad-air_id184320), [TechCrunch](https://techcrunch.com/2026/10/26/apple-unveils-new-ipad-mini-with-oled-display-and-faster-a20-pro-chip/), [Thurrott.com](https://www.thurrott.com/apple/343231/apples-new-699-ipad-mini-comes-with-bigger-8-5-oled-display-and-a20-pro-chip), [DealnTech](https://www.dealntech.com/ipad-mini-a20-pro-oled-price-specs/), [AppleMagazine](https://applemagazine.com/ipad-mini-oled-a20-pro-launch/), [Zeera Wireless](https://zeerawireless.com/blogs/news/ipad-mini-8-a20-pro-699-oled-no-120hz-promotion)
 
