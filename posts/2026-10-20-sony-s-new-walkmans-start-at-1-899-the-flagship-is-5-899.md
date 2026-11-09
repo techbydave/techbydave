@@ -31,7 +31,7 @@ Release details are messy. Sony Japan confirmed November 27, 2026, with prices o
 
 ## My take
 
-[[ADD YOUR TAKE: Would anyone you know pay $1,899+ for a music player in the phone era? Who are these Walkmans really for? Write a few sentences in your own words, then delete this line.]]
+I don't see the point of this than just a waste of money , this is also not offering a feature worth trying and even with my take , people are still going to spend money on wanting the feeling of having the a new redesign iPod 
 
 **Sources:** [The PC Enthusiast](https://thepcenthusiast.com/sony-nw-wm1zm3-wm1am3-zx900-walkman/), [Porta-Fi](https://porta-fi.com/sony-nw-wm1zm3-nw-wm1am3-nw-zx900-walkman/), [Tech AI Wire](https://techaiwire.com/articles/sony-walkman-nw-wm1zm3-nw-wm1am3-nw-zx900-price/), [What Hi-Fi?](https://www.whathifi.com/hi-fi/portable-music-players/sony-launches-two-new-hi-res-walkmans-but-the-prices-may-shock-you), [ASCII.jp](https://ascii.jp/en/elem/000/004/443/4443119/), [BTTR](https://www.bttr.reviews/the-walkman-is-back/), [Audiomatome](https://audiomatome.com/en/news/2026-10-16-sony-walkman-wm1m3-zx900/)
 
