@@ -3,6 +3,7 @@ title: Roku Finally Enters the OLED TV Market With Two New Pro Models
 date: 2026-09-13
 tags: tv, roku, oled, home entertainment
 snippet: After years of budget panels, Roku is launching its first OLED TVs—betting that premium picture quality at approachable prices will work.
+image: http___image.roku.com_w_rapid_images_undefined_5b4141d3-b868-4bf3-b0d3-da3b220d3856.webp
 ---
 
 Roku announced today that it's launching its first OLED televisions, the [Roku Pro Series OLED TV](https://www.amazon.com/s?k=Roku+Pro+Series+OLED+TV&tag=techtreck02-20) and [Roku Pro Series LX OLED TV](https://www.amazon.com/s?k=Roku+Pro+Series+LX+OLED+TV&tag=techtreck02-20). For a company that built its reputation on making TV affordable and simple, this is a notable shift upmarket.
@@ -21,6 +22,6 @@ For now, it's a promising announcement from a company that's usually content to 
 
 ## My take
 
-[[ADD YOUR TAKE: Would you trust a Roku-branded OLED TV over LG or Samsung? What price would make it worth it to you? Write a few sentences in your own words, then delete this line.]]
+Roku has been in the game for long but truth be told , Samsung and LG  has some good quality , i mean great top tier TVs with really different UI with different prices ,  so seeing Roku release such a competitive device , which is worth buying in the near future for the true comparisons is something i would like to fulfil . 
 
 *TechByDave is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links — if you buy something through them, we may earn a small commission at no extra cost to you.*
