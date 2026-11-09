@@ -35,7 +35,7 @@ Don't pre-order anything yet. There's no US pricing, and a deck that costs this 
 
 ## My take
 
-[[ADD YOUR TAKE: Do you DJ or collect vinyl? Is the SL-1210MKX worth it over the MK7 for a normal buyer? Write a few sentences in your own words, then delete this line.]]
+This would be a good purchase for anyone interested in getting this device , i think vinyl have come a long way . but i don't see them dying off , because of the quality and the feeling of sound and music it produces , which also goes for this device 
 
 **Sources:** [MusicTech](https://musictech.com/news/gear/technics-sl-1210mkx/), [Technics US](https://us.technics.com/products/direct-drive-turntable-system-sl-1200mk7), [Turntable Lab](https://www.turntablelab.com/products/technics-sl-1200-mk7-turntable-black), [Gear Patrol](https://www.gearpatrol.com/tech/)
 
