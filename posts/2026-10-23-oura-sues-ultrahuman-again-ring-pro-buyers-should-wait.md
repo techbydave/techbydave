@@ -35,7 +35,7 @@ Buy from a retailer with a generous return window, and keep your receipt. Watch 
 
 ## My take
 
-[[ADD YOUR TAKE: Do you wear a smart ring? Would this lawsuit stop you from buying an Ultrahuman ring? Write a few sentences in your own words, then delete this line.]]
+this is really not a surprise to me because side by side , this looks like the same devices , and think its time to call out the copy cats out with this law suit , but i truly wish them all the best the fact that ultra human can still make it out there , congrats and Goodluck 
 
 **Sources:** [TechCrunch](https://techcrunch.com/2026/10/22/oura-sues-rival-ultrahuman-again-threatening-its-u-s-smart-ring-comeback/), [Engadget](https://www.engadget.com/2295042/oura-sues-ultrahuman-yet-again-ring-pro/), [The 5K Runner](https://the5krunner.com/2026/10/23/quick-read-oura-sues-ultrahuman-to-block-ring-pro-us-sales/), [Newscord](https://newscord.org/article/oura-sues-ultrahuman-and-svtronics-in-texas-over-ring-pro-patent-infringement--Story_20261022_OurasuesrivalUltrahue2556ac3), [UA.news](https://ua.news/en/technologies/oura-podala-novii-pozov-proti-ultrahuman-cherez-smartkiltse-u-ssha-techcrunch)
 
