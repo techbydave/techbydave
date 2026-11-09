@@ -304,7 +304,7 @@ def fmt_date_human(d):
 # ---------------------------------------------------------------------------
 
 _PLACEHOLDER_RE = re.compile(r"^[ \t]*\[\[ADD YOUR [^\n]*\]\][ \t]*\n?", re.M)
-_EMPTY_SECTION_RE = re.compile(r"^#{2,3}[ \t]*My take[^\n]*\n\s*(?=^#{1,3}\s|^\*\*Sources:\*\*|^\*As an Amazon|\Z)", re.M)
+_EMPTY_SECTION_RE = re.compile(r"^#{2,3}[ \t]*My take[^\n]*\n\s*(?=^#{1,3}\s|^\*|\Z)", re.M)
 
 
 def strip_placeholders(body):
