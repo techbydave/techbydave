@@ -3,6 +3,7 @@ title: RTX 5090 Prices Just Hit $10,000. It's Worse Than the Crypto Era.
 date: 2026-09-18
 tags: nvidia, gpu, gaming, pricing
 snippet: Nvidia's flagship gaming GPU is vanishing from shelves, with third-party sellers now asking five times the $1,999 MSRP.
+image: images (2).jpg
 ---
 
 Nvidia's [GeForce RTX 5090](https://www.amazon.com/s?k=GeForce+RTX+5090&tag=techtreck02-20) has officially entered the realm of the absurd. The flagship gaming graphics card, which launched at $1,999, is now showing up on third-party marketplaces at prices approaching $10,000. Major retailers like Amazon, Newegg, and Best Buy are either completely out of stock or listing cards through marketplace sellers at $6,000 to $9,500, depending on the model.
@@ -23,6 +24,6 @@ Nvidia hasn't stopped manufacturing the card. The problem is structural: constra
 
 ## My take
 
-[[ADD YOUR TAKE: Would you pay these prices, buy an RTX 5080 instead, or wait? What would you tell someone building a gaming PC right now? Write a few sentences in your own words, then delete this line.]]
+This is definitely the new retirement plan knowing the cost of it even from Nvidia , which is not the worst thing , the worst is that , a GPU made in 2025 . 2026 is worth more than most cars , which is crazy because of the price of every thing right . Somehow , this GPU has its place for some eBay sellers on the stock market with high demand  
 
 *TechByDave is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links — if you buy something through them, we may earn a small commission at no extra cost to you.*
