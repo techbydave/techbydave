@@ -43,4 +43,4 @@ Honestly, this is a steal. It's still early, but if you've had your eye on somet
  
 **Sources:** [Yahoo Tech](https://tech.yahoo.com/deals/breaking-news/article/black-friday-2026-the-best-early-tech-deals-from-apple-amazon-bose-and-more--plus-what-we-know-so-far-about-the-sale-194231571.html), [MacRumors](https://www.macrumors.com/2026/11/02/best-early-black-friday-deals-2026/), [CNN Underscored](https://www.cnn.com/cnn-underscored/deals/early-black-friday-deals-2026-11-02)
 
-*As an Amazon Associate I earn from qualifying purchases. Tech Trek is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*
+*As an Amazon Associate I earn from qualifying purchases. TechByDave is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*

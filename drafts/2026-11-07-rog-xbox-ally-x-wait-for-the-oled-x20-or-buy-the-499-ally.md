@@ -36,4 +36,4 @@ The X makes sense only if you find it discounted well below its list price and y
 
 **Sources:** [Video Games Chronicle](https://www.videogameschronicle.com/news/the-rog-xbox-ally-and-ally-x-price-has-finally-been-confirmed/), [The Day Current](https://thedaycurrent.com/reviews/rog-ally-x-specs), [ASUS eShop](https://eshop.asus.com/us/rog-xbox-ally-x-2025.html), [Retro Catalog](https://retrocatalog.com/retro-handhelds/rog-xbox-ally-x), [Gizmodo](https://gizmodo.com/gizmodo-best-tech-of-2026-awards-2000835086)
 
-*As an Amazon Associate I earn from qualifying purchases. Tech Trek is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*
+*As an Amazon Associate I earn from qualifying purchases. TechByDave is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*

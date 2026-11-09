@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Daily auto-poster for Tech Trek.
+Daily auto-poster for TechByDave.
 
 Once a day (triggered by the GitHub Actions schedule) this:
   1. uses Claude + web search to find ONE trending consumer-tech story,
@@ -46,7 +46,7 @@ TAGLINE = "field notes on Tech"
 # The model will match its rhythm and attitude. Leave it empty ("") to skip.
 STYLE_SAMPLE = ""
 
-SITE_URL = (os.environ.get("SITE_URL", "").strip() or "https://techtreck.tech").rstrip("/")
+SITE_URL = (os.environ.get("SITE_URL", "").strip() or "https://techbydave.com").rstrip("/")
 AMAZON_AFFILIATE_TAG = os.environ.get("AMAZON_TAG", "").strip() or "techtreck02-20"
 AMAZON_DOMAIN = os.environ.get("AMAZON_DOMAIN", "").strip() or "amazon.com"
 
@@ -65,7 +65,7 @@ EDIT_MARKER_BLOCK = (
 )
 
 AFFILIATE_DISCLOSURE = (
-    "\n\n*As an Amazon Associate I earn from qualifying purchases. Tech Trek "
+    "\n\n*As an Amazon Associate I earn from qualifying purchases. TechByDave "
     "is a participant in the Amazon Services LLC Associates Program. Some "
     "links in this post may be affiliate links; if you buy something through "
     "them, we may earn a small commission at no extra cost to you.*"
@@ -93,7 +93,7 @@ SUBMIT_POST_TOOL = {
     "input_schema": {
         "type": "object",
         "properties": {
-            "title": {"type": "string", "description": "Specific, under 70 chars, single line."},
+            "title": {"type": "string", "description": "Under 60 characters, single line, phrased the way people search: exact product name first, then the question or key fact."},
             "snippet": {"type": "string", "description": "One sentence, under 160 chars, single line."},
             "tags": {
                 "type": "array",
@@ -179,7 +179,7 @@ def build_prompt(avoid_titles: list[str]) -> str:
             + STYLE_SAMPLE.strip()
             + "\n---\n\n"
         )
-    return f"""You write for "Tech Trek" (tagline: "{TAGLINE}"), a consumer tech and
+    return f"""You write for "TechByDave" (tagline: "{TAGLINE}"), a consumer tech and
 gadgets blog.
 
 Voice: write like a sharp editor telling a friend what actually matters about
@@ -213,6 +213,11 @@ Do not search again after that.
   confirmed by a source, leave it out or say it is not confirmed yet.
 - Write in an editorial voice. NEVER claim you tested, used, or owned a
   product, and never invent quotes or personal anecdotes.
+- Write the title the way someone would type it into Google: the exact
+  product name first, then the question people are asking or the key fact
+  (for example "iPhone 16 Plus Discontinued: Why Apple Dropped It" or
+  "Galaxy S26 Ultra Price in Canada and Release Date"). Under 60 characters,
+  no clever wordplay. Answer that question in the first two sentences.
 - Vary the structure from day to day; open with the most interesting specific
   thing, not a throat-clear.
 - Name each real, purchasable product exactly the same way in the body and in

@@ -41,4 +41,4 @@ If you can wait, wait. Foldables tend to get thinner, lighter and cheaper over t
 
 **Sources:** [MacRumors](https://www.macrumors.com/2026/09/09/iphone-duo-pricing-pre-orders-release-date/), [Make Tech Easier](https://maketecheasier.com/iphone-duo-foldable-price-release-date/), [Macworld](https://www.macworld.com/article/2629813/iphone-duo-folding-design-price-specs-release-date.html), [AT&T](https://www.att.com/buy/phones/apple-iphone-duo.html), [T-Mobile](https://www.t-mobile.com/cell-phone/apple-iphone-duo), [Wikipedia](https://en.wikipedia.org/wiki/IPhone_Duo), [Engadget](https://www.engadget.com/)
 
-*As an Amazon Associate I earn from qualifying purchases. Tech Trek is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*
+*As an Amazon Associate I earn from qualifying purchases. TechByDave is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*

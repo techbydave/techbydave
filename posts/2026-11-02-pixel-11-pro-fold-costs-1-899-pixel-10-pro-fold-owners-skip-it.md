@@ -42,4 +42,4 @@ Get the 256GB model unless you shoot lots of video, since every tier has the sam
 
 **Sources:** [Android Headlines](https://www.androidheadlines.com/google-pixel-11-pro-fold), [GSMArena](https://www.gsmarena.com/google_pixel_11_pro_fold-14874.php), [Wikipedia](https://en.wikipedia.org/wiki/Pixel_11_Pro_Fold), [TechCrunch](https://techcrunch.com/category/gadgets/), [Memeburn](https://memeburn.com/pixel-11-pro-fold-specs-release-date/)
 
-*As an Amazon Associate I earn from qualifying purchases. Tech Trek is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*
+*As an Amazon Associate I earn from qualifying purchases. TechByDave is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*

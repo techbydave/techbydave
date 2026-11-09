@@ -37,4 +37,4 @@ Check your cartridge's output type first. Then match it to a gain step: 40dB is 
 
 **Sources:** [Darko.Audio](https://darko.audio/2026/10/schiits-mani-3-more-phono-pre-amplifier-for-the-same-149/), [Schiit Audio](https://www.schiit.com/products/mani-3), [Gear Patrol](https://www.gearpatrol.com/audio/schiit-mani-3-phono-preamp/), [eCoustics](https://www.ecoustics.com/products/schiit-mani-3-phono-preamp/), [AudioHead](https://audio-head.com/schiit-mani-3-is-the-new-pre/amp/), [Amazon](https://www.amazon.com/Schiit-Mani-Phono-Preamp-Cartridges/dp/B0HNM36KCC)
 
-*As an Amazon Associate I earn from qualifying purchases. Tech Trek is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*
+*As an Amazon Associate I earn from qualifying purchases. TechByDave is a participant in the Amazon Services LLC Associates Program. Some links in this post may be affiliate links; if you buy something through them, we may earn a small commission at no extra cost to you.*
