@@ -5,6 +5,8 @@ slug: amazon-s-199-echo-time-wants-to-wake-you-up-gently
 tags: amazon, smart home, alexa, echo
 snippet: Amazon's Echo Time is a $199.99 camera-free Alexa+ alarm clock with sleep sensing. It costs nearly twice what the Echo Spot does.
 image: Untitled Design (1).png
+verdict: WAIT
+verdict_line: Wait for reviews and the first price cut. For a talking bedside clock, the Echo Spot is the sane buy.
 ---
 
 The most interesting thing about the [Amazon Echo Time](https://www.amazon.com/s?k=Amazon+Echo+Time&tag=techtreck02-20) is that it might not wake you up at the time you set. With the optional smart alarm turned on, it can sound off anywhere from 10 to 60 minutes before your alarm, whenever it decides getting up will feel easier. That's a bold bet for a gadget whose one job is to get you out of bed.

@@ -6,6 +6,8 @@ tags: airtag, deals, apple, trackers
 snippet: Apple AirTag 2 deal: the 4-pack is $69.99 instead of $99 at Amazon, Best Buy and Walmart, about $17.50 a tag. Here's who should grab this AirTag sale and who should wait.
 image: airtag-gallery3-202601.jpg
 published: 2026-10-31T09:33:11-04:00
+verdict: BUY
+verdict_line: Have an iPhone and things that go missing? Four tags for $69.99 is the one to get.
 ---
 
 Seventeen dollars and fifty cents. That's what each tag costs in the [AirTag 2](https://www.amazon.com/s?k=AirTag+2&tag=techtreck02-20) four-pack right now, after Amazon cut it to $69.99 from Apple's $99 list price. That's $29 off, or roughly 29 percent.

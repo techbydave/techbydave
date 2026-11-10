@@ -4,6 +4,8 @@ date: 2026-09-18
 tags: nvidia, gpu, gaming, pricing
 snippet: Nvidia's flagship gaming GPU is vanishing from shelves, with third-party sellers now asking five times the $1,999 MSRP.
 image: images (2).jpg
+verdict: SKIP
+verdict_line: Don't pay marketplace prices. If you must have one, a physical store like Micro Center is the least-bad option.
 ---
 
 Nvidia's [GeForce RTX 5090](https://www.amazon.com/s?k=GeForce+RTX+5090&tag=techtreck02-20) has officially entered the realm of the absurd. The flagship gaming graphics card, which launched at $1,999, is now showing up on third-party marketplaces at prices approaching $10,000. Major retailers like Amazon, Newegg, and Best Buy are either completely out of stock or listing cards through marketplace sellers at $6,000 to $9,500, depending on the model.

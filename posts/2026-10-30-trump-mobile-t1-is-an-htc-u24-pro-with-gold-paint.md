@@ -6,6 +6,8 @@ tags: smartphones, teardown, trump mobile, android
 snippet: Teardowns show the Trump Mobile T1 is nearly an HTC U24 Pro from 2024, and one report now puts the price at $749. Here's what to buy instead.
 image: dailypics6.png
 published: 2026-10-30T09:03:36-04:00
+verdict: SKIP
+verdict_line: Skip it unless you want a souvenir. The HTC U24 Pro is the same phone without the markup.
 ---
 
 iFixit swapped the mainboard from an [HTC U24 Pro](https://www.amazon.com/s?k=HTC+U24+Pro&tag=techtreck02-20) into a [Trump Mobile T1](https://www.amazon.com/s?k=Trump+Mobile+T1&tag=techtreck02-20), and the phone booted up with an HTC logo. That's about as clear as a teardown verdict gets.

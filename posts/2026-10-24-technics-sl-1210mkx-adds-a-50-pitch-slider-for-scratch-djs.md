@@ -5,6 +5,8 @@ slug: technics-sl-1210mkx-adds-a-50-pitch-slider-for-scratch-djs
 tags: turntable, technics, audio, dj
 snippet: Technics' SL-1210MKX turntable ships January 2027 at £1,299 with a heavier chassis and a new ±50% pitch setting. It's for DJs, not casual vinyl fans.
 image: daily pics .png
+verdict: WAIT
+verdict_line: No US price yet. Don't pre-order; wait for the US announcement and reviews.
 ---
 
 The headline spec on Technics' new SL-1210MKX is a pitch setting of ±50%. That's a huge swing for a turntable, and it tells you who this thing is for. Not you, unless you're a scratch DJ or you really want to be one.

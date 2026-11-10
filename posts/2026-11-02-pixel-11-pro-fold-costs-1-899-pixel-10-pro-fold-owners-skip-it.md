@@ -6,6 +6,8 @@ tags: pixel, foldables, google, phones
 snippet: Google's fourth foldable costs $100 more than last year's, with a Tensor G6, 16GB RAM on every tier and seven years of updates. Who should buy it?
 image: Screenshot 2026-11-03 130323.png
 published: 2026-11-03T13:21:27-05:00
+verdict: SKIP
+verdict_line: Own a Pixel 10 Pro Fold? Skip it. Coming from an older phone, wait for the first discount.
 ---
 
 The [Pixel 11 Pro Fold](https://www.amazon.com/s?k=Pixel+11+Pro+Fold&tag=techtreck02-20) costs $100 more than last year's model, and the headline spec you get for that money is a 1:1-ish inner screen that hasn't changed shape in a while. That's the short version of Google's fourth foldable, which TechCrunch's review summed up with a headline about a sturdy rectangle in a wide world.

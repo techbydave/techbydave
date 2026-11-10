@@ -5,6 +5,8 @@ slug: samsung-s-galaxy-buds-on-clip-to-your-ear-for-229
 tags: samsung, earbuds, open-ear, audio
 snippet: Samsung's first clip-on open-ear buds promise 9.5 hours per charge and cost $229 in the US from early November. Europe waits until 2027.
 image: Samsung-Mobile-Galaxy-Buds-On-Gemini-Live-Clip-On-Design_Main1.jpg
+verdict: WAIT
+verdict_line: Don't pre-order. Wait for reviews on fit and wind noise. On an iPhone? Skip these.
 ---
 
 Each [Samsung Galaxy Buds On](https://www.amazon.com/s?k=Samsung+Galaxy+Buds+On&tag=techtreck02-20) earbud weighs 6.65 grams and sits outside your ear canal. There are no silicone tips and no seal. Samsung's first clip-on, open-ear design is its answer to Bose, Shokz and Sony, who have sold this style for a while.

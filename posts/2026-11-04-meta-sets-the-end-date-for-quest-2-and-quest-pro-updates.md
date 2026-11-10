@@ -6,6 +6,8 @@ tags: meta , quest , vr , gaming
 snippet: Meta's last feature update for Quest 2 and Quest Pro lands by March 2027, with security patches only through the end of that year.
 image: download.webp
 published: 2026-11-06T15:50:11-05:00
+verdict: SKIP
+verdict_line: Don't buy a used Quest 2. Already own one? Do nothing; it's fine through 2027.
 ---
 
 The best-selling VR headset of all time now has an expiration date, and it's closer than you'd think. Meta says feature development for the Quest 2 and Quest Pro ends with version 213, which reaches those headsets by March 2027. After that, Meta says it will keep shipping security patches and critical bug fixes through the end of 2027.

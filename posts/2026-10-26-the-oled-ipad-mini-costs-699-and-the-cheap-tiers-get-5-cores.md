@@ -5,6 +5,8 @@ slug: the-oled-ipad-mini-costs-699-and-the-cheap-tiers-get-5-cores
 tags: ipad, apple, tablets, oled
 snippet: Apple's new iPad mini adds an 8.5-inch OLED and IP67 from $699, but the 128GB and 256GB models get a 5-core CPU and no confirmed 120Hz.
 image: Untitled Design (2).png
+verdict: SKIP
+verdict_line: Own a 2024 iPad mini? Skip it. Everyone else: wait for reviews and the refresh rate.
 ---
 
 The detail worth reading in Apple's new [iPad mini](https://www.amazon.com/s?k=iPad+mini&tag=techtreck02-20) spec sheet isn't the OLED screen. It's the CPU core count. The 128GB and 256GB models ship with a five-core CPU, one fewer than the iPad mini they replace. Only the 512GB model gets six cores and a Dual 16-core Neural Engine, and PhoneArena lists that one at $999 for Wi-Fi. That's why Apple's speed claims all say "up to."

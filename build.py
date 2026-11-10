@@ -206,6 +206,10 @@ def inline_md(text):
     return text
 
 
+def _strip_md(t):
+    return re.sub(r'[*_`]|\[([^\]]*)\]\([^)]*\)', lambda m: m.group(1) or "", t)
+
+
 BLOCK_START = re.compile(r'^(#{2,3})\s+|^[-*]\s+|^>|^```')
 
 
@@ -233,7 +237,14 @@ def markdown_to_html(md):
         m = re.match(r'^(#{2,3})\s+(.*)$', line)
         if m:
             level = len(m.group(1))
-            out.append(f'<h{level}>{inline_md(m.group(2))}</h{level}>')
+            out.append(f'<h{level} id="{slugify(_strip_md(m.group(2)))}">{inline_md(m.group(2))}</h{level}>')
+            i += 1
+            continue
+
+        # A line that is only bold text ("**Who should care**") is a section heading.
+        bm = re.match(r'^\*\*([^*]+?)\*\*:?\s*$', line.strip())
+        if bm and (i + 1 >= n or not lines[i + 1].strip()):
+            out.append(f'<h2 id="{slugify(bm.group(1))}">{inline_md(bm.group(1))}</h2>')
             i += 1
             continue
 
@@ -644,7 +655,48 @@ main.home{padding-top:2.5rem}
 @media (hover:none){.feed p{max-height:none;opacity:1;transform:none}}
 @media (max-width:640px){.feed a{grid-template-columns:1fr}.feed p{grid-column:1}}
 
-.post-full{padding:1rem 0 3rem;max-width:760px}
+.post-full{padding:1rem 0 3rem;max-width:760px;min-width:0}
+.post-layout{display:grid;grid-template-columns:minmax(0,760px);justify-content:center;gap:3.5rem}
+.post-side{display:none}
+@media (min-width:1100px){.post-layout{grid-template-columns:minmax(0,740px) 260px}.post-side{display:block}
+  .side-sticky{position:sticky;top:96px;display:flex;flex-direction:column;gap:1rem;padding-top:7.5rem}.toc-inline{display:none}}
+.post-body h2,.post-body h3{scroll-margin-top:90px}
+.read-time{white-space:nowrap}
+.verdict{margin:-.6rem 0 1.8rem;padding:1.1rem 1.25rem 1.2rem;border-radius:16px;background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--vc,var(--beacon))}
+.v-buy{--vc:#2fbf71}.v-wait{--vc:var(--beacon)}.v-skip{--vc:#ef5a5a}
+.v-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem}
+.v-label{font:700 .78rem var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.v-pills{display:flex;gap:.35rem}
+.vpill{font:800 .8rem var(--display);letter-spacing:.06em;padding:.3rem .7rem;border-radius:99px;border:1px solid var(--line);color:var(--mute)}
+.vpill.on{background:var(--vc);border-color:var(--vc);color:#0b0f1a}
+.v-line{margin:.75rem 0 0;font:600 1.12rem/1.45 var(--display);color:var(--ink)}
+.price-btn{display:inline-flex;flex-direction:column;margin-top:1rem;padding:.7rem 1.1rem;border-radius:12px;background:var(--beacon);color:var(--on-beacon);font:700 .98rem var(--display);transition:transform .15s,filter .2s}
+.price-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.price-for{font:500 .75rem var(--display);opacity:.75;max-width:30ch;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.price-btn.small{margin-top:.8rem;padding:.55rem .85rem;font-size:.88rem;width:100%}
+.price-card{margin:.5rem 0 0}
+.side-verdict{padding:1rem 1.1rem;border-radius:14px;background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--vc)}
+.side-verdict b{display:block;font:800 1.9rem/1 var(--display);color:var(--vc);margin-top:.35rem;letter-spacing:-.02em}
+.toc{font-family:var(--display)}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:t}
+.toc li{counter-increment:t}
+.toc a{display:flex;gap:.6rem;padding:.42rem 0;color:var(--ink-soft);font-size:.92rem;line-height:1.3;transition:color .2s}
+.toc a::before{content:counter(t,decimal-leading-zero);color:var(--mute);font-size:.75rem;padding-top:.15rem}
+.toc a:hover,.toc a.on{color:var(--trail)}
+.toc-side{padding:1rem 1.1rem;border-radius:14px;border:1px solid var(--line)}
+.toc-title{font:700 .78rem var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:.4rem}
+.toc-inline{margin:0 0 1.8rem;border:1px solid var(--line);border-radius:14px;padding:.85rem 1.1rem;background:var(--panel)}
+.toc-inline summary{cursor:pointer;font:700 .95rem var(--display);color:var(--ink)}
+.toc-inline ol{margin-top:.5rem}
+.keep-reading{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--line)}
+.keep-reading h2{font:800 1.6rem/1.1 var(--display);letter-spacing:-.025em;margin-bottom:1.2rem}
+.kr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.kr-grid .story-card h3{font-size:1.05rem}
+.kr-grid .byline{margin-top:.45rem}
+@media (max-width:700px){.kr-grid{grid-template-columns:1fr}.kr-grid .story-card{display:grid;grid-template-columns:110px 1fr;gap:.9rem;align-items:start}.kr-grid .story-card h3{margin-top:0}.kr-grid .thumb{grid-row:span 2}.kr-grid .byline{grid-column:2}}
+.to-top{position:fixed;right:1rem;bottom:1.2rem;z-index:40;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);color:var(--ink);font:700 1.2rem var(--display);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .25s,transform .25s;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+@media (min-width:1100px){.to-top{display:none}}
 .back-link{font:500 .9rem var(--display);color:var(--mute);display:inline-block;margin-bottom:1.6rem;transition:color .2s}
 .back-link:hover{color:var(--trail)}
 .post-meta{font:500 .85rem var(--display);color:var(--mute)}
@@ -664,6 +716,7 @@ main.home{padding-top:2.5rem}
 .post-body ul{padding-left:1.3em;margin:0 0 1.3em;color:var(--ink-soft)}
 .post-body img{margin:1.6em 0;border-radius:12px;border:1px solid var(--line)}
 .post-hero{margin:0 0 2rem;border-radius:14px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;background:var(--panel)}
+@media (min-width:700px){.post-hero{aspect-ratio:2.1/1}}
 .post-hero img{width:100%;height:100%;object-fit:cover;margin:0}
 .tags-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.6rem}
 .tags-row a{font:500 .8rem var(--display);color:var(--trail);border:1px solid var(--line);padding:.3rem .7rem;border-radius:99px;transition:background .2s,color .2s}
@@ -797,6 +850,24 @@ COMMON_JS = """
   addEventListener('resize',function(){measure();onScroll();});
   addEventListener('load',function(){measure();onScroll();});
   if(window.ResizeObserver) new ResizeObserver(function(){measure();onScroll();}).observe(document.body);
+  var top=document.querySelector('.to-top');
+  if(top){
+    addEventListener('scroll',function(){top.classList.toggle('show',scrollY>900);},{passive:true});
+    top.addEventListener('click',function(e){e.preventDefault();scrollTo({top:0,behavior:'smooth'});});
+  }
+  var links=[].slice.call(document.querySelectorAll('.toc-side a'));
+  if(links.length&&window.IntersectionObserver){
+    var map={};
+    links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        links.forEach(function(a){a.classList.remove('on');});
+        if(map[e.target.id]) map[e.target.id].classList.add('on');
+      });
+    },{rootMargin:'-20% 0px -70% 0px'});
+    Object.keys(map).forEach(function(id){var h=document.getElementById(id); if(h) io.observe(h);});
+  }
 })();
 """
 
@@ -1546,6 +1617,78 @@ def speed_up_all_pages():
                     f.write(fixed)
 
 
+VERDICT_WORDS = {"BUY": "buy", "WAIT": "wait", "SKIP": "skip"}
+_AMAZON_LINK_RE = re.compile(r'<a href="(https://www\.amazon\.com/[^"]+)">(.*?)</a>')
+_H2_RE = re.compile(r'<h2 id="([^"]+)">(.*?)</h2>')
+
+
+def reading_minutes(body_md):
+    words = len(re.findall(r"\w+", re.sub(r"\(https?://[^)]+\)", "", body_md)))
+    return max(1, round(words / 230))
+
+
+def amazon_pick(meta):
+    """First Amazon product link in the post: (url, product name) or None."""
+    m = _AMAZON_LINK_RE.search(meta["body_html"])
+    return (m.group(1), _strip_tags(m.group(2))) if m else None
+
+
+def render_price_button(pick, small=False):
+    if not pick:
+        return ""
+    url, name = pick
+    cls = "price-btn small" if small else "price-btn"
+    return (f'<a class="{cls}" href="{html.escape(url)}" target="_blank" rel="sponsored noopener">'
+            f'Check price on Amazon<span class="price-for">{html.escape(name)}</span></a>')
+
+
+def render_verdict(meta, pick):
+    word = meta.get("verdict", "").strip().upper()
+    if word not in VERDICT_WORDS:
+        return ""
+    line = html.escape(meta.get("verdict_line", "").strip())
+    pills = "".join(f'<span class="vpill{" on" if w == word else ""}">{w}</span>' for w in VERDICT_WORDS)
+    return (f'<aside class="verdict v-{VERDICT_WORDS[word]}" aria-label="Our verdict">'
+            f'<div class="v-head"><span class="v-label">Worth it or a waste?</span><span class="v-pills">{pills}</span></div>'
+            f'<p class="v-line">{line}</p>{render_price_button(pick)}</aside>')
+
+
+def render_toc(body_html, cls):
+    heads = [(i, _strip_tags(t)) for i, t in _H2_RE.findall(body_html)]
+    heads = [(i, t) for i, t in heads if t.lower() not in ("sources", "the bottom line")]
+    if len(heads) < 3:
+        return ""
+    items = "".join(f'<li><a href="#{i}">{html.escape(t)}</a></li>' for i, t in heads)
+    if cls == "toc-inline":
+        return f'<details class="toc toc-inline"><summary>In this post</summary><ol>{items}</ol></details>'
+    return f'<nav class="toc toc-side" aria-label="In this post"><p class="toc-title">In this post</p><ol>{items}</ol></nav>'
+
+
+def _tagset(meta):
+    return {t.strip().lower().replace(" ", "") for t in meta["tags"].split(",") if t.strip()}
+
+
+def related_posts(meta, posts, k=3):
+    mine = _tagset(meta)
+    others = [p for p in posts if p is not meta]
+    scored = sorted(others, key=lambda p: (len(mine & _tagset(p)), p["_published"]), reverse=True)
+    return scored[:k]
+
+
+def render_related(meta, posts):
+    cards = []
+    for p in related_posts(meta, posts):
+        src = post_image(p)
+        thumb = (f'<span class="thumb"><img src="{html.escape(src)}" alt="{html.escape(p["title"])}" loading="lazy"></span>'
+                 if src and not (src.startswith(IMG_MARK) and urllib.parse.unquote(src[len(IMG_MARK):]) in MISSING_IMAGES)
+                 else '<span class="thumb ph"></span>')
+        cards.append(f'<a class="story story-card" href="{p["slug"]}.html">{thumb}'
+                     f'<h3>{html.escape(p["title"])}</h3>{render_byline(p)}</a>')
+    if not cards:
+        return ""
+    return f'<section class="keep-reading"><h2>Keep reading</h2><div class="kr-grid">{"".join(cards)}</div></section>'
+
+
 def build():
     if os.path.isdir(DIST_DIR):
         shutil.rmtree(DIST_DIR)
@@ -1643,19 +1786,40 @@ def build():
         share_img = fix_images(share_img, base + "/") if share_img else ""
         share_html = render_share_bar(f"{base}/posts/{meta['slug']}.html", meta["title"], share_img)
 
+        pick = amazon_pick(meta)
+        verdict_html = render_verdict(meta, pick)
+        # posts without a verdict still get the price button, after the article text
+        late_price = "" if verdict_html or not pick else f'<div class="price-card">{render_price_button(pick)}</div>'
+        side_verdict = ""
+        if verdict_html:
+            word = meta["verdict"].strip().upper()
+            side_verdict = (f'<div class="side-verdict v-{VERDICT_WORDS[word]}"><span class="v-label">Our verdict</span>'
+                            f'<b>{word}</b>{render_price_button(pick, small=True)}</div>')
+        mins = reading_minutes(meta.get("_body_md", ""))
         body = f"""
+    <div class="post-layout">
     <article class="post-full">
       <a class="back-link" href="../index.html">&#8592; back to index</a>
       <p class="post-meta">By <a class="author-link" href="../about.html" rel="author">{html.escape(meta.get('author', AUTHOR_NAME))}</a>
-        &middot; <time datetime="{meta['_published'].isoformat(timespec='seconds')}">{fmt_date_human(meta['_date_obj'])}</time></p>
+        &middot; <time datetime="{meta['_published'].isoformat(timespec='seconds')}">{fmt_date_human(meta['_date_obj'])}</time>
+        &middot; <span class="read-time">{mins} min read</span></p>
       <h1 class="post-title">{html.escape(meta['title'])}</h1>
+      {verdict_html}
       {hero_html}
+      {render_toc(meta['body_html'], 'toc-inline')}
       <div class="post-body">
         {meta['body_html']}
       </div>
+      {late_price}
       {tags_html}
       {share_html}
-    </article>"""
+      {render_related(meta, posts)}
+    </article>
+    <aside class="post-side">
+      <div class="side-sticky">{side_verdict}{render_toc(meta['body_html'], 'toc-side')}</div>
+    </aside>
+    </div>
+    <a class="to-top" href="#" aria-label="Back to top">&#8593;</a>"""
         page = render_page(
             title=f"{html.escape(meta['title'])} &middot; {SITE_TITLE}",
             description=html.escape(meta_description(meta["snippet"], meta.get("_body_md", ""))),

@@ -5,6 +5,8 @@ slug: asus-rog-strix-oled-adds-480hz-mode-for-whom
 tags: gaming, monitors, oled, specs
 snippet: 32-inch gaming monitor switches between 4K/240Hz and 1080p/480Hz. The hardware is overkill for most players.
 image: dailypics(5).png
+verdict: BUY
+verdict_line: Buy it for 4K 240Hz OLED at a sane price, not for the 480Hz mode.
 ---
 
 ASUS just dropped a gaming monitor so loaded with contradictions it barely knows what it wants to be. The [ASUS ROG Strix OLED XG32UQWMS](https://www.amazon.com/s?k=ASUS+ROG+Strix+OLED+XG32UQWMS&tag=techtreck02-20) launched October 16 in Japan with a headline feature that sounds clever until you actually think about it: a 32-inch panel that runs at 4K/240Hz or Full HD/480Hz, flippable by hotkey.

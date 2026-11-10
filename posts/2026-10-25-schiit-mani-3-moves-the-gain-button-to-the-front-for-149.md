@@ -5,6 +5,8 @@ slug: schiit-mani-3-moves-the-gain-button-to-the-front-for-149
 tags: hi-fi, turntables, phono preamp, deals
 snippet: Schiit's Mani 3 phono preamp keeps the Mani 2's $149 price, adds front-panel gain and loading controls, and ships now in black.
 image: 78995o99fkvfqnevyvv2638ge371.jpg
+verdict: BUY
+verdict_line: A cheap, sensible first phono stage. Already own a Mani 2? Skip it.
 ---
 
 The best change on the new [Schiit Mani 3](https://www.amazon.com/s?k=Schiit+Mani+3&tag=techtreck02-20) is a button. On the Mani 2, gain and MM/MC loading lived on the underside, so changing them meant flipping the box over once it was cabled into your system. The Mani 3 puts a milled aluminium button on the front. Short presses step through 30, 40, 50 and 60dB of gain. A long press switches between MM and MC.

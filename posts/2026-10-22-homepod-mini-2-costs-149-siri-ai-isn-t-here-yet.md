@@ -5,6 +5,8 @@ slug: homepod-mini-2-costs-149-siri-ai-isn-t-here-yet
 tags: apple , home pod 
 snippet: Apple's HomePod mini 2 is $149 and ships October 30, but its Siri AI feature arrives later. Is the HomePod mini 2 worth buying now, or should you wait?
 image: dailypics1.png
+verdict: WAIT
+verdict_line: Buy now only as a Mac desk or kitchen speaker. Buying it for Siri AI? Wait until that ships.
 ---
 
 The most telling line in Apple's [HomePod mini 2](https://www.amazon.com/s?k=HomePod+mini+2&tag=techtreck02-20) launch is the one in the spec table: Siri AI, "arriving later." The speaker goes on sale October 30. The feature it's marketed around doesn't ship with it.

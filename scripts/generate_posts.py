@@ -79,6 +79,8 @@ date: {date}
 slug: {slug}
 tags: {tags}
 snippet: {snippet}
+verdict: {verdict}
+verdict_line: {verdict_line}
 ---
 
 {body}
@@ -95,6 +97,8 @@ SUBMIT_POST_TOOL = {
         "properties": {
             "title": {"type": "string", "description": "Under 60 characters, single line, phrased the way people search: exact product name first, then the question or key fact."},
             "snippet": {"type": "string", "description": "One sentence, under 160 chars, single line."},
+            "verdict": {"type": "string", "enum": ["BUY", "WAIT", "SKIP"], "description": "The post's buy/wait/skip verdict for most readers, matching what the body recommends."},
+            "verdict_line": {"type": "string", "description": "One plain sentence (two at most), under 140 chars, single line: who should buy, wait or skip, matching the body. Shown in a box under the title."},
             "tags": {
                 "type": "array",
                 "items": {"type": "string"},
@@ -375,6 +379,8 @@ def write_post(post: dict, today):
         slug=slug,
         tags=tags,
         snippet=_single_line(_strip_citation_tags(post.get("snippet", ""))),
+        verdict=(post.get("verdict", "") or "").strip().upper(),
+        verdict_line=_single_line(_strip_citation_tags(post.get("verdict_line", ""))),
         body=body,
     )
     DRAFTS_DIR.mkdir(parents=True, exist_ok=True)

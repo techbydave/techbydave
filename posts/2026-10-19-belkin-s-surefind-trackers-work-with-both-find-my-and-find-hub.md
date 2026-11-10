@@ -5,6 +5,8 @@ slug: belkin-s-surefind-trackers-work-with-both-find-my-and-find-hub
 tags: Belkin , tracker
 snippet: Belkin's SureFind trackers are an AirTag alternative that works with both Apple Find My and Google Find Hub, from $14.99 in the US. One doubles as a USB-C cable.
 image: dailypics3.png
+verdict: BUY
+verdict_line: Get the $24.99 Loop Cable Tag for bags or the $14.99 Spot for keys. Skip the Card: its battery can't be replaced.
 ---
 
 The most useful tracker in Belkin's new SureFind line is the one with a charging cable braided into its strap. The [Belkin SureFind Loop Cable Tag](https://www.amazon.com/s?k=Belkin+SureFind+Loop+Cable+Tag&tag=techtreck02-20) has a carry loop that doubles as a short USB-C to USB-C cable, and it recharges over that same connection, so there's no coin cell to hunt for in a drawer. Belkin says it lasts up to four months per charge.
