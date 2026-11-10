@@ -355,6 +355,9 @@ def generate_sitemap(posts):
     base = SITE_URL.rstrip("/")
     urls = [f"{base}/", f"{base}/about.html", f"{base}/editorial-policy.html",
             f"{base}/contact.html", f"{base}/privacy.html", f"{base}/media-kit.html"]
+    urls += [f"{base}/archive.html"]
+    urls += [f"{base}/topics/{slug}.html" for _, slug, _ in TOPICS
+             if any(slug in {t for _, t in topics_for(m)} for m in posts)]
     urls += [f"{base}/posts/{m['slug']}.html" for m in posts]
     entries = "".join(f"\n  <url><loc>{html.escape(u)}</loc></url>" for u in urls)
     return f"""<?xml version="1.0" encoding="UTF-8"?>
@@ -697,6 +700,56 @@ main.home{padding-top:2.5rem}
 .to-top{position:fixed;right:1rem;bottom:1.2rem;z-index:40;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);color:var(--ink);font:700 1.2rem var(--display);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .25s,transform .25s;box-shadow:0 8px 24px rgba(0,0,0,.35)}
 .to-top.show{opacity:1;pointer-events:auto;transform:none}
 @media (min-width:1100px){.to-top{display:none}}
+.skip-link{position:absolute;left:1rem;top:-60px;z-index:200;background:var(--beacon);color:var(--on-beacon);font:700 .95rem var(--display);padding:.7rem 1rem;border-radius:10px;transition:top .2s}
+.skip-link:focus{top:1rem}
+main:focus{outline:none}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--trail);outline-offset:3px;border-radius:6px}
+.vtag{position:absolute;right:.7rem;top:.7rem;z-index:2;font:800 .72rem/1 var(--display);letter-spacing:.08em;padding:.42rem .65rem;border-radius:99px;background:var(--vc);color:#0b0f1a}
+.tags-label{font:600 .8rem var(--display);color:var(--mute);align-self:center;margin-right:.2rem}
+.author-box{display:flex;gap:1.1rem;align-items:flex-start;margin-top:2rem;padding:1.3rem 1.4rem;border:1px solid var(--line);border-radius:18px;background:var(--panel)}
+.ab-photo{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none;border:2px solid var(--beacon)}
+.ab-name{font:700 1.05rem var(--display);color:var(--ink)}
+.ab-name a{color:var(--trail)}
+.ab-bio{margin:.35rem 0 .7rem;color:var(--ink-soft);font-size:1rem;line-height:1.5}
+.author-box .soc{display:flex;gap:.4rem}
+.topic-strip{display:flex;flex-wrap:wrap;gap:.45rem}
+.home-topics{margin:2.4rem 0 .4rem}
+.topic-strip a{font:600 .85rem var(--display);padding:.45rem .85rem;border-radius:99px;border:1px solid var(--line);color:var(--ink-soft);transition:background .2s,color .2s,border-color .2s}
+.topic-strip a:hover,.topic-strip a[aria-current]{background:var(--trail);border-color:var(--trail);color:var(--bg)}
+.drawer-topics{margin:1.2rem 0 .4rem}
+.drawer-topics p{font:700 .75rem var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:.6rem}
+.page-head{margin:1rem 0 1.6rem}
+.page-head h1{font:800 clamp(2rem,5vw,3rem)/1.05 var(--display);letter-spacing:-.035em}
+.page-head p{margin-top:.6rem;color:var(--mute);font-size:1.05rem}
+.page-head .topic-strip{margin-top:1.2rem}
+.topic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem 1.3rem}
+.topic-grid .story-card p.dek{margin-top:.5rem;color:var(--mute);font-size:.98rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media (max-width:900px){.topic-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.topic-grid{grid-template-columns:1fr}}
+.archive-month{font:800 1.25rem var(--display);margin:2rem 0 .6rem;padding-bottom:.4rem;border-bottom:1px solid var(--line)}
+.archive-list{list-style:none;padding:0;margin:0}
+.archive-list li{display:grid;grid-template-columns:5.5rem 1fr auto;gap:.9rem;align-items:baseline;padding:.6rem 0;border-bottom:1px dashed var(--line)}
+.archive-list time{font:500 .85rem var(--display);color:var(--mute)}
+.archive-list a{font:600 1.05rem/1.35 var(--display);color:var(--ink)}
+.archive-list a:hover{color:var(--trail)}
+.archive-list .vtag{position:static}
+@media (max-width:560px){.archive-list li{grid-template-columns:1fr auto}.archive-list time{grid-column:1/-1}}
+.search-btn{display:grid;place-items:center;width:38px;height:38px;border-radius:99px;border:1px solid var(--line);background:none;color:var(--ink);cursor:pointer}
+.search-btn svg,.search-row svg{width:18px;height:18px}
+@media (max-width:440px){.bar-right .nl-btn{display:none}.search-btn{width:34px;height:34px}}
+.search-ov{position:fixed;inset:0;z-index:150;background:rgba(3,5,12,.6);display:flex;justify-content:center;align-items:flex-start;padding:12vh 1rem 1rem}
+.search-ov[hidden]{display:none}
+.search-box{width:100%;max-width:620px;background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden}
+.search-row{display:flex;align-items:center;gap:.7rem;padding:.9rem 1.1rem;border-bottom:1px solid var(--line);color:var(--mute)}
+.search-row input{flex:1;min-width:0;background:none;border:0;color:var(--ink);font:500 1.1rem var(--display);outline:none}
+.search-close{background:none;border:1px solid var(--line);border-radius:8px;color:var(--mute);font:600 .75rem var(--display);padding:.3rem .5rem;cursor:pointer}
+.search-res{list-style:none;margin:0;padding:.4rem;max-height:60vh;overflow:auto}
+.search-res a{display:flex;flex-direction:column;gap:.2rem;padding:.75rem .8rem;border-radius:12px}
+.search-res a:hover,.search-res a:focus-visible{background:var(--bg)}
+.sr-t{font:600 1rem/1.3 var(--display);color:var(--ink)}
+.sr-m{font:500 .8rem var(--display);color:var(--mute)}
+.sr-v{color:var(--vc)}
+.sr-none{padding:1rem .8rem;color:var(--mute);font-size:.98rem}
 .back-link{font:500 .9rem var(--display);color:var(--mute);display:inline-block;margin-bottom:1.6rem;transition:color .2s}
 .back-link:hover{color:var(--trail)}
 .post-meta{font:500 .85rem var(--display);color:var(--mute)}
@@ -867,6 +920,33 @@ COMMON_JS = """
       });
     },{rootMargin:'-20% 0px -70% 0px'});
     Object.keys(map).forEach(function(id){var h=document.getElementById(id); if(h) io.observe(h);});
+  }
+  var ov=document.getElementById('search-ov'), q=document.getElementById('search-q'), res=document.getElementById('search-res'),
+      sbtn=document.querySelector('[data-search-open]'), data=null, base=sbtn?sbtn.getAttribute('data-base'):'';
+  function esc(t){return t.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function load(){ if(data) return Promise.resolve(data);
+    return fetch(base+'search.json').then(function(r){return r.json();}).then(function(d){data=d;return d;}); }
+  function render(){
+    var words=q.value.toLowerCase().trim().split(/\\s+/).filter(Boolean);
+    if(!words.length){res.innerHTML='';return;}
+    load().then(function(d){
+      var hits=d.filter(function(p){var h=(p.t+' '+p.s+' '+p.k).toLowerCase();return words.every(function(w){return h.indexOf(w)>-1;});}).slice(0,8);
+      res.innerHTML=hits.length?hits.map(function(p){
+        return '<li><a href="'+base+p.u+'"><span class="sr-t">'+esc(p.t)+'</span><span class="sr-m">'+esc(p.d)+
+          (p.v?' &middot; <b class="sr-v v-'+p.v.toLowerCase()+'">'+p.v+'</b>':'')+'</span></a></li>';}).join('')
+        :'<li class="sr-none">No posts match "'+esc(q.value)+'".</li>';
+    }).catch(function(){res.innerHTML='<li class="sr-none">Search is unavailable right now.</li>';});
+  }
+  function openS(){ if(!ov) return; ov.hidden=false; document.body.style.overflow='hidden'; setTimeout(function(){q.focus();},20); load(); }
+  function closeS(){ if(!ov) return; ov.hidden=true; document.body.style.overflow=''; if(sbtn) sbtn.focus(); }
+  if(ov){
+    sbtn&&sbtn.addEventListener('click',openS);
+    q.addEventListener('input',render);
+    ov.addEventListener('click',function(e){ if(e.target===ov||e.target.closest('.search-close')) closeS(); });
+    addEventListener('keydown',function(e){
+      if(e.key==='Escape'&&!ov.hidden) closeS();
+      if(e.key==='/'&&ov.hidden&&!/input|textarea/i.test((document.activeElement||{}).tagName||'')){e.preventDefault();openS();}
+    });
   }
 })();
 """
@@ -1178,7 +1258,7 @@ SUN_ICON = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 
 
 def footer_links(prefix):
-    pages = [("privacy", "privacy.html"), ("editorial", "editorial-policy.html"),
+    pages = [("all posts", "archive.html"), ("privacy", "privacy.html"), ("editorial", "editorial-policy.html"),
              ("contact", "contact.html"), ("media kit", "media-kit.html"),
              ("shop my picks", AMAZON_STOREFRONT)]
     return "".join(_link(prefix, href, label) for label, href in pages)
@@ -1209,6 +1289,8 @@ ICONS = {
                   'a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/>', False),
 }
 
+SEARCH_ICON = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" '
+               'aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>')
 MAIL_ICON = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
              'stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/>'
              '<path d="m3 7 9 6 9-6"/></svg>')
@@ -1280,7 +1362,7 @@ def _link(prefix, href, label, cls=""):
 
 
 def render_drawer(prefix):
-    big = [("Latest", "index.html"), ("About", "about.html"),
+    big = [("Latest", "index.html"), ("All posts", "archive.html"), ("About", "about.html"),
            ("Editorial policy", "editorial-policy.html"), ("Contact", "contact.html"),
            ("Media kit", "media-kit.html"), ("Shop my picks", AMAZON_STOREFRONT)]
     small = [("Privacy policy", "privacy.html"), ("RSS feed", "feed.xml")]
@@ -1293,6 +1375,7 @@ def render_drawer(prefix):
 <div class="drawer-scrim" id="drawer-scrim"></div>
 <aside class="drawer" id="drawer" aria-label="Site menu">
   <nav class="drawer-nav">{big_html}</nav>
+  <div class="drawer-topics item" style="--i:{len(big)}"><p>Topics</p>{render_topic_strip(prefix)}</div>
   <div class="drawer-mid item" style="--i:{len(big)}">
     {social}
     <a class="nl-btn" href="#newsletter" data-nl-open>{MAIL_ICON}<span class="lbl">Newsletter</span></a>
@@ -1345,6 +1428,7 @@ def render_page(*, title, description, canonical, prefix="", body, hero="", main
 <link rel="icon" href="{prefix}icon-192.png" type="image/png" sizes="192x192"/>
 <link rel="apple-touch-icon" href="{prefix}apple-touch-icon.png"/>
 <meta name="theme-color" content="#070a14"/>
+<link rel="manifest" href="{prefix}manifest.webmanifest"/>
 {head_extra}
 <script>{THEME_BOOT}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -1355,6 +1439,7 @@ def render_page(*, title, description, canonical, prefix="", body, hero="", main
 {_analytics_snippet()}
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="progress" aria-hidden="true"><i></i><b></b></div>
 <header class="site-head">
   <div class="wrap bar">
@@ -1364,6 +1449,7 @@ def render_page(*, title, description, canonical, prefix="", body, hero="", main
     </div>
     <div class="bar-right">
       <div class="soc soc-head">{render_social_icons()}</div>
+      <button class="search-btn" type="button" aria-label="Search" data-search-open data-base="{prefix}">{SEARCH_ICON}</button>
       <a class="nl-btn" href="#newsletter" data-nl-open>{MAIL_ICON}<span class="lbl">Newsletter</span></a>
       <button id="theme-toggle" type="button" aria-label="Switch theme">{SUN_ICON}<span id="theme-label">dark</span></button>
     </div>
@@ -1371,7 +1457,7 @@ def render_page(*, title, description, canonical, prefix="", body, hero="", main
 </header>
 {render_drawer(prefix)}
 {hero}
-<main class="wrap {main_class}">
+<main id="main" tabindex="-1" class="wrap {main_class}">
 {body}
 </main>
 {INLINE_SIGNUP_HTML}
@@ -1381,6 +1467,13 @@ def render_page(*, title, description, canonical, prefix="", body, hero="", main
   <span class="sp"></span>
   <span class="social-links">{render_social_links()}</span>
 </footer>
+<div class="search-ov" id="search-ov" hidden>
+  <div class="search-box" role="dialog" aria-modal="true" aria-label="Search {SITE_TITLE}">
+    <div class="search-row">{SEARCH_ICON}<input id="search-q" type="search" placeholder="Search posts: iPhone, AirTag, earbuds…" autocomplete="off" aria-label="Search posts"/>
+    <button type="button" class="search-close" aria-label="Close search">Esc</button></div>
+    <ul class="search-res" id="search-res" aria-live="polite"></ul>
+  </div>
+</div>
 <script>{js}</script>
 {POPUP_HTML}
 </body>
@@ -1411,9 +1504,50 @@ def post_image(meta):
     return m.group(1) if m else None
 
 
+# Clean topics for navigation. A post's free-form tags (and its title) are
+# matched against these keywords, so new tags from the daily writer still land
+# in the right topic. Order = menu order.
+TOPICS = [
+    ("Phones", "phones", ("phone", "smartphone", "iphone", "pixel", "android", "foldable", "motorola")),
+    ("Audio", "audio", ("audio", "earbud", "headphone", "walkman", "dap", "turntable", "hi-fi", "phono", "speaker", "homepod", "home pod")),
+    ("Smart Home", "smart-home", ("smart home", "smarthome", "alexa", "echo", "homepod", "home pod", "tracker", "airtag", "doorbell")),
+    ("Wearables", "wearables", ("wearable", "ring", "watch", "fitness")),
+    ("Computers & Tablets", "computers", ("laptop", "macbook", "imac", "ipad", "tablet", "gpu", "pc")),
+    ("Gaming", "gaming", ("gaming", "console", "retro", "vr", "quest", "gpu")),
+    ("TVs & Monitors", "tvs-monitors", ("tv", "monitor", "home entertainment")),
+    ("Apple", "apple", ("apple", "iphone", "ipad", "macbook", "airtag", "homepod", "home pod", "imac")),
+    ("Deals", "deals", ("deal", "black friday", "blackfriday", "sale")),
+]
+# Only these product words count when they appear in a title (tags always count),
+# so "Cuts the Phone From AI" doesn't file a smart ring under Phones.
+TITLE_KEYS = {"iphone", "pixel", "earbud", "headphone", "walkman", "turntable", "homepod", "echo",
+              "doorbell", "macbook", "ipad", "laptop", "quest", "console", "deal", "black friday", "monitor"}
+MENU_TOPICS = ["phones", "audio", "smart-home", "wearables", "computers", "gaming", "deals"]
+
+
+def topics_for(meta):
+    tags = [t.strip().lower() for t in meta["tags"].split(",") if t.strip()]
+    title = meta.get("title", "").lower()
+    found = []
+    for name, slug, keys in TOPICS:
+        hit = any(k == t or (len(k) > 3 and k in t) for k in keys for t in tags) or \
+              (slug != "apple" and any(re.search(r"\b" + re.escape(k) + r"s?\b", title)
+                                       for k in keys if k in TITLE_KEYS))
+        if hit:
+            found.append((name, slug))
+    return found
+
+
 def first_tag(meta):
-    tags = [t.strip() for t in meta["tags"].split(",") if t.strip()]
-    return tags[0] if tags else ""
+    t = topics_for(meta)
+    return t[0][0] if t else ""
+
+
+def verdict_tag(meta):
+    w = meta.get("verdict", "").strip().upper()
+    if w not in ("BUY", "WAIT", "SKIP"):
+        return ""
+    return f'<span class="vtag v-{w.lower()}">{w}</span>'
 
 
 def render_thumb(meta):
@@ -1423,6 +1557,7 @@ def render_thumb(meta):
         src = None  # photo not uploaded (or name misspelled): show the placeholder, not a broken image
     tag = first_tag(meta)
     pill = f'<span class="pill">{html.escape(tag)}</span>' if tag else ""
+    pill += verdict_tag(meta)
     if src:
         return (f'<span class="thumb">{pill}'
                 f'<img src="{html.escape(fix_images(src, ""))}" alt="{html.escape(meta["title"])}" loading="lazy"></span>')
@@ -1498,7 +1633,7 @@ def render_top(posts):
 def render_home_body(posts):
     more = posts[1 + SIDE_COUNT:1 + SIDE_COUNT + MORE_COUNT]
     older = posts[1 + SIDE_COUNT + MORE_COUNT:]
-    out = []
+    out = ['<div class="home-topics">' + render_topic_strip("") + '</div>']
 
     if more:
         out.append('<h2 class="sec-title">More stories</h2>')
@@ -1665,7 +1800,8 @@ def render_toc(body_html, cls):
 
 
 def _tagset(meta):
-    return {t.strip().lower().replace(" ", "") for t in meta["tags"].split(",") if t.strip()}
+    tags = {t.strip().lower().replace(" ", "") for t in meta["tags"].split(",") if t.strip()}
+    return tags | {"topic:" + slug for _, slug in topics_for(meta) if slug != "apple"}
 
 
 def related_posts(meta, posts, k=3):
@@ -1675,18 +1811,50 @@ def related_posts(meta, posts, k=3):
     return scored[:k]
 
 
+def render_card_at(p, prefix, with_dek=False):
+    """Story card for pages in a subfolder (posts/, topics/): prefix is "../"."""
+    src = post_image(p)
+    vt = verdict_tag(p)
+    thumb = (f'<span class="thumb">{vt}<img src="{html.escape(src)}" alt="{html.escape(p["title"])}" loading="lazy"></span>'
+             if src and not (src.startswith(IMG_MARK) and urllib.parse.unquote(src[len(IMG_MARK):]) in MISSING_IMAGES)
+             else f'<span class="thumb ph">{vt}</span>')
+    dek = f'<p class="dek">{html.escape(p["snippet"])}</p>' if (with_dek and p["snippet"]) else ""
+    return (f'<a class="story story-card" href="{prefix}posts/{p["slug"]}.html">{thumb}'
+            f'<h3>{html.escape(p["title"])}</h3>{render_byline(p)}{dek}</a>')
+
+
 def render_related(meta, posts):
-    cards = []
-    for p in related_posts(meta, posts):
-        src = post_image(p)
-        thumb = (f'<span class="thumb"><img src="{html.escape(src)}" alt="{html.escape(p["title"])}" loading="lazy"></span>'
-                 if src and not (src.startswith(IMG_MARK) and urllib.parse.unquote(src[len(IMG_MARK):]) in MISSING_IMAGES)
-                 else '<span class="thumb ph"></span>')
-        cards.append(f'<a class="story story-card" href="{p["slug"]}.html">{thumb}'
-                     f'<h3>{html.escape(p["title"])}</h3>{render_byline(p)}</a>')
+    cards = [render_card_at(p, "../") for p in related_posts(meta, posts)]
     if not cards:
         return ""
     return f'<section class="keep-reading"><h2>Keep reading</h2><div class="kr-grid">{"".join(cards)}</div></section>'
+
+
+def render_author_box():
+    photo = ""
+    if os.path.isfile(os.path.join(IMAGES_DIR, ABOUT_PHOTO)):
+        photo = (f'<img class="ab-photo" src="{IMG_MARK}{urllib.parse.quote(ABOUT_PHOTO)}" '
+                 f'alt="{html.escape(AUTHOR_NAME)}" width="72" height="72" loading="lazy">')
+    return (f'<section class="author-box">{photo}<div><p class="ab-name">Written by '
+            f'<a href="../about.html" rel="author">{html.escape(AUTHOR_NAME)}</a></p>'
+            f'<p class="ab-bio">Founder of {SITE_TITLE} in Toronto. Every post answers one question: is it worth it, '
+            f'or a waste of money?</p><div class="soc">{render_social_icons()}</div></div></section>')
+
+
+def render_topic_strip(prefix, current=""):
+    by = {slug: name for name, slug, _ in TOPICS}
+    links = "".join(f'<a href="{prefix}topics/{s}.html"{" aria-current=\"page\"" if s == current else ""}>{html.escape(by[s])}</a>'
+                    for s in MENU_TOPICS)
+    return f'<nav class="topic-strip" aria-label="Topics">{links}</nav>'
+
+
+def build_search_index(posts):
+    items = []
+    for m in posts:
+        items.append({"t": m["title"], "u": f"posts/{m['slug']}.html", "s": m["snippet"],
+                      "d": fmt_date_human(m["_date_obj"]), "v": m.get("verdict", "").strip().upper(),
+                      "k": " ".join([m["tags"]] + [n for n, _ in topics_for(m)])})
+    return json.dumps(items, ensure_ascii=False, separators=(",", ":"))
 
 
 def build():
@@ -1776,11 +1944,11 @@ def build():
             if not already_in_text and not missing:
                 hero_html = (f'<figure class="post-hero"><img src="{html.escape(src)}" '
                              f'alt="{html.escape(meta["title"])}"></figure>')
-        tag_list = [t.strip() for t in meta["tags"].split(",") if t.strip()]
+        topic_list = topics_for(meta)
         tags_html = ""
-        if tag_list:
-            links = "".join(f'<a href="../index.html">#{html.escape(t)}</a>' for t in tag_list)
-            tags_html = f'<div class="tags-row">{links}</div>'
+        if topic_list:
+            links = "".join(f'<a href="../topics/{slug}.html">{html.escape(name)}</a>' for name, slug in topic_list)
+            tags_html = f'<div class="tags-row"><span class="tags-label">More on</span>{links}</div>'
 
         share_img = post_image(meta)
         share_img = fix_images(share_img, base + "/") if share_img else ""
@@ -1796,12 +1964,20 @@ def build():
             side_verdict = (f'<div class="side-verdict v-{VERDICT_WORDS[word]}"><span class="v-label">Our verdict</span>'
                             f'<b>{word}</b>{render_price_button(pick, small=True)}</div>')
         mins = reading_minutes(meta.get("_body_md", ""))
+        updated_html = ""
+        upd = meta.get("updated", "").strip()[:10]
+        if upd and upd != meta["date"]:
+            try:
+                updated_html = (f' &middot; <span class="updated">Updated '
+                                f'{fmt_date_human(datetime.strptime(upd, "%Y-%m-%d"))}</span>')
+            except ValueError:
+                pass
         body = f"""
     <div class="post-layout">
     <article class="post-full">
       <a class="back-link" href="../index.html">&#8592; back to index</a>
       <p class="post-meta">By <a class="author-link" href="../about.html" rel="author">{html.escape(meta.get('author', AUTHOR_NAME))}</a>
-        &middot; <time datetime="{meta['_published'].isoformat(timespec='seconds')}">{fmt_date_human(meta['_date_obj'])}</time>
+        &middot; <time datetime="{meta['_published'].isoformat(timespec='seconds')}">{fmt_date_human(meta['_date_obj'])}</time>{updated_html}
         &middot; <span class="read-time">{mins} min read</span></p>
       <h1 class="post-title">{html.escape(meta['title'])}</h1>
       {verdict_html}
@@ -1812,6 +1988,7 @@ def build():
       </div>
       {late_price}
       {tags_html}
+      {render_author_box()}
       {share_html}
       {render_related(meta, posts)}
     </article>
@@ -1903,6 +2080,74 @@ def build():
         )
         with open(os.path.join(DIST_DIR, filename), "w", encoding="utf-8") as f:
             f.write(simple)
+
+    # ---- search index, app manifest ----
+    with open(os.path.join(DIST_DIR, "search.json"), "w", encoding="utf-8") as f:
+        f.write(build_search_index(posts))
+    manifest = {
+        "name": SITE_TITLE, "short_name": SITE_TITLE, "description": SITE_TAGLINE,
+        "start_url": "/", "scope": "/", "display": "standalone",
+        "background_color": "#070a14", "theme_color": "#070a14",
+        "icons": [{"src": "/icon-192.png", "sizes": "192x192", "type": "image/png"},
+                  {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png"},
+                  {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}],
+    }
+    with open(os.path.join(DIST_DIR, "manifest.webmanifest"), "w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2)
+
+    # ---- topic pages: topics/<slug>.html ----
+    os.makedirs(os.path.join(DIST_DIR, "topics"), exist_ok=True)
+    topic_counts = {}
+    for name, slug, _ in TOPICS:
+        tp = [m for m in posts if slug in {s2 for _, s2 in topics_for(m)}]
+        topic_counts[slug] = len(tp)
+        if not tp:
+            continue
+        cards = "".join(render_card_at(m, "../", with_dek=True) for m in tp)
+        body = f"""
+    <header class="page-head">
+      <h1>{html.escape(name)}</h1>
+      <p>{len(tp)} post{"s" if len(tp) != 1 else ""} with honest buy, wait or skip verdicts on {html.escape(name.lower())}.</p>
+      {render_topic_strip("../", slug)}
+    </header>
+    <div class="topic-grid">{cards}</div>"""
+        page = render_page(
+            title=f"{html.escape(name)}: Is It Worth It? &middot; {SITE_TITLE}",
+            description=html.escape(f"Every {SITE_TITLE} post on {name.lower()}: honest buy, wait or skip verdicts, "
+                                    f"deals and smarter alternatives."),
+            canonical=f"{base}/topics/{slug}.html",
+            prefix="../",
+            body=body,
+        )
+        with open(os.path.join(DIST_DIR, "topics", f"{slug}.html"), "w", encoding="utf-8") as f:
+            f.write(page)
+
+    # ---- all posts, by month ----
+    months = []
+    for m in sorted(posts, key=lambda m: (m["_date_obj"], m["_published"]), reverse=True):
+        key = m["_date_obj"].strftime("%B %Y")
+        if not months or months[-1][0] != key:
+            months.append((key, []))
+        months[-1][1].append(m)
+    arch = []
+    for key, ms in months:
+        rows = "".join(f'<li><time>{m["_date_obj"].strftime("%b %-d")}</time>'
+                       f'<a href="posts/{m["slug"]}.html">{html.escape(m["title"])}</a>{verdict_tag(m)}</li>' for m in ms)
+        arch.append(f'<h2 class="archive-month">{key}</h2><ul class="archive-list">{rows}</ul>')
+    archive = render_page(
+        title=f"All posts &middot; {SITE_TITLE}",
+        description=html.escape(f"Every {SITE_TITLE} post, newest first, with its buy, wait or skip verdict."),
+        canonical=f"{base}/archive.html",
+        body=f"""
+    <header class="page-head">
+      <h1>All posts</h1>
+      <p>{len(posts)} posts, newest first. Browse by topic:</p>
+      {render_topic_strip("")}
+    </header>
+    {"".join(arch)}""",
+    )
+    with open(os.path.join(DIST_DIR, "archive.html"), "w", encoding="utf-8") as f:
+        f.write(archive)
 
     # ---- 404 page (GitHub Pages shows this for any address that doesn't exist) ----
     # Links start with "/" so they work no matter how deep the bad address was.
