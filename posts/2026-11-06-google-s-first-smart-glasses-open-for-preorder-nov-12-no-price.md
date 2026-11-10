@@ -5,6 +5,7 @@ slug: google-s-first-smart-glasses-open-for-preorder-nov-12-no-price
 tags: smart glasses, android xr, wearables, google
 snippet: Warby Parker says Android XR glasses open for preorder November 12, but there's still no price, ship date or country list.
 image: af18cdc43bf561b61ee94e59c5f10b35a755eddfefb897780ed9f68170ba2eac.avif
+published: 2026-11-10T13:51:30-05:00
 ---
 
 Warby Parker gave away the date during an earnings call, which is a funny way to launch Google's first smart glasses. Preorders for its first Intelligent Eyewear collection open on November 12, and the company expects to deliver orders "during the holiday season." That's all it committed to.
