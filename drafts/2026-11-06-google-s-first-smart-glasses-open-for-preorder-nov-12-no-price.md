@@ -4,6 +4,7 @@ date: 2026-11-06
 slug: google-s-first-smart-glasses-open-for-preorder-nov-12-no-price
 tags: smart glasses, android xr, wearables, google
 snippet: Warby Parker says Android XR glasses open for preorder November 12, but there's still no price, ship date or country list.
+image: af18cdc43bf561b61ee94e59c5f10b35a755eddfefb897780ed9f68170ba2eac.avif
 ---
 
 Warby Parker gave away the date during an earnings call, which is a funny way to launch Google's first smart glasses. Preorders for its first Intelligent Eyewear collection open on November 12, and the company expects to deliver orders "during the holiday season." That's all it committed to.
@@ -32,6 +33,6 @@ Before the 12th, decide whether you want audio-only glasses at all, since there'
 
 ## My take
 
-[[ADD YOUR TAKE: 2-3 sentences on what you think, who should buy or skip, and anything you have actually tried. Delete this whole line when done.]]
+This would be a really good innovation by google with its partnership with Warby parker , and seriously with the design i would consider buying this if only it comes out with a good prices but overall i think google is cooking this year , with the google fit air and this ? jezz 
 
 **Sources:** [Phandroid](https://phandroid.com/2026/11/06/googles-first-smart-glasses-open-for-pre-order-next-thursday/), [Droid Life](https://www.droid-life.com/2026/11/05/first-android-xr-glasses-up-for-pre-order-on-november-12/), [VR.org](https://vr.org/articles/warby-parker-intelligent-eyewear-preorders-november-12-android-xr-glasses-2026), [VGTimes](https://vgtimes.com/tech-and-hardware/173714-warby-parkers-android-xr-glasses-may-open-preorders-on-november-12.html), [BigGo Finance](https://finance.biggo.com/news/7ab4f7f1-1446-4c70-a0aa-3c5763ecbfa3), [AndroidPure](https://www.androidpure.com/warby-parker-android-xr-glasses-preorder/)
