@@ -43,7 +43,7 @@ SITE_URL = "https://techbydave.com/"  # replace with your real domain
 
 # Cloudflare Web Analytics — free, no cookie banner needed, one script
 # tag. Leave blank to skip analytics entirely.
-CLOUDFLARE_ANALYTICS_TOKEN = os.environ.get("CLOUDFLARE_ANALYTICS_TOKEN", "")
+CLOUDFLARE_ANALYTICS_TOKEN = os.environ.get("CLOUDFLARE_ANALYTICS_TOKEN") or "140dbf46d09a4b9987daee1d0e0c0b39"  # public Web Analytics beacon token
 
 # Kit (ConvertKit) form that newsletter signups are sent to. Both the popup
 # and the bottom-of-page signup post here.
