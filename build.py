@@ -2031,7 +2031,7 @@ def build():
         title=f"{SITE_TITLE} | Is It Worth It? Honest Tech Reviews &amp; Deals",
         head_extra=f'<script type="application/ld+json">{site_schema}</script>',
         description=html.escape(f"{SITE_TITLE} gives honest buy, wait or skip verdicts on new phones, laptops, earbuds and "
-                                f"smart home gear, plus deals, cheaper alternatives and when the older model is the better buy."),
+                                f"smart home gear, plus deals and cheaper alternatives."),
         canonical=base + "/",
         body=render_home_body(posts) + '\n<div hidden>Impact-Site-Verification: 6a4a9247-21ee-4a85-be00-2e3d141b9103</div>',
         hero=render_hero(posts),
