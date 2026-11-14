@@ -18,6 +18,7 @@ The time of day is controlled by the cron lines in the workflow, not here.
 """
 
 import os
+import json
 import re
 import sys
 import unicodedata
@@ -249,6 +250,25 @@ how you deliver your answer, not as a message.
 """
 
 
+
+def _tag_list(raw) -> list:
+    """Tags as a clean list, even if the model sent them as a string ('["a","b"]' or 'a, b')."""
+    if raw is None:
+        return []
+    if isinstance(raw, str):
+        try:
+            raw = json.loads(raw)
+        except (ValueError, TypeError):
+            raw = raw.split(",")
+    if not isinstance(raw, list):
+        raw = [raw]
+    out = []
+    for t in raw:
+        t = re.sub(r'[\[\]"\']', "", str(t)).strip()
+        if t and t.lower() not in [o.lower() for o in out]:
+            out.append(t)
+    return out[:6]
+
 def _strip_citation_tags(text: str) -> str:
     text = re.sub(r"<cite[^>]*>", "", text)
     return re.sub(r"</cite>", "", text)
@@ -372,7 +392,7 @@ def write_post(post: dict, today):
     if linked_any:
         body += AFFILIATE_DISCLOSURE
 
-    tags = ", ".join(t.strip() for t in post.get("tags", []) if t.strip())
+    tags = ", ".join(_tag_list(post.get("tags", [])))
     content = FRONTMATTER_TEMPLATE.format(
         title=title,
         date=today.isoformat(),

@@ -665,6 +665,8 @@ main.home{padding-top:2.5rem}
   .side-sticky{position:sticky;top:96px;display:flex;flex-direction:column;gap:1rem;padding-top:7.5rem}.toc-inline{display:none}}
 .post-body h2,.post-body h3{scroll-margin-top:90px}
 .read-time{white-space:nowrap}
+.hands-on{display:inline-flex;align-items:center;gap:.3rem;margin-right:.6rem;padding:.18rem .6rem;border-radius:999px;font-size:.78rem;font-weight:700;background:color-mix(in srgb,var(--beacon) 16%,transparent);color:var(--beacon);border:1px solid color-mix(in srgb,var(--beacon) 40%,transparent)}
+.hands-on-pill{background:var(--beacon)!important;color:#111!important}
 .verdict{margin:-.6rem 0 1.8rem;padding:1.1rem 1.25rem 1.2rem;border-radius:16px;background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--vc,var(--beacon))}
 .v-buy{--vc:#2fbf71}.v-wait{--vc:var(--beacon)}.v-skip{--vc:#ef5a5a}
 .v-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem}
@@ -1116,9 +1118,13 @@ I'm the founder of {SITE_TITLE}, based in Toronto. I started this site because I
 
 ## What I do
 
-Every day, I follow what's happening in consumer tech and turn it into posts you can read in a few minutes. That means covering new phone and laptop launches, tracking price drops and deals, comparing new models with the ones they replace, and helping you decide when to upgrade and when to wait.
+I follow what's happening in consumer tech and turn it into posts you can read in a few minutes. That means covering new phone and laptop launches, tracking price drops and deals, comparing new models with the ones they replace, and helping you decide when to upgrade and when to wait.
 
 Each post ends with **My take**, where I share my honest opinion: who should buy it, who should skip it, and whether the deal is really a deal. I also share {SITE_TITLE} on TikTok, Instagram, YouTube, X and Pinterest, and send a daily newsletter so you never miss a story.
+
+## Hands-on reviews
+
+Some posts are **hands-on reviews** of gear I own and use myself, like the phone and kit I film TechByDave videos with. These are marked with a "Hands-on review" badge, use my own photos, and tell you what living with the product is actually like: what's great, what annoys me, and whether I'd buy it again.
 
 ## My mission
 
@@ -1130,7 +1136,7 @@ My vision is to grow {SITE_TITLE} into a trusted name in tech and build an audie
 
 ## How posts are made
 
-New posts go up daily. They are researched and drafted with the help of AI tools working from published sources, then I add my own photos and my own take before anything goes live. Every post lists its sources at the bottom so you can check the facts yourself. We state only what those sources confirm, and we never claim to have tested a product we haven't. Read the full [editorial policy](editorial-policy.html).
+News posts are researched and drafted with the help of AI tools working from published sources, then I add my own photos and my own take before anything goes live. Hands-on reviews are written by me from my own use of the product. Every post lists its sources at the bottom so you can check the facts yourself. We state only what those sources confirm, and we never claim to have tested a product we haven't. Read the full [editorial policy](editorial-policy.html).
 
 ## Newsletter
 
@@ -1188,7 +1194,7 @@ Every post lists the pages its facts came from in a Sources line at the bottom. 
 
 ## How posts are written
 
-Our daily posts are researched and drafted with the help of AI tools. The tools search the web and write from the sources they find. These posts are not hands-on reviews: we haven't tested a product unless a post explicitly says so, and we don't invent quotes or personal experiences.
+Our news posts are researched and drafted with the help of AI tools. The tools search the web and write from the sources they find. These posts are not hands-on reviews: we haven't tested a product unless a post explicitly says so, and we don't invent quotes or personal experiences. Hands-on reviews carry a "Hands-on review" badge and are written by Dave from his own use of the product.
 
 ## Affiliate links and ads
 
@@ -1543,6 +1549,15 @@ def first_tag(meta):
     return t[0][0] if t else ""
 
 
+def is_hands_on(meta):
+    """Posts with `type: review` in the top section are Dave's own hands-on reviews."""
+    return meta.get("type", "").strip().lower() in ("review", "hands-on", "hands-on review")
+
+
+def hands_on_badge(meta):
+    return '<span class="hands-on">&#10003; Hands-on review</span>' if is_hands_on(meta) else ""
+
+
 def verdict_tag(meta):
     w = meta.get("verdict", "").strip().upper()
     if w not in ("BUY", "WAIT", "SKIP"):
@@ -1558,6 +1573,8 @@ def render_thumb(meta):
     tag = first_tag(meta)
     pill = f'<span class="pill">{html.escape(tag)}</span>' if tag else ""
     pill += verdict_tag(meta)
+    if is_hands_on(meta):
+        pill += '<span class="pill hands-on-pill">Hands-on</span>'
     if src:
         return (f'<span class="thumb">{pill}'
                 f'<img src="{html.escape(fix_images(src, ""))}" alt="{html.escape(meta["title"])}" loading="lazy"></span>')
@@ -1976,7 +1993,7 @@ def build():
     <div class="post-layout">
     <article class="post-full">
       <a class="back-link" href="../index.html">&#8592; back to index</a>
-      <p class="post-meta">By <a class="author-link" href="../about.html" rel="author">{html.escape(meta.get('author', AUTHOR_NAME))}</a>
+      <p class="post-meta">{hands_on_badge(meta)}By <a class="author-link" href="../about.html" rel="author">{html.escape(meta.get('author', AUTHOR_NAME))}</a>
         &middot; <time datetime="{meta['_published'].isoformat(timespec='seconds')}">{fmt_date_human(meta['_date_obj'])}</time>{updated_html}
         &middot; <span class="read-time">{mins} min read</span></p>
       <h1 class="post-title">{html.escape(meta['title'])}</h1>

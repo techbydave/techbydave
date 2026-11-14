@@ -2,7 +2,7 @@
 title: Coros Pace 4 Price: Worth $249 After the NYC Marathon Win?
 date: 2026-11-10
 slug: coros-pace-4-price-worth-249-after-the-nyc-marathon-win
-tags: [, ", c, o, r, o, s, ", ,, ", r, u, n, n, i, n, g, w, a, t, c, h, ", ,, ", s, m, a, r, t, w, a, t, c, h, ", ,, ", b, l, a, c, k, f, r, i, d, a, y, ", ], >
+tags: coros, running watch, smartwatch, black friday
 snippet: The Coros Pace 4 costs $249 and just carried a New York Marathon winner. It's a good buy for runners, but Black Friday is 17 days away.
 verdict: WAIT
 verdict_line: Runners can buy at $249 now, but waiting for Black Friday on Nov. 27 is a cheap bet. Skip it if you want payments or streaming.

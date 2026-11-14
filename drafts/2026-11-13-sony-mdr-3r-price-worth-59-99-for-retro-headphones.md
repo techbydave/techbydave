@@ -2,7 +2,7 @@
 title: Sony MDR-3R Price: Worth $59.99 for Retro Headphones?
 date: 2026-11-13
 slug: sony-mdr-3r-price-worth-59-99-for-retro-headphones
-tags: [, ", s, o, n, y, ", ,, ", h, e, a, d, p, h, o, n, e, s, ", ,, ", w, i, r, e, d, a, u, d, i, o, ", ,, ", d, e, a, l, s, ", ], >
+tags: sony, headphones, wired audio, deals
 snippet: Sony's MDR-3R brings back the 1979 Walkman headphones in USB-C form for $59.99, but a $19 pair of wired earbuds does the same job.
 verdict: SKIP
 verdict_line: Skip it unless you want the 1979 look. Wired USB-C earbuds cost a third as much and block more noise.
