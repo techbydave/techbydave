@@ -58,7 +58,7 @@ KIT_FORM_ACTION = f"https://app.kit.com/forms/{KIT_FORM_ID}/subscriptions"
 
 # Who runs the site and how readers reach you.
 AUTHOR_NAME = "Dave"
-AUTHOR_EMAIL = "Davis@techbydave.com"
+AUTHOR_EMAIL = "dave@techbydave.com"
 DEFAULT_SHARE_IMAGE = "share-default.jpg"  # link-preview picture (in images/) for pages without their own photo
 AMAZON_STOREFRONT = "https://www.amazon.com/shop/influencer-d02827d8"  # Dave's Amazon Influencer page
 ABOUT_PHOTO = "dave-portrait.jpg"   # your photo on the About page, in images/
