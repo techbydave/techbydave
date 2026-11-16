@@ -5,6 +5,7 @@ slug: airpods-pro-3-at-199-is-the-early-black-friday-deal-good
 tags: airpods, deals, black friday, earbuds
 snippet: AirPods Pro 3 are $199 at Amazon, $50 off Apple's $249. It's a good price, but it's not rare, so don't panic-buy.
 image: images (3).jpg
+published: 2026-11-16T13:51:32-05:00
 ---
 
 The [AirPods Pro 3](https://www.amazon.com/s?k=AirPods+Pro+3&tag=techtreck02-20) are $199 at Amazon right now, $50 under Apple's $249 price. That's a fair deal and a good one for iPhone owners who need new earbuds. It's also not a once-a-year event, so skip the panic.
