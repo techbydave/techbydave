@@ -1,9 +1,10 @@
 ---
 title: AirPods Pro 3 at $199: Is the Early Black Friday Deal Good?
-date: 2026-11-09
+date: 2026-11-16
 slug: airpods-pro-3-at-199-is-the-early-black-friday-deal-good
 tags: airpods, deals, black friday, earbuds
 snippet: AirPods Pro 3 are $199 at Amazon, $50 off Apple's $249. It's a good price, but it's not rare, so don't panic-buy.
+image: images (3).jpg
 ---
 
 The [AirPods Pro 3](https://www.amazon.com/s?k=AirPods+Pro+3&tag=techtreck02-20) are $199 at Amazon right now, $50 under Apple's $249 price. That's a fair deal and a good one for iPhone owners who need new earbuds. It's also not a once-a-year event, so skip the panic.
@@ -24,7 +25,7 @@ Early Black Friday coverage is already calling it the best Apple deal on Amazon'
 
 ## My take
 
-[[ADD YOUR TAKE: 2-3 sentences on what you think, who should buy or skip, and anything you have actually tried. Delete this whole line when done.]]
+This is definitely a good black Friday deal , looking at the previous prices and the deals from from other tech store , i think overall , this year's black Friday week is going to be packed with great tech deals from big name tech companies , so my verdict is in between buy or wait for other good tech deals from retailers 
 
 **Sources:** [Mac Observer](https://www.macobserver.com/deals/early-black-friday-apple-deals-amazon-airpods-pro-3-199/), [AppleInsider](https://appleinsider.com/articles/26/01/27/month-end-deal-airpods-pro-3-are-back-down-to-best-199-price), [MacRumors](https://www.macrumors.com/2026/09/24/airpods-pro-3-on-sale/), [MacRumors](https://www.macrumors.com/2026/05/22/airpods-pro-3-return-to-199/), [The Gadgeteer](https://the-gadgeteer.com/2026/05/19/airpods-pro-3-deal-199/), [Gizmodo](https://gizmodo.com/airpods-pro-3-are-cheaper-on-amazon-than-at-apple-with-a-bigger-discount-and-3-months-of-free-apple-perks-2000830954), [Tom's Guide](https://www.tomsguide.com/audio/airpods/woah-the-airpods-pro-3-just-dropped-to-usd199-lowest-price-ever), [Gear Patrol](https://www.gearpatrol.com/audio/apple-airpods-pro-3-deal-november-2026/)
 
