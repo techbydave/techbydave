@@ -1683,7 +1683,7 @@ def render_hero(posts):
 <section class="hero" id="hero">
   <canvas id="ridge" aria-hidden="true"></canvas>
   <div class="wrap in">
-    <h1 class="sr-only">{html.escape(SITE_TITLE)}</h1>
+    <h1 class="sr-only">{html.escape(SITE_TITLE)}: Tech by Dave, honest tech reviews</h1>
     <p class="hero-tag">{html.escape(HERO_SUBLINE)}</p>
     {render_top(posts)}
   </div>
@@ -2054,14 +2054,20 @@ def build():
              "alternateName": ["Tech by Dave", "techbydave.com"], "url": base + "/",
              "publisher": {"@id": base + "/#org"}},
             {"@type": "Organization", "@id": base + "/#org", "name": SITE_TITLE, "url": base + "/",
+             "alternateName": ["Tech by Dave", "Tech By Dave", "techby_dave"],
+             "description": "Honest buy, wait or skip verdicts on new gadgets, by Dave in Toronto.",
              "logo": {"@type": "ImageObject", "url": f"{base}/icon-512.png", "width": 512, "height": 512},
+             "founder": {"@id": base + "/about.html#dave"},
+             "sameAs": [u for _, u in SOCIAL_LINKS]},
+            {"@type": "Person", "@id": base + "/about.html#dave", "name": AUTHOR_NAME,
+             "url": base + "/about.html", "jobTitle": "Tech reviewer", "worksFor": {"@id": base + "/#org"},
              "sameAs": [u for _, u in SOCIAL_LINKS]},
         ],
     }, ensure_ascii=False).replace("</", "<\\/")
     index = render_page(
-        title=f"{SITE_TITLE} | Is It Worth It? Honest Tech Reviews &amp; Deals",
+        title=f"{SITE_TITLE} (Tech by Dave) | Honest Tech Reviews &amp; Deals",
         head_extra=f'<script type="application/ld+json">{site_schema}</script>',
-        description=html.escape(f"{SITE_TITLE} gives honest buy, wait or skip verdicts on new phones, laptops, earbuds and "
+        description=html.escape(f"{SITE_TITLE} (Tech by Dave) gives honest buy, wait or skip verdicts on new phones, laptops, earbuds and "
                                 f"smart home gear, plus deals and cheaper alternatives."),
         canonical=base + "/",
         body=render_home_body(posts) + '\n<div hidden>Impact-Site-Verification: 6a4a9247-21ee-4a85-be00-2e3d141b9103</div>',
@@ -2073,7 +2079,7 @@ def build():
 
     # ---- about, privacy, editorial policy, contact ----
     for filename, page_title, desc, md in (
-        ("about.html", f"About {SITE_TITLE}",
+        ("about.html", f"About {SITE_TITLE} (Tech by Dave)",
          f"Meet {AUTHOR_NAME}, founder of {SITE_TITLE}: what the site covers, the mission to make the best tech content, "
          f"and the vision of a foundation that helps people in need.", ABOUT_MARKDOWN),
         ("privacy.html", "Privacy Policy",
