@@ -223,7 +223,7 @@ def build_html(posts):
   <tr><td style="padding:0">
     <a href="{esc(SITE_URL)}/" style="text-decoration:none">
       <img src="{esc(image_url(HEADER_IMAGE))}" alt="{SITE_NAME}: the daily digest" width="600"
-           style="display:block;width:100%;max-width:600px;height:auto;border:0;background:{BG};color:{INK};font:800 28px {DISPLAY}">
+           style="display:block;width:100%;max-width:600px;height:auto;border:0;background:{BG};color:{INK};font:800 18px/1.4 {DISPLAY};padding:0">
     </a>
   </td></tr>
   {lead_story(posts[0])}
