@@ -355,7 +355,7 @@ def generate_sitemap(posts):
     base = SITE_URL.rstrip("/")
     urls = [f"{base}/", f"{base}/about.html", f"{base}/editorial-policy.html",
             f"{base}/contact.html", f"{base}/privacy.html", f"{base}/media-kit.html"]
-    urls += [f"{base}/archive.html"]
+    urls += [f"{base}/archive.html", f"{base}/newsletter.html"]
     urls += [f"{base}/topics/{slug}.html" for _, slug, _ in TOPICS
              if any(slug in {t for _, t in topics_for(m)} for m in posts)]
     urls += [f"{base}/posts/{m['slug']}.html" for m in posts]
@@ -806,6 +806,19 @@ footer.site-foot .sp{flex:1}
 .newsletter-form button[type="submit"].is-done{background:var(--trail);pointer-events:none}
 .nl-status{margin-top:.8rem;font-size:.95rem;color:var(--ink-soft);min-height:1.3em}
 .nl-inline{padding:3rem 0 1rem}
+.nl-page{max-width:640px;margin:2.5rem auto 3rem;text-align:center}
+.nl-page__kicker{display:inline-block;font-weight:700;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--trail);border:1px solid var(--line);border-radius:99px;padding:.3rem .8rem;margin-bottom:1rem}
+.nl-page__title{font:800 clamp(2.1rem,7vw,3.2rem)/1.05 var(--display);letter-spacing:-.03em;margin:0 0 .9rem}
+.nl-page__lead{color:var(--mute);font-size:1.12rem;margin:0 auto 1.6rem;max-width:34em}
+.nl-page__form{max-width:480px;margin:0 auto}
+.nl-page .nl-status{min-height:1.2em;margin:.6rem 0 0}
+.nl-page__fine{color:var(--mute);font-size:.88rem;margin:.4rem 0 2.2rem}
+.nl-page__perks{list-style:none;padding:0;margin:0 0 2.4rem;display:grid;gap:.8rem;text-align:left}
+.nl-page__perks li{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.2rem}
+.nl-page__perks span{color:var(--mute);font-size:.95rem}
+.nl-page__recent{text-align:left}
+.nl-page__recent h2{font:800 1.1rem/1.2 var(--display);margin:0 0 .6rem}
+.nl-page__recent ul{margin:0;padding-left:1.1rem;display:grid;gap:.4rem}
 .nl-inline .newsletter-card{display:flex;flex-wrap:wrap;gap:1.2rem 2rem;align-items:center;justify-content:space-between}
 .nl-inline .nl-copy{flex:1 1 280px}
 .nl-inline .nl-form{flex:1 1 340px;max-width:470px}
@@ -1033,6 +1046,7 @@ NEWSLETTER_SCRIPT = """
   var SHOW_AFTER_MS=8000, RESHOW_AFTER_DAYS=14;
   function daysSince(ts){return (Date.now()-Number(ts))/(1000*60*60*24);}
   function shouldShow(){
+    if(document.getElementById('nl-page')) return false; // the newsletter page already has the form up top
     try{
       if(localStorage.getItem(SUBSCRIBED_KEY)==='true') return false;
       var d=localStorage.getItem(DISMISS_KEY);
@@ -1392,7 +1406,7 @@ def render_drawer(prefix):
 
 
 def render_page(*, title, description, canonical, prefix="", body, hero="", main_class="", image=None,
-                og_type="website", head_extra=""):
+                og_type="website", head_extra="", signup=True):
     """Wrap `body` in the full site chrome. prefix is "" on root pages and "../" on post pages."""
     js = COMMON_JS + (HERO_JS if hero else "")
     og_image = ""
@@ -1466,7 +1480,7 @@ def render_page(*, title, description, canonical, prefix="", body, hero="", main
 <main id="main" tabindex="-1" class="wrap {main_class}">
 {body}
 </main>
-{INLINE_SIGNUP_HTML}
+{INLINE_SIGNUP_HTML if signup else ""}
 <footer class="wrap site-foot">
   <span>&#169; {SITE_TITLE}</span>
   {footer_links(prefix)}
@@ -2097,6 +2111,36 @@ def build():
         )
         with open(os.path.join(DIST_DIR, filename), "w", encoding="utf-8") as f:
             f.write(simple)
+
+    # ---- newsletter.html: the link in every social bio (techbydave.com/newsletter) ----
+    recent = "".join(
+        f'<li><a href="posts/{m["slug"]}.html">{html.escape(m.get("title", m["slug"]))}</a></li>'
+        for m in posts[:3])
+    nl_body = f"""
+    <section class="nl-page" id="nl-page">
+      <p class="nl-page__kicker">Free newsletter</p>
+      <h1 class="nl-page__title">Is it worth it, or a waste?</h1>
+      <p class="nl-page__lead">Get {SITE_TITLE}'s honest gadget verdicts in your inbox: what to buy, what to skip, and the deals actually worth grabbing.</p>
+      <form class="newsletter-form nl-page__form" action="{KIT_FORM_ACTION}" method="post">
+        <label for="nl-email-page" class="sr-only">Email address</label>
+        <input id="nl-email-page" type="email" name="email_address" placeholder="you@example.com" autocomplete="email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="nl-status"></p>
+      <p class="nl-page__fine">Free. No spam. Unsubscribe anytime.</p>
+      <ul class="nl-page__perks">
+        <li><b>📱 Quick verdicts</b><span>Buy, wait or skip on new phones, laptops, earbuds and smart home gear.</span></li>
+        <li><b>💸 Smarter buys</b><span>Real deals and cheaper alternatives that do the same job.</span></li>
+        <li><b>✅ No hype</b><span>Short, honest and to the point. Read it in two minutes.</span></li>
+      </ul>
+      {f'<div class="nl-page__recent"><h2>Recent verdicts</h2><ul>{recent}</ul></div>' if recent else ""}
+    </section>"""
+    with open(os.path.join(DIST_DIR, "newsletter.html"), "w", encoding="utf-8") as f:
+        f.write(render_page(
+            title=f"Newsletter &middot; {SITE_TITLE}",
+            description=html.escape(f"Get {SITE_TITLE}'s free newsletter: honest buy, wait or skip verdicts on new gadgets, "
+                                    f"plus deals and cheaper alternatives."),
+            canonical=f"{base}/newsletter.html", body=nl_body, signup=False))
 
     # ---- search index, app manifest ----
     with open(os.path.join(DIST_DIR, "search.json"), "w", encoding="utf-8") as f:
