@@ -39,7 +39,7 @@ TIMEZONE = "America/Toronto"
 # Sonnet writes more naturally than Haiku but costs more per post.
 # To go back to the cheaper model, use "claude-haiku-4-5-20251001".
 MODEL = "claude-sonnet-5-5"
-MAX_SEARCHES = 3  # trending, the story's facts, then deals/alternatives (and Canadian price).
+MAX_SEARCHES = 5  # trending, the story's facts, deals, alternatives/older model, Canadian price.
                   # Each search costs about $0.01 plus its result tokens.
 TAGLINE = "Worth it or a waste? Honest gadget verdicts and smarter buys."
 
@@ -51,7 +51,11 @@ SITE_URL = (os.environ.get("SITE_URL", "").strip() or "https://techbydave.com").
 AMAZON_AFFILIATE_TAG = os.environ.get("AMAZON_TAG", "").strip() or "techtreck02-20"
 AMAZON_DOMAIN = os.environ.get("AMAZON_DOMAIN", "").strip() or "amazon.com"
 
-MIN_WORDS, MAX_WORDS = 250, 700
+MIN_WORDS, MAX_WORDS = 700, 1500
+
+# Days a new draft is written (Monday=0 ... Sunday=6). Fewer, stronger posts get
+# indexed by Google; quick daily ones mostly don't. Manual runs (FORCE) ignore this.
+POST_DAYS = {0, 2, 4}   # Monday, Wednesday, Friday
 NUM_TWEETS = 4
 TWEET_LIMIT = 280
 URL_COST = 25  # "\n\n" + 23 characters (X counts every link as 23)
@@ -62,7 +66,8 @@ URL_COST = 25  # "\n\n" + 23 characters (X counts every link as 23)
 EDIT_MARKER_BLOCK = (
     "\n\n## My take\n\n"
     "[[ADD YOUR TAKE: 2-3 sentences on what you think, who should buy or skip, "
-    "and anything you have actually tried. Delete this whole line when done.]]"
+    "and anything you have actually tried. A photo or screenshot of your own helps "
+    "the post get on Google. Delete this whole line when done.]]"
 )
 
 AFFILIATE_DISCLOSURE = (
@@ -212,17 +217,30 @@ advice. Avoid enterprise software, corporate finance, and research-paper
 stories unless they tie directly to a product people can buy.
 
 You have {MAX_SEARCHES} web searches in total:
+Plan them like this:
 1. Spend the first on what is trending in consumer tech right now (a broad
    query such as "trending gadget tech news today").
 2. Spend the second on the exact facts (model name, price, specs, dates) of
    the ONE story you pick that has not been covered yet.
-3. Spend the third on deals or cheaper alternatives for that product, and
-   its Canadian price if one is listed (for example "<product> deal
-   alternative price Canada").
+3. Spend the third on current deals for that product.
+4. Spend the fourth on the best alternatives: a cheaper rival or the older
+   model, with their prices and the key differences.
+5. Spend the fifth on its Canadian price if one is listed (for example
+   "<product> price Canada"), or on the next fact you still need.
 Do not search again after that.
 
 {avoid_block}Write one post:
-- 350-500 words of Markdown. No title heading inside the body (the title is
+- 800-1,200 words of Markdown, built as a buying guide someone could act on.
+  Use these "##" sections, in this order, with headings written for this
+  product (not these labels): the quick verdict (2-3 sentences: buy, wait or
+  skip, and for whom); what's new or what changed; price and where to buy;
+  who should buy it and who should skip it; the alternatives (a cheaper
+  rival, the older model, or a better deal, each with the reason and price
+  when sourced); and 2-3 short questions people actually search, each
+  answered in 1-3 sentences under its own "###" question heading. Do not add
+  a "My take" section; one is added for the editor.
+- Every section must carry facts a reader can use (prices, specs, dates,
+  differences). No filler sentences to reach the length. No title heading inside the body (the title is
   in frontmatter). No "---" on its own line. No citation markup, footnote
   markers or <cite> tags.
 - State only facts found in your search results. If a price or spec is not
@@ -278,7 +296,7 @@ def call_claude(prompt: str) -> dict:
     client = anthropic.Anthropic()
     response = client.messages.create(
         model=MODEL,
-        max_tokens=4500,
+        max_tokens=9000,
         tools=[
             {"type": "web_search_20250305", "name": "web_search", "max_uses": MAX_SEARCHES},
             SUBMIT_POST_TOOL,
@@ -420,6 +438,9 @@ def main():
 
     # The workflow's cron decides WHEN this runs. The only guard here is
     # "don't write a second post for the same day" (two crons fire daily).
+    if not force and today.weekday() not in POST_DAYS:
+        print("No draft today: new posts are written on Monday, Wednesday and Friday.")
+        return
     if not force and post_exists_for(today):
         print("A post for today already exists. Skipping.")
         return
