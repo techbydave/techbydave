@@ -6,6 +6,7 @@ tags: surface, laptops, nvidia, windows>
 snippet: Microsoft's Surface Laptop Ultra starts at $2,599 and climbs to $5,899.99. Unless you run big AI models locally, it's a skip.
 verdict: SKIP
 verdict_line: Skip unless you run large AI models locally. Everyone else should buy a cheaper Surface or wait for independent reviews.
+image: b01-Surface-Laptop-Ultra-NVIDIA-15in-1Ed-Nightfall-Closed-Attract.avif
 ---
 
 The [Surface Laptop Ultra](https://www.amazon.com/s?k=Surface+Laptop+Ultra&tag=techtreck02-20) starts at $2,599, and that's the cheapest it gets. It's also the version with the least memory. For most people, it isn't worth it. For a small group who want to run large AI models on a laptop, it might be.
@@ -34,7 +35,8 @@ Verdict: skip, unless you can name the specific model you plan to run on it. If 
 
 ## My take
 
-[[ADD YOUR TAKE: 2-3 sentences on what you think, who should buy or skip, and anything you have actually tried. Delete this whole line when done.]]
+This laptop on paper has some crazy specs , but i wonder what market of people they are selling to , because in the 21st Century , companies like Lenovo , Acer and ASUS has evolve in the market of selling high specs computers under the price of $2,000. Now am not going to lie , the surface laptop ultra , has some great specs with the introduction of the new Nvidia spark RTX spark chip but with the price of almost $9,000 dollars and please don't det me started with the maxed out apple MacBook pro , i would say skip to some of these prices, unless you really want to throw away your  money , and if you are wise enough , save your money and get the regular surface , if you are interested in getting a surface laptop 
+
 
 **Sources:** [TechRepublic](https://www.techrepublic.com/article/news-microsoft-surface-laptop-ultra-nvidia-rtx-spark/), [Wikipedia](https://en.wikipedia.org/wiki/Surface_Laptop_Ultra), [TBreak](https://tbreak.com/surface-laptop-ultra-price-specs/), [MobileSyrup](https://mobilesyrup.com/2026/10/07/microsoft-surface-laptop-ultra-reveal/), [Microsoft Store Canada](https://www.microsoft.com/en-ca/store/b/surface-deals), [Microsoft Store Canada](https://www.microsoft.com/en-ca/store/collections/microsoftsurfacedeals/), [Wikipedia](https://en.wikipedia.org/wiki/Surface_Laptop_(7th_generation))
 
