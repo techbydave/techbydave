@@ -7,6 +7,7 @@ snippet: Microsoft's Surface Laptop Ultra starts at $2,599 and climbs to $5,899.
 verdict: SKIP
 verdict_line: Skip unless you run large AI models locally. Everyone else should buy a cheaper Surface or wait for independent reviews.
 image: b01-Surface-Laptop-Ultra-NVIDIA-15in-1Ed-Nightfall-Closed-Attract.avif
+published: 2026-11-18T08:55:15-05:00
 ---
 
 The [Surface Laptop Ultra](https://www.amazon.com/s?k=Surface+Laptop+Ultra&tag=techtreck02-20) starts at $2,599, and that's the cheapest it gets. It's also the version with the least memory. For most people, it isn't worth it. For a small group who want to run large AI models on a laptop, it might be.
