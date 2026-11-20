@@ -6,6 +6,7 @@ tags: starlink, satellite internet, camping tech, deals
 snippet: Starlink's Mini 2 adds a swappable 71 Wh battery and Wi-Fi 6, but the only confirmed price is an invite-only $999 bundle. Here's who should wait.
 verdict: WAIT
 verdict_line: Wait unless you'd pay for Roam Unlimited anyway; the original Mini plus a third-party battery does the job for far less.
+image: 618d6304596d9b001118855b.webp
 ---
 
 The [[Starlink Mini](https://www.amazon.com/s?k=Starlink+Mini&tag=techtreck02-20) 2](https://www.amazon.com/s?k=Starlink+Mini+2&tag=techtreck02-20) costs $999 right now, but only if SpaceX invites you. That price is for select US customers and includes a full year of Roam Unlimited service, so it isn't really a hardware price. For most people, the smart move is to wait.
@@ -45,7 +46,7 @@ If you need a dish this month, buy the original Mini while it's cheap. If you ca
 
 ## My take
 
-[[ADD YOUR TAKE: 2-3 sentences on what you think, who should buy or skip, and anything you have actually tried. Delete this whole line when done.]]
+Now with my take , i tell you , skip and get the older model , because first off all , this model is invite only and it comes with usb-c which i like , but another fact is , it weighs more than the previous generation and also cost $1,000
 
 **Sources:** [Techloy](https://www.techloy.com/starlink-mini-2-price-battery-release/), [TBreak](https://tbreak.com/starlink-mini-2-swappable-battery/), [Notebookcheck](https://www.notebookcheck.net/Starlink-launches-rugged-Mini-2-dish-with-50-battery-add-on.1447103.0.html), [Gadget Review](https://www.gadgetreview.com/starlink-mini-2-adds-a-swappable-battery-but-the-price-comes-with-strings), [The Next Web](https://thenextweb.com/news/starlink-mini-2-swappable-battery-wifi-6), [Fonearena](https://www.fonearena.com/blog/496797/spacex-starlink-mini-2-features.html), [Drive Tesla Canada](https://driveteslacanada.ca/news/starlink-mini-price-canada-199/)
 
