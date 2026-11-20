@@ -1,5 +1,6 @@
 ---
 title: Analogue's Super Nt+ and Mega Sg+ Add Wireless to 1080p FPGA Gaming
+seo_title: Analogue Super Nt+ and Mega Sg+: Price and What's New
 date: 2026-10-19
 slug: analogue-s-super-nt-and-mega-sg-add-wireless-to-1080p-fpga-gaming
 tags: gaming, retro, fpga, consoles

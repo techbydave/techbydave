@@ -44,16 +44,16 @@ If you're building surround sound, the cost adds up fast. Four HomePod mini 2 sp
 
 ## Who should buy it, and who should skip it
 
-**Buy it if:**
+## Buy it if
 - You use a Mac with Wi-Fi 6E or later and want a small speaker on your desk. The Mac speaker feature is a real reason to pick this over a Bluetooth speaker.
 - You want a compact speaker for a kitchen, bedroom or office and already use Apple Music and an iPhone.
 - You're adding speakers to a home that already has HomePods.
 
-**Wait if:**
+## Wait if
 - Siri AI is the main reason you're buying. When it does arrive, the owner of the home needs an iPhone or iPad that supports Apple Intelligence, and personal requests only work for people whose own iPhone or iPad supports it.
 - You already own an original HomePod mini that works. The new one is better, but the original still plays music and runs your smart home.
 
-**Skip it if:**
+## Skip it if
 - You use Android. HomePods are built around iPhone and iPad.
 - You need to fill a big room. A mini isn't made for that.
 

@@ -14,21 +14,21 @@ The best-selling VR headset of all time now has an expiration date, and it's clo
 
 Your headset won't stop working. Meta is ending feature work and, eventually, patching. It isn't disabling anything. But the practical effects start well before the final cutoff.
 
-**What changes**
+## What changes
 
 New OS features, platform capabilities and APIs released after v213 will only come to the [Meta Quest 3](https://www.amazon.com/s?k=Meta+Quest+3&tag=techtreck02-20), the [Meta Quest 3S](https://www.amazon.com/s?k=Meta+Quest+3S&tag=techtreck02-20) and newer devices. Meta also says it won't test new OS and SDK releases against the older headsets. App submissions that support them are accepted through December 2027, and new titles can still launch on newer hardware without being offered on the old ones.
 
 Developers can keep updating existing games for Quest 2 and Quest Pro. If they drop support in a way that would cost you content or services, they're supposed to give you at least 180 days' notice. That's the thing to watch for in your library.
 
-**The timeline is a little fuzzy in coverage**
+## The timeline is a little fuzzy in coverage
 
 Some headlines say support ends at the end of 2027. Others say updates end in March 2027. Both are roughly right, but they mean different things. March is when the features stop. December is when the safety net goes. For a headset on your home Wi-Fi, that second date is the one that matters.
 
-**Who got the worse deal**
+## Who got the worse deal
 
 The Quest 2 launched in October 2020, so owners get a little over seven years of security support. The Quest Pro arrived in October 2022 and gets just over five. Per Wikipedia, it launched at $1,499.99, and Meta discontinued it in 2024 anyway. If you paid that, this stings.
 
-**My take**
+## My take
 
 If you own a Quest 2 and mostly play what you already have, do nothing. It's fine through 2027. The part to skip is buying a used one because it's cheap. You'd be paying for a headset that's already on the way out, and new games will increasingly target Quest 3-class hardware.
 

@@ -12,23 +12,23 @@ published: 2026-11-18T08:55:15-05:00
 
 The [Surface Laptop Ultra](https://www.amazon.com/s?k=Surface+Laptop+Ultra&tag=techtreck02-20) starts at $2,599, and that's the cheapest it gets. It's also the version with the least memory. For most people, it isn't worth it. For a small group who want to run large AI models on a laptop, it might be.
 
-**What you get for the money**
+## What you get for the money
 
 Microsoft opened preorders on Oct. 7, and the laptop went on sale Oct. 16. It's a 15-inch Windows 11 machine with a mini-LED display, built on Nvidia's RTX Spark chip. That's Nvidia's first Arm-based PC chip line, and this laptop is its debut platform. It's under 18mm thick and under 4.5 lb, and the SSD is user-replaceable.
 
 The base model has an 18-core CPU, a 5,120-core GPU, 24GB of unified memory and a 512GB SSD. It ships with Windows 11 Home. Configurations with 32GB or more get Windows 11 Pro. At launch there were eight configurations, topping out at $5,899.99 for a 20-core model with 128GB of memory and a 1TB drive.
 
-**Who it's for**
+## Who it's for
 
 Microsoft calls this its "builder tier" Surface. It claims the laptop beats the [MacBook Pro](https://www.amazon.com/s?k=MacBook+Pro&tag=techtreck02-20) with an M5 Pro chip in several AI workloads, and it can run large models directly on the device. Those are Microsoft's claims, and I haven't seen independent numbers in what I found. Notice what the pitch leaves out: battery life, and anything aimed at someone who just wants a nice laptop.
 
 If your work is local AI models, development or heavy creative work, the 128GB ceiling is the real draw. If you mostly browse, write and take video calls, you'd be paying workstation money for specs you'll never touch. Note that the cheapest model has only 24GB, which undercuts the pitch about big local models. The configurations that make the AI case start well above $2,599.
 
-**Canada**
+## Canada
 
 In Canada it starts at CAD $3,899.99 on the Microsoft Store. The 128GB, 1TB model is CAD $8,549.99. Microsoft is also offering up to CAD $1,300 cash back when you trade in a MacBook Pro, valid through Nov. 23, 2026. Trade-in is online only through the Microsoft Store.
 
-**The smarter spend**
+## The smarter spend
 
 If you want a Surface and not a local-AI rig, look at the [Surface Laptop, 13.8-inch (7th Edition)](https://www.amazon.com/s?k=Surface+Laptop%2C+13.8-inch+%287th+Edition%29&tag=techtreck02-20). The Canadian Microsoft Store lists it from CAD $1,899.99, with a "save up to CAD $1,600" banner on the deals page. I couldn't confirm a current US price for it, so check Microsoft's store before you buy. The 15-inch version of that generation launched at $1,299 in the US, which is about half the Ultra's base price.
 

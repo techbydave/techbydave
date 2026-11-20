@@ -1,5 +1,6 @@
 ---
 title: Roku Finally Enters the OLED TV Market With Two New Pro Models
+seo_title: Roku Pro Series OLED TV: Roku's First OLED TVs
 date: 2026-09-13
 tags: tv, roku, oled, home entertainment
 snippet: After years of budget panels, Roku is launching its first OLED TVs—betting that premium picture quality at approachable prices will work.

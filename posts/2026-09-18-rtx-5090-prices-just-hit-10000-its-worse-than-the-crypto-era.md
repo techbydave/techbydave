@@ -1,5 +1,6 @@
 ---
 title: RTX 5090 Prices Just Hit $10,000. It's Worse Than the Crypto Era.
+seo_title: RTX 5090 Price Hits $10,000: Should You Buy One?
 date: 2026-09-18
 tags: nvidia, gpu, gaming, pricing
 snippet: Nvidia's flagship gaming GPU is vanishing from shelves, with third-party sellers now asking five times the $1,999 MSRP.

@@ -10,9 +10,9 @@ image: 618d6304596d9b001118855b.webp
 published: 2026-11-19T23:42:23-05:00
 ---
 
-The [[Starlink Mini](https://www.amazon.com/s?k=Starlink+Mini&tag=techtreck02-20) 2](https://www.amazon.com/s?k=Starlink+Mini+2&tag=techtreck02-20) costs $999 right now, but only if SpaceX invites you. That price is for select US customers and includes a full year of Roam Unlimited service, so it isn't really a hardware price. For most people, the smart move is to wait.
+The [Starlink Mini 2](https://www.amazon.com/s?k=Starlink+Mini+2&tag=techtreck02-20) costs $999 right now, but only if SpaceX invites you. That price is for select US customers and includes a full year of Roam Unlimited service, so it isn't really a hardware price. For most people, the smart move is to wait.
 
-**What's new**
+## What's new
 
 The headline upgrade is a 71 Wh battery that clips on the back and, per Starlink, runs the dish for up to 4.5 hours. It swaps in and out without tools, and you can also power the dish over 60W USB-C instead of the original's proprietary cable. The first Mini needed an outside power source, which is the gap this fixes.
 
@@ -25,23 +25,23 @@ Other changes:
 
 So it's thinner, but heavier in your pack.
 
-**The price is muddy**
+## The price is muddy
 
 Fonearena reports the $999 package needs a refundable $100 deposit. It also says Roam Unlimited normally runs about $2,100 a year. If you'd buy that plan anyway, the bundle looks fair. If you wouldn't, you're paying a premium for a battery.
 
 Website code shows a $249 "Mini 2 Beta Kit" and a $50 spare battery. SpaceX hasn't confirmed either figure, and reports disagree on which is real. Treat both as rumors. The public price, wider release date and international pricing aren't confirmed. One report expects shipping to begin in mid-December.
 
-**Canada**
+## Canada
 
 Canadian pricing and availability for the Mini 2 haven't been disclosed. The original Mini briefly showed at C$199 on Starlink's site last month. That listing vanished, and the regular price appears to be C$299.
 
-**The cheaper route**
+## The cheaper route
 
 The original Starlink Mini was recently cut to $149 in the US, though other reports list it at $249 at retail, so check the current price before you buy. Third-party clip-on batteries already exist for it, because the Mini can run from a compatible external battery. That setup likely costs a fraction of $999. It won't be as tidy, and I wouldn't call it equivalent, but it does the same basic job.
 
 The Mini 2 makes sense for a narrow group: RV and overland folks who want a no-fuss, battery-powered dish and already pay for unlimited roaming. A 4.5-hour battery isn't an all-day solution either, so you'd still want spares or USB-C power.
 
-**What to do**
+## What to do
 
 If you need a dish this month, buy the original Mini while it's cheap. If you can wait, watch for Starlink to post a standalone retail price and confirm the spare battery cost. Those two numbers will tell you whether the Mini 2 is worth it.
 

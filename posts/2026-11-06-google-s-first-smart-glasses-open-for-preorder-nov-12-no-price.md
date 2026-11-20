@@ -1,5 +1,6 @@
 ---
 title: Google's First Smart Glasses Open for Preorder Nov. 12, No Price
+seo_title: Google Smart Glasses Preorder: Nov. 12 Date, No Price Yet
 date: 2026-11-06
 slug: google-s-first-smart-glasses-open-for-preorder-nov-12-no-price
 tags: smart glasses, android xr, wearables, google
@@ -14,13 +15,13 @@ Warby Parker gave away the date during an earnings call, which is a funny way to
 
 The price isn't in the release. Neither are launch countries or a ship date. Samsung hadn't published anything about preorders as of Thursday afternoon, and Google hasn't separately announced the launch. Gentle Monster, the other frame partner, hasn't confirmed the date either. Any price you see before the 12th is a leak or a guess.
 
-**What we do know about the hardware**
+## What we do know about the hardware
 
 The glasses run Android XR with Gemini built in. Samsung makes the hardware, with Qualcomm chips inside, and Warby Parker and Gentle Monster handle the frame designs. They have cameras, microphones and speakers, but no display in the lenses. You control them by voice or a touch panel on the frame. So think of them as Google's answer to Meta's Ray-Ban glasses, not as an AR headset you wear on your face.
 
 Meta has a big head start. One report puts its share of AI glasses shipments at 94%, with the category growing 263% in the first half of the year. Google is arriving late to a market that's already filling up, and a hard date is the first concrete thing it has to show.
 
-**Who should care, and who should wait**
+## Who should care, and who should wait
 
 If you already wear glasses every day, this is the group most likely to benefit. Warby Parker has 364 stores, and you can already book a demo slot on its website. Trying frames on before paying is a real advantage for something that sits on your face all day.
 
@@ -30,7 +31,7 @@ There's one more reason to be cautious. A smart-glasses checkout price can diffe
 
 Warby Parker also told investors its full-year guidance now includes a modest contribution from the glasses. That suggests the company expects to book revenue before December 31, so a real shipping window looks likely.
 
-**What to do**
+## What to do
 
 Before the 12th, decide whether you want audio-only glasses at all, since there's no screen to show you directions or messages. On the day, check the total price with your prescription, the delivery estimate and the return policy before you commit. If any of those are vague, wait a few weeks. The glasses will still be there, and reviewers will have had time to try them.
 

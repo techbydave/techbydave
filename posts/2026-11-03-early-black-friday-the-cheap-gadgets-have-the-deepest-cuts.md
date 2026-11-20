@@ -14,7 +14,7 @@ The biggest percentage drop in the early Black Friday pile isn't an Apple produc
 
 Here's what the early lists show as of Nov. 3, so check live prices before you click.
 
-**The cheap stuff has the best cuts**
+## The cheap stuff has the best cuts
 
 - Ring Battery Doorbell 2K: $40, was $99
 - [Amazon Fire TV Stick 4K Plus](https://www.amazon.com/s?k=Amazon+Fire+TV+Stick+4K+Plus&tag=techtreck02-20): $40, was $70
@@ -23,13 +23,13 @@ Here's what the early lists show as of Nov. 3, so check live prices before you c
 
 Those are from Yahoo's early deals roundup. The same list has the [Apple iPad mini (A17 Pro)](https://www.amazon.com/s?k=Apple+iPad+mini+%28A17+Pro%29&tag=techtreck02-20) at $569 at Amazon, though it doesn't say what the regular price is, so I can't tell you how good that one is.
 
-**Apple's discounts are real but modest**
+## Apple's discounts are real but modest
 
 MacRumors is tracking Apple gear at or near its lowest prices. The [Apple Watch Ultra 4](https://www.amazon.com/s?k=Apple+Watch+Ultra+4&tag=techtreck02-20) is $699.99 at Amazon, down $99 from $799. The [M5 MacBook Air](https://www.amazon.com/s?k=M5+MacBook+Air&tag=techtreck02-20) is $1,099.99, which is $199 off. The [MacBook Neo](https://www.amazon.com/s?k=MacBook+Neo&tag=techtreck02-20) is $669.22, a $30 cut from $699, and MacRumors calls that discount rare.
 
 The MacBook Air deal needs context. MacRumors says Amazon's $199 cut matches the best prices it has seen since a price hike. So it's good compared with today's sticker, not compared with what the laptop cost before the increase. Apple's Mac mini has been discounted by $119 to $150 for weeks, with prices starting at $779.99. A deal that's been running for weeks isn't going to vanish tomorrow.
 
-**What I'd do**
+## What I'd do
 
 If you've been meaning to put a camera on your front door or turn an old TV into a streamer, those $40 deals are the clearest wins here. Both are cheap enough that being wrong costs you little. The AirPods Pro 3 at $199 is a decent buy too, if yours have died.
 

@@ -213,7 +213,14 @@ present them as Canadian prices.
 Beat: CONSUMER TECH AND GADGETS people actually buy: phones, laptops,
 wearables, headphones, smart home, gaming hardware, cameras. Good topics are
 new launches, notable price drops or deals, spec comparisons, and buying
-advice. Avoid enterprise software, corporate finance, and research-paper
+advice.
+
+Pick stories a small, new site can rank for in Google. Big outlets win the
+same-day launch headline, so favour angles they skip: "X vs Y" comparisons
+(the new model against last year's or its main rival), "is X worth it" and
+"should I upgrade from X" questions, Canadian price and availability, and
+follow-ups once a rumoured price or release date becomes official. A launch
+story is fine when you add one of these angles. Avoid enterprise software, corporate finance, and research-paper
 stories unless they tie directly to a product people can buy.
 
 You have {MAX_SEARCHES} web searches in total:
@@ -333,16 +340,20 @@ def _add_affiliate_links(body: str, product_mentions):
     if not AMAZON_AFFILIATE_TAG or not product_mentions:
         return body, False
     linked_any = False
-    for product in product_mentions:
-        product = str(product).strip()
-        if not product or f"]({_amazon_search_url(product)})" in body:
+    # Longest names first, so "Starlink Mini 2" is linked before "Starlink Mini",
+    # and never link text that is already inside a link (that made "[[Starlink Mini](...) 2](...)").
+    names = sorted({str(p).strip() for p in product_mentions if str(p).strip()}, key=len, reverse=True)
+    link_re = re.compile(r"\[[^\]]*\]\([^)]*\)")
+    for product in names:
+        if f"]({_amazon_search_url(product)})" in body:
             continue
-        pattern = re.compile(re.escape(product))
-        if pattern.search(body):
-            body = pattern.sub(
-                lambda m: f"[{m.group(0)}]({_amazon_search_url(product)})", body, count=1
-            )
+        taken = [m.span() for m in link_re.finditer(body)]
+        for m in re.finditer(re.escape(product), body):
+            if any(a <= m.start() < b for a, b in taken):
+                continue
+            body = body[:m.start()] + f"[{m.group(0)}]({_amazon_search_url(product)})" + body[m.end():]
             linked_any = True
+            break
     return body, linked_any
 
 

@@ -13,7 +13,7 @@ The most interesting thing about the [Amazon Echo Time](https://www.amazon.com/s
 
 Amazon announced the Echo Time on October 28 and it's on sale the same day for $199.99. It comes in Graphite, Glacier White and Coral Pink. A matching adjustable stand is a separate $39.99. There's also an Amazon Kids version in Galactic Grape and Cosmic Lime, starting at $209.99, with a year of Kids+ included.
 
-**What you get**
+## What you get
 
 The screen is a 3.2-inch circular touchscreen with hundreds of customizable clock faces. Those include analog designs, seasonal themes, sports teams, and licensed picks like Harry Potter and the DC Universe. At night the display can drop below 0.3 nits, and Night Mode cuts blue light. The screen can also brighten gradually like a sunrise before the alarm.
 
@@ -21,7 +21,7 @@ The sleep tracking relies on Amazon's Omnisense sensor array, which can detect p
 
 Then there's the part some people will care about most: no camera. Mics are there, and you can mute them with a button on top, but nothing is watching your bedroom. Some features need Alexa+, which Amazon includes with Prime.
 
-**The price problem**
+## The price problem
 
 TechRadar lists the [Echo Spot](https://www.amazon.com/s?k=Echo+Spot&tag=techtreck02-20) at $109.99. The Echo Time costs $199.99, the same as the [Echo Show 8](https://www.amazon.com/s?k=Echo+Show+8&tag=techtreck02-20). Tom's Guide makes the same point: the Echo Spot costs about half as much, does the basic clock job well, and has the same Alexa+ features. It even doubles as an Eero Wi-Fi extender.
 

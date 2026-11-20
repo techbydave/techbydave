@@ -724,6 +724,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
 .page-head h1{font:800 clamp(2rem,5vw,3rem)/1.05 var(--display);letter-spacing:-.035em}
 .page-head p{margin-top:.6rem;color:var(--mute);font-size:1.05rem}
 .page-head .topic-strip{margin-top:1.2rem}
+.page-head .topic-intro{max-width:70ch;color:var(--mute);font-size:1rem;line-height:1.65}
+.home-intro{margin:2.2rem 0 .6rem;padding:1.4rem 1.6rem;border:1px solid rgba(255,255,255,.08);border-radius:18px;background:rgba(255,255,255,.03)}
+.home-intro h2{font:800 1.35rem/1.2 var(--display);letter-spacing:-.02em;margin-bottom:.5rem}
+.home-intro p{color:var(--mute);line-height:1.7;max-width:80ch}
+.home-intro a{text-decoration:underline;text-underline-offset:3px}
 .topic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem 1.3rem}
 .topic-grid .story-card p.dek{margin-top:.5rem;color:var(--mute);font-size:.98rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 @media (max-width:900px){.topic-grid{grid-template-columns:repeat(2,1fr)}}
@@ -1229,6 +1234,13 @@ CONTACT_MARKDOWN = f"""Questions, corrections, story tips, or partnership reques
 
 Brands and PR teams: see our [media kit](media-kit.html) for reviews, launch coverage and sponsorships.
 
+## What to email about
+
+- **Corrections:** tell us the post, the line that's wrong, and a source for the right fact. Confirmed errors get fixed, and significant corrections are noted in the post.
+- **Story tips:** a new gadget launch, a price drop or deal, or a product you want a buy, wait or skip verdict on. A link to the announcement or listing helps.
+- **Reader questions:** stuck between two phones, earbuds or laptops? Send both names and your budget, and it may become a post.
+- **Review units and partnerships:** include the product, its price and release date, and any embargo time. Sponsored posts are always labelled.
+
 You can also find {SITE_TITLE} on social media through the links in the footer. For how we choose and write our stories, see the [editorial policy](editorial-policy.html)."""
 
 MEDIA_KIT_MARKDOWN = f"""{SITE_TITLE} is an independent consumer tech publication run by {AUTHOR_NAME} out of Toronto, Canada. Our angle is simple: is it worth it, and is there a smarter way to spend the money? We cover the gadgets people actually buy: phones, laptops, wearables, headphones, smart home gear, gaming hardware, cameras and everyday-carry tech.
@@ -1405,6 +1417,28 @@ def render_drawer(prefix):
 """
 
 
+# AdSense is ~220 KB of script. Loading it in <head> made the main image take
+# 6.6s to appear on phones (PageSpeed). Now it loads on the visitor's first
+# scroll/tap/keypress, or 3.5 seconds after the page finishes loading,
+# whichever comes first, so the article shows up first and ads follow.
+ADSENSE_LAZY = """(function(){var done=false;function load(){if(done)return;done=true;
+var s=document.createElement('script');s.async=true;s.crossOrigin='anonymous';
+s.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4303818032223917';
+document.head.appendChild(s);}
+['scroll','touchstart','mousemove','keydown','click'].forEach(function(e){addEventListener(e,load,{once:true,passive:true});});
+addEventListener('load',function(){setTimeout(load,3500);});})();"""
+
+
+def seo_page_title(text, limit=60):
+    """Google cuts titles at about 60 characters. Add the site name only when it fits;
+    Google already shows "TechByDave" above each result from the site-name schema."""
+    plain = html.unescape(text)
+    suffix = f" \u00b7 {SITE_TITLE}"
+    if len(plain) + len(suffix) <= limit:
+        return html.escape(plain + suffix)
+    return html.escape(plain)
+
+
 def render_page(*, title, description, canonical, prefix="", body, hero="", main_class="", image=None,
                 og_type="website", head_extra="", signup=True):
     """Wrap `body` in the full site chrome. prefix is "" on root pages and "../" on post pages."""
@@ -1439,8 +1473,7 @@ def render_page(*, title, description, canonical, prefix="", body, hero="", main
 <meta name="impact-site-verification" value="6a4a9247-21ee-4a85-be00-2e3d141b9103" />
 <meta name="google-adsense-account" content="ca-pub-4303818032223917">
 <meta name="p:domain_verify" content="57d395b44f589a5e5f3ada79462de2c4"/>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4303818032223917"
-     crossorigin="anonymous"></script>
+<script>{ADSENSE_LAZY}</script>
 <link rel="alternate" type="application/rss+xml" title="{SITE_TITLE}" href="/feed.xml"/>
 <link rel="icon" href="{prefix}favicon.ico" sizes="48x48"/>
 <link rel="icon" href="{prefix}favicon.svg" type="image/svg+xml"/>
@@ -1543,6 +1576,93 @@ TOPICS = [
 TITLE_KEYS = {"iphone", "pixel", "earbud", "headphone", "walkman", "turntable", "homepod", "echo",
               "doorbell", "macbook", "ipad", "laptop", "quest", "console", "deal", "black friday", "monitor"}
 MENU_TOPICS = ["phones", "audio", "smart-home", "wearables", "computers", "gaming", "deals"]
+
+# Search-friendly <title> for each topic page (under 60 characters).
+TOPIC_TITLES = {
+    "phones": "Phone Reviews: Is the New Phone Worth It? \u00b7 TechByDave",
+    "audio": "Earbuds & Headphones: Worth It or a Waste? \u00b7 TechByDave",
+    "smart-home": "Smart Home Gadget Reviews and Verdicts \u00b7 TechByDave",
+    "wearables": "Smartwatch & Smart Ring Reviews \u00b7 TechByDave",
+    "computers": "Laptop & Tablet Reviews: Buy, Wait or Skip?",
+    "gaming": "Gaming Hardware: Worth It or a Waste? \u00b7 TechByDave",
+    "tvs-monitors": "TV & Monitor Reviews: Buy, Wait or Skip?",
+    "apple": "Apple Product Reviews: iPhone, Mac, iPad Verdicts",
+    "deals": "Tech Deals Worth Buying (and Ones to Skip)",
+}
+
+# A short, useful intro on each topic page, so the page isn't just a list of links.
+TOPIC_INTROS = {
+    "phones": "New phones launch every few weeks, and most of them are small upgrades with big price tags. "
+              "These posts cover iPhone, Pixel, Galaxy, Motorola and foldable launches with one question in mind: "
+              "should you upgrade, wait for a discount, or keep the phone you have? Each verdict looks at the real "
+              "price, what actually changed from last year's model, how long it gets software updates, and whether "
+              "an older or cheaper phone does the same job for less. Where a Canadian price or release date is "
+              "confirmed, it's included too.",
+    "audio": "Earbuds, headphones, speakers, turntables and music players, judged on what you hear and what you pay. "
+             "Posts compare new models against the ones they replace, call out features that only matter on paper, "
+             "and point you to the cheaper pair that sounds nearly as good. Expect straight answers on noise "
+             "cancelling, battery life, codec support and whether an audiophile upgrade is worth the money, "
+             "plus a clear buy, wait or skip verdict on every product.",
+    "smart-home": "Doorbells, trackers, smart speakers and other gadgets for your home, checked for what they cost "
+                  "over time, not just on the box. Each post looks at subscriptions you'll need, which phones and "
+                  "ecosystems it works with (Apple Find My, Google Find Hub, Alexa and Google Home), and whether a "
+                  "cheaper model or a deal makes more sense. If a product locks you into one company or a monthly "
+                  "fee, the verdict says so.",
+    "wearables": "Smartwatches, smart rings, fitness trackers and smart glasses: gadgets you wear every day, so they "
+                 "have to earn it. These posts weigh battery life, comfort, subscription costs and health features "
+                 "against the price, and compare new models with last year's versions that are now cheaper. "
+                 "You'll also find launch dates and prices as they're confirmed, with a clear wait verdict when "
+                 "the important details aren't out yet.",
+    "computers": "Laptops, MacBooks, iPads and tablets, plus the chips and graphics cards inside them. Each verdict "
+                 "asks who actually needs the upgrade: students, creators, gamers or someone who just wants "
+                 "something fast for email. Posts compare base models with the configurations worth paying for, "
+                 "flag cheap tiers that cut corners, and point to last year's model when it does the job for "
+                 "hundreds less.",
+    "gaming": "Consoles, handhelds, VR headsets, retro hardware, gaming monitors and graphics cards. Posts cover "
+              "launches, price changes and the support decisions that affect what you already own, like when a "
+              "headset stops getting updates. Every verdict says whether to buy now, wait for a bundle or price "
+              "drop, or skip it for a better-value alternative.",
+    "tvs-monitors": "TVs and monitors, from budget panels to OLED. Posts explain which display upgrades you'll "
+                    "actually notice, which ones are spec-sheet marketing, and when last year's model on sale is "
+                    "the smarter buy. Each one ends with a clear buy, wait or skip verdict and the price that "
+                    "makes it worth it.",
+    "apple": "Every TechByDave post about Apple: iPhone, iPad, Mac, AirPods, AirTag and HomePod. Apple products "
+             "rarely go on sale for much, so these posts focus on timing (when to buy, and when a new model is "
+             "about to replace the one you're looking at), which storage and chip tiers are worth it, and when a "
+             "refurbished or previous-generation model is the better deal.",
+    "deals": "Tech deals worth your money, and the ones that only look like deals. Each post checks the discount "
+             "against the product's price history, so you know whether it's a record low or a price that comes "
+             "around every few weeks. Expect Black Friday, Prime Day and back-to-school picks, with prices dated "
+             "so you can check they're still live before you buy.",
+}
+
+
+def render_topic_intro(slug):
+    text = TOPIC_INTROS.get(slug)
+    return f'<p class="topic-intro">{html.escape(text)}</p>' if text else ""
+
+
+# Descriptive <title>s for the static pages (Google shows these in results).
+SIMPLE_PAGE_TITLES = {
+    "about.html": "About TechByDave: Honest Tech Reviews by Dave",
+    "privacy.html": "Privacy Policy: Ads, Cookies and Analytics \u00b7 TechByDave",
+    "editorial-policy.html": "How TechByDave Reviews Tech: Editorial Policy",
+    "contact.html": "Contact TechByDave: Tips, Reviews and Partnerships",
+    "media-kit.html": "TechByDave Media Kit: Sponsorships and Reviews",
+}
+
+# A visible introduction on the homepage, so Google (and new visitors) can
+# tell what the site is about from more than a list of headlines.
+HOME_INTRO = """<section class="home-intro">
+  <h2>Worth it or a waste?</h2>
+  <p>TechByDave gives honest verdicts on new tech before you spend. Every post covers one phone, laptop, pair of
+  earbuds, smart home gadget or deal and ends with a clear call: <strong>buy</strong> it, <strong>wait</strong> for
+  a better price or more details, or <strong>skip</strong> it. You get the price that matters, what actually
+  changed from the last model, who it's for, and a cheaper or smarter alternative when there is one, with Canadian
+  pricing when it's confirmed. Start with <a href="topics/phones.html">phones</a>,
+  <a href="topics/audio.html">audio</a>, <a href="topics/deals.html">deals</a> or
+  <a href="archive.html">every post</a>.</p>
+</section>"""
 
 
 def topics_for(meta):
@@ -1664,7 +1784,7 @@ def render_top(posts):
 def render_home_body(posts):
     more = posts[1 + SIDE_COUNT:1 + SIDE_COUNT + MORE_COUNT]
     older = posts[1 + SIDE_COUNT + MORE_COUNT:]
-    out = ['<div class="home-topics">' + render_topic_strip("") + '</div>']
+    out = ['<div class="home-topics">' + render_topic_strip("") + '</div>', HOME_INTRO]
 
     if more:
         out.append('<h2 class="sec-title">More stories</h2>')
@@ -2029,7 +2149,7 @@ def build():
     </div>
     <a class="to-top" href="#" aria-label="Back to top">&#8593;</a>"""
         page = render_page(
-            title=f"{html.escape(meta['title'])} &middot; {SITE_TITLE}",
+            title=seo_page_title(meta.get("seo_title") or meta["title"]),
             description=html.escape(meta_description(meta["snippet"], meta.get("_body_md", ""))),
             canonical=f"{base}/posts/{meta['slug']}.html",
             prefix="../",
@@ -2110,7 +2230,7 @@ def build():
       </div>
     </article>"""
         simple = render_page(
-            title=f"{html.escape(page_title)} &middot; {SITE_TITLE}",
+            title=html.escape(SIMPLE_PAGE_TITLES.get(filename, f"{page_title} \u00b7 {SITE_TITLE}")),
             description=html.escape(desc),
             canonical=f"{base}/{filename}",
             body=body,
@@ -2143,7 +2263,7 @@ def build():
     </section>"""
     with open(os.path.join(DIST_DIR, "newsletter.html"), "w", encoding="utf-8") as f:
         f.write(render_page(
-            title=f"Newsletter &middot; {SITE_TITLE}",
+            title=html.escape(f"{SITE_TITLE} Newsletter: Daily Tech Verdicts by Email"),
             description=html.escape(f"Get {SITE_TITLE}'s free newsletter: honest buy, wait or skip verdicts on new gadgets, "
                                     f"plus deals and cheaper alternatives."),
             canonical=f"{base}/newsletter.html", body=nl_body, signup=False))
@@ -2175,11 +2295,12 @@ def build():
     <header class="page-head">
       <h1>{html.escape(name)}</h1>
       <p>{len(tp)} post{"s" if len(tp) != 1 else ""} with honest buy, wait or skip verdicts on {html.escape(name.lower())}.</p>
+      {render_topic_intro(slug)}
       {render_topic_strip("../", slug)}
     </header>
     <div class="topic-grid">{cards}</div>"""
         page = render_page(
-            title=f"{html.escape(name)}: Is It Worth It? &middot; {SITE_TITLE}",
+            title=html.escape(TOPIC_TITLES.get(slug, f"{name}: Is It Worth It? \u00b7 {SITE_TITLE}")),
             description=html.escape(f"Every {SITE_TITLE} post on {name.lower()}: honest buy, wait or skip verdicts, "
                                     f"deals and smarter alternatives."),
             canonical=f"{base}/topics/{slug}.html",
@@ -2202,13 +2323,15 @@ def build():
                        f'<a href="posts/{m["slug"]}.html">{html.escape(m["title"])}</a>{verdict_tag(m)}</li>' for m in ms)
         arch.append(f'<h2 class="archive-month">{key}</h2><ul class="archive-list">{rows}</ul>')
     archive = render_page(
-        title=f"All posts &middot; {SITE_TITLE}",
+        title=html.escape(f"All {SITE_TITLE} Tech Reviews and Verdicts, Newest First"),
         description=html.escape(f"Every {SITE_TITLE} post, newest first, with its buy, wait or skip verdict."),
         canonical=f"{base}/archive.html",
         body=f"""
     <header class="page-head">
       <h1>All posts</h1>
-      <p>{len(posts)} posts, newest first. Browse by topic:</p>
+      <p>{len(posts)} posts, newest first. Every one answers the same question: is this gadget worth
+      your money, or a waste? Each post ends with a buy, wait or skip verdict, the price that matters,
+      and a cheaper or smarter alternative when there is one. Browse by topic:</p>
       {render_topic_strip("")}
     </header>
     {"".join(arch)}""",

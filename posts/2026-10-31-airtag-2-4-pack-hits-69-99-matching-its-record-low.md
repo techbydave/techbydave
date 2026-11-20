@@ -14,25 +14,25 @@ Seventeen dollars and fifty cents. That's what each tag costs in the [AirTag 2](
 
 The same price is showing up at Best Buy and Walmart, so you aren't locked into one store. Amazon's single AirTag 2 is also down, to $23 from $29. One report says no coupon or Prime membership is needed for the four-pack price.
 
-**Is it really a record low?**
+## Is it really a record low?
 
 Depends on who you ask. MacRumors and iClarified call $69.99 a new all-time low. 9to5Toys says it only matches the lowest price it has ever tracked at Amazon. MacPrices notes a $79.99 sale back in September, and says this is a return to the earlier record. Either way, you aren't getting a price better than anything we've seen. You're getting the best price so far, and it arrives with early Black Friday doorbuster deals, so it may not last.
 
-**What you're buying**
+## What you're buying
 
 The AirTag 2 launched in late January 2026. It has a second-generation Ultra Wideband chip, which lets Precision Finding work up to 50 percent farther away than on the original. The speaker is 50 percent louder. Precision Finding also gives step-by-step directions on Apple Watch now, not just iPhone. Apple says the battery is user-replaceable, and one report puts its life at more than a year.
 
-**Who should buy it**
+## Who should buy it
 
 If you have an iPhone and a pile of things that go missing, this is the one to get. Keys, a backpack, a bike bag, a suitcase, the remote that disappears into the couch. Four tags for $69.99 beats buying four singles at $23 each, which would run $92. That's a $22 difference, or about the cost of a single tag and change.
 
 The single pack is a weaker deal. At $23 you save only $6, so buy it only if one tag is truly all you need.
 
-**Who should skip it**
+## Who should skip it
 
 Android users. These work through Apple's Find My network and an iPhone. If you're on Android, look at trackers that use Google's network instead. Also skip it if you don't actually lose things. Four trackers in a drawer is not a great use of $70, no matter how good the discount looks.
 
-**What to do**
+## What to do
 
 Check the price at all three stores before you buy, since they're matching right now. Then think about whether you'd use all four. If you'd use two, it's still $35 each for tags that normally cost $29, so the four-pack is only worth it if you'd really put all four to work. The big Black Friday week is still coming, so a lower price is possible, but it's not guaranteed. If you've been waiting, this is a fair place to stop waiting.
 

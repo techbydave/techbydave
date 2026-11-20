@@ -11,7 +11,7 @@ verdict_line: Don't pre-order. Wait for reviews on fit and wind noise. On an iPh
 
 Each [Samsung Galaxy Buds On](https://www.amazon.com/s?k=Samsung+Galaxy+Buds+On&tag=techtreck02-20) earbud weighs 6.65 grams and sits outside your ear canal. There are no silicone tips and no seal. Samsung's first clip-on, open-ear design is its answer to Bose, Shokz and Sony, who have sold this style for a while.
 
-**The numbers**
+## The numbers
 
 The US price is $229, and the buds arrive in early November in black only. Some outlets round that to $230. In South Korea they went on sale October 27 for KRW 299,000, which is roughly $220. Europe is a longer wait. Samsung says a launch is coming early next year, and a UK price isn't confirmed.
 
@@ -24,17 +24,17 @@ Battery is the headline spec. Samsung rates the buds at up to 9.5 hours of music
 - Touch controls on the back of each bud, plus head gestures to answer or end calls
 - Samsung's Audio Leakage Reduction, meant to keep sound more private
 
-**What you give up**
+## What you give up
 
 Open-ear buds can't do active noise cancellation, and Samsung says so. You're buying awareness, not isolation. That suits outdoor runs, bike commutes and offices where someone might talk to you. It doesn't suit trains or planes. At this price you'd have to want that trade on purpose, and few people will buy these alongside a pair of noise-cancelling buds.
 
-**Who should care**
+## Who should care
 
 Phone matters here. The spec sheet lists Android 12 or later with more than 1.5GB of memory. Galaxy owners can connect through the Quick Panel without opening the Wearable app. Gemini Live hands-free is also listed. iPhone users get no stated reason to pick these over the established open-ear brands.
 
 My view: the battery and weight are the real pitch, and they're competitive on paper. But $229 is a lot for buds nobody has tested yet. The 38-hour total is also a lab figure. Open-ear designs usually lose their bass first and their battery second once volume goes up outdoors, so treat Samsung's numbers as a ceiling.
 
-**What to do**
+## What to do
 
 If you run or ride and own a Galaxy phone, put these on a watch list. Don't pre-order. Wait for independent reviews on fit, since clip designs live or die on how they sit on real ears, and on how well they hold up with wind noise. If you're on iPhone or live in Europe, you can skip this round. You'll have until 2027 to see how the first buyers get on.
 

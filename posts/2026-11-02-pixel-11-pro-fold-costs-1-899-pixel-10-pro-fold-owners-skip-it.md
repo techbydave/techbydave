@@ -1,5 +1,6 @@
 ---
 title: Pixel 11 Pro Fold Costs $1,899. Pixel 10 Pro Fold Owners, Skip It.
+seo_title: Pixel 11 Pro Fold Price: Is $1,899 Worth It?
 date: 2026-11-02
 slug: pixel-11-pro-fold-costs-1-899-pixel-10-pro-fold-owners-skip-it
 tags: pixel, foldables, google, phones
@@ -12,11 +13,11 @@ verdict_line: Own a Pixel 10 Pro Fold? Skip it. Coming from an older phone, wait
 
 The [Pixel 11 Pro Fold](https://www.amazon.com/s?k=Pixel+11+Pro+Fold&tag=techtreck02-20) costs $100 more than last year's model, and the headline spec you get for that money is a 1:1-ish inner screen that hasn't changed shape in a while. That's the short version of Google's fourth foldable, which TechCrunch's review summed up with a headline about a sturdy rectangle in a wide world.
 
-**The numbers**
+## The numbers
 
 Google announced the phone on August 12 and it went on sale August 20. Android Headlines lists the starting price at $1,899 for 256GB, up $100 from the [Pixel 10 Pro Fold](https://www.amazon.com/s?k=Pixel+10+Pro+Fold&tag=techtreck02-20), which launched at $1,799. All three storage tiers (256GB, 512GB, 1TB) carry 16GB of RAM. Some spec aggregators show different prices, both lower and higher, so check the live price at a retailer before you assume anything. Street prices have clearly been moving.
 
-**What you get**
+## What you get
 
 - An 8.0-inch inner OLED at 2076 x 2152, running 1 to 120Hz, plus a 6.5-inch cover screen.
 - Google's Tensor G6 chip and a 4,806 mAh battery.
@@ -26,7 +27,7 @@ Google announced the phone on August 12 and it went on sale August 20. Android H
 
 Android Headlines calls it an iterative upgrade with some meaningful improvements. That tracks with the spec sheet. The Pixel 11 Pro Fold has the same boxy inner display, the same general design and a chip bump. The one clear change is that every tier gets 16GB of RAM.
 
-**Who should care**
+## Who should care
 
 If you already own a Pixel 10 Pro Fold, skip this one. Nothing here justifies paying a premium for a refresh, and the price hike makes it worse. The seven-year update pledge also means last year's model isn't going to age out soon.
 
@@ -34,7 +35,7 @@ If you want a foldable that runs a clean Pixel build of Android and you're comin
 
 The overhyped part is the AI pitch. The Pixel 11 series debuted Gemini Intelligence, an agentic framework meant to do tasks on your behalf. That's software, and it will matter more once you've lived with it for a few months. It's not a reason to spend $1,899 on day one.
 
-**What to do**
+## What to do
 
 Get the 256GB model unless you shoot lots of video, since every tier has the same RAM. Check whether Amazon or Google is running a gift card or trade-in promo. Android Headlines' buying guide flagged a $350 Amazon gift card when it was written. Foldables tend to get discounted within a few months of launch, and with the holidays close, waiting a few weeks is the cheap move
 

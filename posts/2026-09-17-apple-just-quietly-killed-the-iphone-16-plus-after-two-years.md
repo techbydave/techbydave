@@ -1,5 +1,6 @@
 ---
 title: Why Was the iPhone 16 Plus Discontinued? Here's What Happened
+seo_title: Why Was the iPhone 16 Plus Discontinued?
 date: 2026-09-17
 slug: apple-just-quietly-killed-the-iphone-16-plus-after-two-years
 updated: 2026-11-07T22:45:00-05:00

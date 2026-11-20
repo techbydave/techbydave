@@ -8,7 +8,7 @@ snippet: The ROG Xbox Ally X still lists at $999.99, the base Ally has dipped to
 
 A $500 gap now separates the two Xbox handhelds Asus sells, and that gap is the whole buying decision.
 
-The [[ROG Xbox Ally](https://www.amazon.com/s?k=ROG+Xbox+Ally&tag=techtreck02-20) X](https://www.amazon.com/s?k=ROG+Xbox+Ally+X&tag=techtreck02-20) launched on October 16, 2025 at $999.99. The smaller sibling, the ROG Xbox Ally, launched at $599.99, but one spec roundup says it has frequently dropped to $499.99 at major retailers through 2026. That roundup isn't a primary source, so check the live price before you count on it.
+The [ROG Xbox Ally X](https://www.amazon.com/s?k=ROG+Xbox+Ally+X&tag=techtreck02-20) launched on October 16, 2025 at $999.99. The smaller sibling, the ROG Xbox Ally, launched at $599.99, but one spec roundup says it has frequently dropped to $499.99 at major retailers through 2026. That roundup isn't a primary source, so check the live price before you count on it.
 
 **What the extra money buys**
 
