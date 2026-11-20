@@ -7,6 +7,7 @@ snippet: Starlink's Mini 2 adds a swappable 71 Wh battery and Wi-Fi 6, but the o
 verdict: WAIT
 verdict_line: Wait unless you'd pay for Roam Unlimited anyway; the original Mini plus a third-party battery does the job for far less.
 image: 618d6304596d9b001118855b.webp
+published: 2026-11-19T23:42:23-05:00
 ---
 
 The [[Starlink Mini](https://www.amazon.com/s?k=Starlink+Mini&tag=techtreck02-20) 2](https://www.amazon.com/s?k=Starlink+Mini+2&tag=techtreck02-20) costs $999 right now, but only if SpaceX invites you. That price is for select US customers and includes a full year of Roam Unlimited service, so it isn't really a hardware price. For most people, the smart move is to wait.
