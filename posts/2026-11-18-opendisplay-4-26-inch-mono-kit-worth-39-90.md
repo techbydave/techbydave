@@ -6,7 +6,7 @@ tags: smart home, e-paper, home assistant, seeed studio
 snippet: Seeed's $39.90 OpenDisplay e-paper dashboard claims two years per charge, but it needs Home Assistant or a Bluetooth sender to be useful.
 verdict: BUY
 verdict_line: Buy it if you run Home Assistant and want a glanceable screen; skip it if you want something that works with no tinkering.
-image: 100036064-content_img_1.jpg****
+image: content_img_1.jpg
 published: 2026-11-20T22:04:52-05:00
 ---
 
