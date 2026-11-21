@@ -1,6 +1,6 @@
 ---
 title: Starlink Mini 2 Price: Is the $999 Bundle Worth It?
-date: 2026-11-11
+date: 2026-11-20
 slug: starlink-mini-2-price-is-the-999-bundle-worth-it
 tags: starlink, satellite internet, camping tech, deals
 snippet: Starlink's Mini 2 adds a swappable 71 Wh battery and Wi-Fi 6, but the only confirmed price is an invite-only $999 bundle. Here's who should wait.
