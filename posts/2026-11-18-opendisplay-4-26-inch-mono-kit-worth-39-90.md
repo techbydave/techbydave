@@ -7,6 +7,7 @@ snippet: Seeed's $39.90 OpenDisplay e-paper dashboard claims two years per charg
 verdict: BUY
 verdict_line: Buy it if you run Home Assistant and want a glanceable screen; skip it if you want something that works with no tinkering.
 image: 100036064-content_img_1.jpg****
+published: 2026-11-20T22:04:52-05:00
 ---
 
 The [Seeed Studio OpenDisplay 4.26-inch Mono Kit](https://www.amazon.com/s?k=Seeed+Studio+OpenDisplay+4.26-inch+Mono+Kit&tag=techtreck02-20) costs $39.90, and it is worth that if you already run Home Assistant or like to tinker. It's a small battery-powered e-paper screen that Seeed says can last up to two years between charges, but that number comes with a condition, and so does the kit's setup.
