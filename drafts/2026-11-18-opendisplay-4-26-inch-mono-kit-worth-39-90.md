@@ -1,6 +1,6 @@
 ---
 title: OpenDisplay 4.26-inch Mono Kit: Worth $39.90?
-date: 2026-11-18
+date: 2026-11-21
 slug: opendisplay-4-26-inch-mono-kit-worth-39-90
 tags: smart home, e-paper, home assistant, seeed studio
 snippet: Seeed's $39.90 OpenDisplay e-paper dashboard claims two years per charge, but it needs Home Assistant or a Bluetooth sender to be useful.
