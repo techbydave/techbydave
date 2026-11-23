@@ -1,0 +1,73 @@
+name: Tuesday and Thursday news drafts
+
+# Writes 2 question-and-answer drafts about the week's biggest tech news into
+# drafts/ at 5:00am Toronto time on Tuesdays and Thursdays. You answer the
+# questions; the 9:00am "Publish edited drafts" run puts finished ones live.
+# The Monday/Wednesday/Friday drafts come from "Daily post, build and deploy".
+
+on:
+  schedule:
+    # Two crons because GitHub schedules in UTC and Toronto changes offset
+    # with daylight saving. The gate step lets only the matching one run.
+    - cron: "3 9 * * 2,4"    # 5:03am Toronto in summer time (EDT, UTC-4)
+    - cron: "3 10 * * 2,4"   # 5:03am Toronto in winter time (EST, UTC-5)
+  workflow_dispatch: {}      # "Run workflow" = write 2 news drafts right now (any day)
+
+permissions:
+  contents: write
+
+concurrency:
+  group: news-drafts
+  cancel-in-progress: false
+
+jobs:
+  drafts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Only run the cron that matches Toronto's current UTC offset
+        id: gate
+        env:
+          EVENT: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          OFFSET=$(TZ=America/Toronto date +%z)
+          RUN=false
+          if [ "$EVENT" != "schedule" ]; then
+            RUN=true
+          elif [ "$OFFSET" = "-0400" ] && [ "$SCHEDULE" = "3 9 * * 2,4" ]; then
+            RUN=true
+          elif [ "$OFFSET" = "-0500" ] && [ "$SCHEDULE" = "3 10 * * 2,4" ]; then
+            RUN=true
+          fi
+          echo "Toronto offset $OFFSET, event $EVENT, schedule '$SCHEDULE' -> run=$RUN"
+          echo "run=$RUN" >> "$GITHUB_OUTPUT"
+
+      - name: Check out repo
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Write the news drafts
+        if: steps.gate.outputs.run == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          AMAZON_TAG: ${{ vars.AMAZON_TAG }}
+          AMAZON_DOMAIN: ${{ vars.AMAZON_DOMAIN }}
+          FORCE: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          pip install anthropic
+          python scripts/generate_news_drafts.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add drafts
+          if git diff --cached --quiet; then
+            echo "No new drafts."
+            exit 0
+          fi
+          git commit -m "Auto: Tuesday/Thursday news drafts"
+          git push || (git pull --rebase && git push)

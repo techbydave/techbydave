@@ -7,7 +7,6 @@ Once a day (triggered by the GitHub Actions schedule) this:
   2. writes the blog post (with Amazon affiliate links and a Sources line)
      into drafts/ for YOU to edit. A separate 9:00am step (publish_drafts.py)
      moves edited drafts into posts/, where the site picks them up,
-  3. writes 4 ready-to-post tweets into tweets/ (a separate file).
 
 Run by .github/workflows/deploy.yml. Needs ANTHROPIC_API_KEY (GitHub secret).
 Optional repo variables: AMAZON_TAG, AMAZON_DOMAIN, SITE_URL.
@@ -32,7 +31,6 @@ import anthropic
 # ---- Config ----------------------------------------------------------------
 
 POSTS_DIR = Path("posts")
-TWEETS_DIR = Path("tweets")
 DRAFTS_DIR = Path("drafts")  # new posts land here until you edit and publish them
 TIMEZONE = "America/Toronto"
 
@@ -56,9 +54,6 @@ MIN_WORDS, MAX_WORDS = 700, 1500
 # Days a new draft is written (Monday=0 ... Sunday=6). Fewer, stronger posts get
 # indexed by Google; quick daily ones mostly don't. Manual runs (FORCE) ignore this.
 POST_DAYS = {0, 2, 4}   # Monday, Wednesday, Friday
-NUM_TWEETS = 4
-TWEET_LIMIT = 280
-URL_COST = 25  # "\n\n" + 23 characters (X counts every link as 23)
 
 # Added to every draft. The 9:00am publish step will NOT publish a draft that
 # still contains this line, so a post only goes live after you have written
@@ -78,7 +73,7 @@ AFFILIATE_DISCLOSURE = (
 )
 
 # Matches build.py's parser: no quotes around values, plain comma-separated
-# tags, "snippet" for the preview, and an explicit slug so tweet links match.
+# tags, "snippet" for the preview, and an explicit slug so links match.
 FRONTMATTER_TEMPLATE = """---
 title: {title}
 date: {date}
@@ -95,7 +90,7 @@ verdict_line: {verdict_line}
 SUBMIT_POST_TOOL = {
     "name": "submit_post",
     "description": (
-        "Submit the finished blog post and tweets once research and writing "
+        "Submit the finished blog post once research and writing "
         "are complete. Call this exactly once, as your final action."
     ),
     "input_schema": {
@@ -131,17 +126,8 @@ SUBMIT_POST_TOOL = {
                     "required": ["name", "url"],
                 },
             },
-            "tweets": {
-                "type": "array",
-                "description": (
-                    f"Exactly {NUM_TWEETS} different tweets about the post. Each under 230 "
-                    "characters, NO links (a link is added later), 0-2 hashtags, and only "
-                    "facts that appear in the post."
-                ),
-                "items": {"type": "string"},
-            },
         },
-        "required": ["title", "snippet", "tags", "body", "product_mentions", "sources", "tweets"],
+        "required": ["title", "snippet", "tags", "body", "product_mentions", "sources"],
     },
 }
 
@@ -266,10 +252,6 @@ Do not search again after that.
   Re-read your body for named products before finishing.
 - In sources, list the pages your facts came from (site name and full URL).
 
-Also write {NUM_TWEETS} different tweets that promote the post: for example a
-sharp take, a key number or fact, a question, a buying tip. Each under 230
-characters, no links, at most 2 hashtags, and no hype or invented claims.
-
 Research first, then call submit_post exactly once with everything. That is
 how you deliver your answer, not as a message.
 """
@@ -371,34 +353,6 @@ def _single_line(text: str) -> str:
     return " ".join(text.split())
 
 
-def make_tweets(raw_tweets, post_url):
-    """Trim each tweet to fit X's 280 limit; add the post link to the first two."""
-    tweets = []
-    for i, t in enumerate(raw_tweets or []):
-        text = _single_line(_strip_citation_tags(str(t)))
-        if not text:
-            continue
-        with_link = i < 2
-        room = TWEET_LIMIT - (URL_COST if with_link else 0)
-        if len(text) > room:
-            text = text[: room - 1].rsplit(" ", 1)[0].rstrip(",;:") + "…"
-        final = f"{text}\n\n{post_url}" if with_link else text
-        used = len(text) + (URL_COST if with_link else 0)
-        tweets.append((final, used))
-    return tweets
-
-
-def write_tweets_file(tweets, today, title, post_url) -> Path:
-    TWEETS_DIR.mkdir(parents=True, exist_ok=True)
-    path = TWEETS_DIR / f"{today.isoformat()}.md"
-    lines = [f"# Tweets for {today.isoformat()}", "", f"Post: [{title}]({post_url})", "",
-             "Copy one into X. The count shown is how X will count it (links = 23).", ""]
-    for n, (text, used) in enumerate(tweets, 1):
-        lines += [f"### Tweet {n} ({used}/{TWEET_LIMIT})", "", "```text", text, "```", ""]
-    path.write_text("\n".join(lines), encoding="utf-8")
-    return path
-
-
 def write_post(post: dict, today):
     title = _single_line(_strip_citation_tags(post["title"]))
     slug = slugify(title)
@@ -463,12 +417,6 @@ def main():
     print(f"  wrote {path}")
     print(f"  product_mentions: {post.get('product_mentions', [])!r}")
 
-    post_url = f"{SITE_URL}/posts/{slug}.html"
-    tweets = make_tweets(post.get("tweets"), post_url)
-    if tweets:
-        print(f"  wrote {write_tweets_file(tweets, today, title, post_url)}")
-    else:
-        print("  WARNING: no tweets were returned.", file=sys.stderr)
     print("Done.")
 
 

@@ -65,7 +65,7 @@ jobs:
       # (Publish edited drafts) moves it into posts/.
       # Runs on the schedule and on manual runs, not when you push a change.
       # If it fails, the site still builds and deploys as normal.
-      - name: Write today's draft and tweets
+      - name: Write today's draft
         if: github.event_name != 'push' && !inputs.skip_post
         continue-on-error: true
         env:
@@ -78,9 +78,9 @@ jobs:
           python scripts/generate_posts.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          mkdir -p drafts tweets
-          git add drafts tweets
-          git diff --cached --quiet || (git commit -m "Auto: daily draft and tweets" && git push)
+          mkdir -p drafts
+          git add drafts
+          git diff --cached --quiet || (git commit -m "Auto: daily draft" && git push)
 
       # The daily email digest now has its own workflow (Daily newsletter
       # digest), which runs at 9:30am Toronto time.

@@ -70,3 +70,19 @@ fix this exactly instead of guessing.
   sitemaps. Add a take to any post and it goes back into Google on the next
   deploy. To override one post, add `google: yes` (always show) or
   `google: no` (always hide) to its frontmatter.
+
+## Weekly schedule (Nov 2026)
+
+| Day | 4:07am | 5:03am | 9:03am |
+|-----|--------|--------|--------|
+| Mon, Wed, Fri | Buying-guide draft (`generate_posts.py`) | | Publish edited drafts |
+| Tue, Thu | | 2 question-and-answer news drafts (`generate_news_drafts.py`, workflow "Tuesday and Thursday news drafts") | Publish edited drafts |
+
+The Tuesday/Thursday drafts cover the week's biggest tech news. The headline,
+tags, verdict and sources are filled in; every section is a question with the
+researched facts under it in an `[[ADD YOUR ANSWER: ...]]` line. Replace each of
+those lines with your own answer (and the hook, photo and take lines), and the
+draft goes live at the next 9:00am run. To get two news drafts on any other day,
+open Actions → "Tuesday and Thursday news drafts" → Run workflow.
+
+Tweets are no longer generated. Video ideas with full scripts live in `video-ideas/`.
