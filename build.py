@@ -1389,6 +1389,8 @@ def _link(prefix, href, label, cls=""):
     """Internal pages get the relative prefix; outside links (like the Amazon
     storefront) open in a new tab and are marked as sponsored for Google."""
     c = f' class="{cls}"' if cls else ""
+    if href.startswith("https://webcreator.techbydave.com"):  # our own studio: a normal link Google can follow
+        return f'<a{c} href="{href}">{label}</a>'
     if href.startswith("http"):
         return f'<a{c} href="{href}" target="_blank" rel="sponsored noopener">{label}</a>'
     return f'<a{c} href="{prefix}{href}">{label}</a>'
