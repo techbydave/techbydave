@@ -1292,7 +1292,8 @@ SUN_ICON = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 def footer_links(prefix):
     pages = [("all posts", "archive.html"), ("privacy", "privacy.html"), ("editorial", "editorial-policy.html"),
              ("contact", "contact.html"), ("media kit", "media-kit.html"),
-             ("shop my picks", AMAZON_STOREFRONT)]
+             ("shop my picks", AMAZON_STOREFRONT),
+             ("websites for businesses", "https://webcreator.techbydave.com/")]
     return "".join(_link(prefix, href, label) for label, href in pages)
 
 
