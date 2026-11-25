@@ -6,6 +6,7 @@ tags: bose, headphones, black friday, noise cancelling
 snippet: The Bose QuietComfort Headphones (2nd Gen) dropped from $359 to $199 at Amazon in three colors. Here's who should buy and who should grab the original.
 verdict: BUY
 verdict_line: Buy at $199 to $219 if you want comfy ANC with spatial audio; skip it at the $359 list price.
+image: QCHII27-Blk_PDP_E-Comm_Gallery_1_1500x1120.avif
 ---
 
 The [Bose QuietComfort Headphones (2nd Gen)](https://www.amazon.com/s?k=Bose+QuietComfort+Headphones+%282nd+Gen%29&tag=techtreck02-20) launched in August 2026 at $359, and that was a hard sell. At $199 on Amazon, they're a good buy. Three colors hit that price. The rest are $219.
@@ -74,7 +75,8 @@ Pick Eucalyptus Green, Dewdrop Mint or Hazelnut Taupe for $199. If you want a di
 
 ## My take
 
-[[ADD YOUR TAKE: 2-3 sentences on what you think, who should buy or skip, and anything you have actually tried. A photo or screenshot of your own helps the post get on Google. Delete this whole line when done.]]
+With the great features of this headphones , this is definitely a great purchase , and looking a the price . This is a great headphone with a somewhat budget price looking a every thing you are getting , if this happens to fall in a black Friday deal , this would be the best purchase anyone can would get. 
+ 
 
 **Sources:** [Digital Trends](https://www.digitaltrends.com/home-theater/bose-quietcomfort-2nd-gen-black-friday-amazon-deal/), [TechRadar](https://www.techradar.com/audio/wireless-headphones/the-best-early-black-friday-headphone-deals-2026-new-price-cuts-on-noise-canceling-cans-from-apple-bose-sony-and-more), [Motor Biscuit](https://www.motorbiscuit.com/bose-cut-its-quietcomfort-headphones-to-199-and-the-sale-runs-through-december/), [Bose](https://www.bose.com/stories/bose-quiet-comfort-headphones-second-gen-vs-first-gen), [Tom's Guide](https://www.tomsguide.com/audio/headphones/bose-quietcomfort-headphones-2nd-gen-review), [What Hi-Fi](https://www.whathifi.com/headphones/wireless-headphones/bose-quietcomfort-headphones-2nd-gen), [ecoustics](https://www.ecoustics.com/reviews/bose-quietcomfort-headphones-2nd-gen/), [Trusted Reviews](https://www.trustedreviews.com/reviews/bose-quietcomfort-headphones-2nd-gen), [SoundMavericks](https://soundmavericks.com/bose-quietcomfort-headphones-2nd-gen-review/), [Bose Canada](https://www.bose.ca/en/p/headphones/bose-quietcomfort-headphones-2nd-gen/QC2G-HEADPHONEARN.html), [Best Buy Canada](https://www.bestbuy.ca/en-ca/product/bose-quietcomfort-2nd-gen-over-ear-noise-cancelling-bluetooth-headphones-black/20015547), [Gear Patrol](https://www.gearpatrol.com/audio/bose-quietcomfort-headphones-2nd-gen-ice-blue-vanilla-cream/)
 
