@@ -1,6 +1,6 @@
 ---
 title: Bose QuietComfort Headphones (2nd Gen): Worth $199?
-date: 2026-11-23
+date: 2026-11-25
 slug: bose-quietcomfort-headphones-2nd-gen-worth-199
 tags: bose, headphones, black friday, noise cancelling
 snippet: The Bose QuietComfort Headphones (2nd Gen) dropped from $359 to $199 at Amazon in three colors. Here's who should buy and who should grab the original.
