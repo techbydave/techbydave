@@ -6,7 +6,7 @@ tags: bose, headphones, black friday, noise cancelling
 snippet: The Bose QuietComfort Headphones (2nd Gen) dropped from $359 to $199 at Amazon in three colors. Here's who should buy and who should grab the original.
 verdict: BUY
 verdict_line: Buy at $199 to $219 if you want comfy ANC with spatial audio; skip it at the $359 list price.
-image: QCHII27-Blk_PDP_E-Comm_Gallery_1_1500x1120.avif
+image:  dailypics(9).png
 published: 2026-11-25T10:13:34-05:00
 ---
 
