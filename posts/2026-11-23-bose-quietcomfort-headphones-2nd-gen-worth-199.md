@@ -7,6 +7,7 @@ snippet: The Bose QuietComfort Headphones (2nd Gen) dropped from $359 to $199 at
 verdict: BUY
 verdict_line: Buy at $199 to $219 if you want comfy ANC with spatial audio; skip it at the $359 list price.
 image: QCHII27-Blk_PDP_E-Comm_Gallery_1_1500x1120.avif
+published: 2026-11-25T10:13:34-05:00
 ---
 
 The [Bose QuietComfort Headphones (2nd Gen)](https://www.amazon.com/s?k=Bose+QuietComfort+Headphones+%282nd+Gen%29&tag=techtreck02-20) launched in August 2026 at $359, and that was a hard sell. At $199 on Amazon, they're a good buy. Three colors hit that price. The rest are $219.
