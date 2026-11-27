@@ -106,6 +106,9 @@ IMAGES_DIR = os.path.join(ROOT, "images")
 SOCIAL_CARDS_DIR = os.path.join(ROOT, "social-cards")
 FAVICON_DIR = os.path.join(ROOT, "favicon")  # favicon files, copied to the top of the site
 DIST_DIR = os.path.join(ROOT, "dist")
+# Holiday easter eggs (snow, fireworks, Easter egg hunt), inlined on every page
+with open(os.path.join(ROOT, "holidays.js"), encoding="utf-8") as _f:
+    HOLIDAY_JS = _f.read()
 
 
 # ---------------------------------------------------------------------------
@@ -1445,7 +1448,7 @@ def seo_page_title(text, limit=60):
 def render_page(*, title, description, canonical, prefix="", body, hero="", main_class="", image=None,
                 og_type="website", head_extra="", signup=True):
     """Wrap `body` in the full site chrome. prefix is "" on root pages and "../" on post pages."""
-    js = COMMON_JS + (HERO_JS if hero else "")
+    js = COMMON_JS + HOLIDAY_JS + (HERO_JS if hero else "")
     og_image = ""
     if not image and os.path.isfile(os.path.join(IMAGES_DIR, DEFAULT_SHARE_IMAGE)):
         image = IMG_MARK + DEFAULT_SHARE_IMAGE  # pages and posts without a photo still get a preview picture
