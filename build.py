@@ -1158,7 +1158,7 @@ My vision is to grow {SITE_TITLE} into a trusted name in tech and build an audie
 
 ## How posts are made
 
-News posts are researched and drafted with the help of AI tools working from published sources, then I add my own photos and my own take before anything goes live. Hands-on reviews are written by me from my own use of the product. Every post lists its sources at the bottom so you can check the facts yourself. We state only what those sources confirm, and we never claim to have tested a product we haven't. Read the full [editorial policy](editorial-policy.html).
+Every post on {SITE_TITLE} goes out with my own take, and hands-on reviews are written by me from my own time with the product. To keep up with fast-moving tech news, I use AI tools to help gather published sources and put together a first draft. Then I go through it and add my own photos and my opinion, and only then does it go live. Every post lists its sources at the bottom so you can check the facts yourself, and we never claim to have tested a product we haven't. Read the full [editorial policy](editorial-policy.html).
 
 ## Newsletter
 
